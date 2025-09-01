@@ -1,0 +1,20 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+# https://copier.readthedocs.io/en/stable/updating/#never-change-the-answers-file-manually
+_commit: v2.0.4
+_src_path: gh:FallingColors/hexdummy
+advanced: true
+capitalize_platforms: false
+classname: MediaTransport
+default_branch: main
+description: hex casting - fsb integration (the dev version of 1.20.1 figura)
+display_name: mediatransport
+github_repo: mediatransport
+github_user: penguinencounter
+homepage_url: https://penguinencounter.github.io/mediatransport
+java_package: penguinencounter.mediatransport
+kotlin_package: penguinencounter.mediatransport
+mappings_name: Mojmap
+minecraft_version_in_mod_version: true
+mod_version: 0.1.0
+modid: mediatransport
+sources_url: https://github.com/penguinencounter/mediatransport

@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "id": "mediatransport",
+  "version": "${version}",
+  "name": "mediatransport",
+  "description": "hex casting - fsb integration (the dev version of 1.20.1 figura)",
+  "authors": [
+    "penguinencounter"
+  ],
+  "contact": {
+    "homepage": "https://penguinencounter.github.io/mediatransport",
+    "sources": "https://github.com/penguinencounter/mediatransport"
+  },
+  "license": "MIT",
+  "icon": "assets/mediatransport/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [{
+      "adapter": "kotlin",
+      "value": "penguinencounter.mediatransport.fabric.FabricMediaTransport"
+    }],
+    "client": [{
+      "adapter": "kotlin",
+      "value": "penguinencounter.mediatransport.fabric.FabricMediaTransportClient"
+    }],
+    "modmenu": [{
+      "adapter": "kotlin",
+      "value": "penguinencounter.mediatransport.fabric.FabricMediaTransportModMenu"
+    }]
+  },
+  "mixins": [
+    "mediatransport-common.mixins.json",
+    "mediatransport-fabric.mixins.json"
+  ],
+  "depends": {
+    "minecraft": "${versions.minecraft}",
+    "fabricloader": ">=${versions.fabric_loader}",
+    "fabric-api": ">=${versions.fabric_api}",
+    "fabric-language-kotlin": ">=${versions.kotlin_fabric}",
+    "architectury": ">=${versions.architectury}",
+    "hexcasting": ">=${versions.hexcasting_dependency}",
+    "cloth-config": ">=${versions.clothConfig}"
+  },
+  "suggests": {
+    "modmenu": ">=${versions.modMenu}"
+  }
+}

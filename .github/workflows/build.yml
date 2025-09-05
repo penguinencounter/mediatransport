@@ -31,6 +31,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          path: mediatransport
+      - name: Clone Figura
+        uses: actions/checkout@v4
+        with:
+          repository: penguinencounter/Figura
+          filter: tree:0
+          fetch-depth: 0
+          ref: maven-server-common
+          path: figura
 
       - uses: actions/setup-java@v4
         with:
@@ -39,25 +49,30 @@ jobs:
 
       - uses: gradle/actions/setup-gradle@v4
 
+      - name: Prepare Figura
+        run: pushd figura && ./gradlew publishToMavenLocal; popd
+
       - name: Build mod
         env:
           RELEASE: ${{ inputs.mod_release == true }}
-        run: ./gradlew build
+        run: pushd mediatransport && ./gradlew build; popd
 
       # if this step fails, you need to run your datagen and commit the updated files
       - name: Check if datagen needs to be run
         timeout-minutes: 3
         run: |
+          pushd mediatransport || exit 1
           mkdir -p /home/runner/.gradle/caches/fabric-loom/assets
           ./gradlew runAllDatagen
           git add --intent-to-add .
           git diff --name-only --exit-code -- ":!:*/src/generated/resources/.cache/*"
+          popd
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: mod-build
-          path: build/ciArtifacts/
+          path: mediatransport/build/ciArtifacts/
           if-no-files-found: error
 
   test-mod:

@@ -16,8 +16,18 @@ dependencies {
     modApi(libs.architectury)
 
     modApi(libs.hexcasting.common)
+    modCompileOnly(libs.moreiotas.common)
+    modCompileOnly(libs.hexpose)
+    compileOnly(libs.jblas)
+
+    modApi(libs.figura.common)
+    compileOnly(libs.figura.server) // provided by flavored figura
 
     modApi(libs.clothConfig.common)
+
+    api(libs.figura.luaj.core)
+    api(libs.figura.luaj.jse)
+    localRuntime(libs.nvwebsocketclient)
 
     libs.mixinExtras.common.also {
         implementation(it)

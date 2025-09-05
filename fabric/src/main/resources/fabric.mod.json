@@ -23,6 +23,10 @@
       "adapter": "kotlin",
       "value": "penguinencounter.mediatransport.fabric.FabricMediaTransportClient"
     }],
+    "preLaunch": [{
+      "adapter": "kotlin",
+      "value": "penguinencounter.mediatransport.fabric.FabricMediaTransportPreInit"
+    }],
     "modmenu": [{
       "adapter": "kotlin",
       "value": "penguinencounter.mediatransport.fabric.FabricMediaTransportModMenu"

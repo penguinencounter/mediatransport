@@ -3,34 +3,57 @@
     book: {
       patterns: {
         spells: {
-          dummy_spells: {
-            "": "Dummy Spells",
-            congratulate: "Remove an entity from the stack, then congratulate them.",
+          fsb: {
+            "": "Figura Integration",
+            intro: "",
+            send_fsb: "Submit an iota for use by [lore-relevant version of a Figura Avatar].",
+            recv_fsb: "Retrieve the next iota in the queue from Figura [todo].",
+            check_queue: "Checks the number of received iotas that are ready to be read. [todo]",
           },
         },
       },
     },
+    // "can't send (iota) because..."
+    not_sendable: {
+      bad_type: "that type of iota can't be sent",
+      corrupt: "it's corrupted or ill-formed",
+      matrix_too_big: "it's too big",
+      matrix_too_many_rows: "it has too many rows (max 255)",
+      matrix_too_many_cols: "it has too many columns (max 255)",
+    },
+    radio_silence_options: {
+      // translators: good luck, sorry
+      crickets: "*crickets*",
+      ellipsis: "...",
+      help: "Maybe check if there's anything to receive first?",
+      megamind: "no data? 🤨",
+      insanity: "Seems like you aren't insane enough to hear the void's whispers. Yet.",
+      news: "Breaking News: there is no news.",
+    }
   },
 
   hexcasting: {
     action: {
       "mediatransport:": {
-        congratulate: "Congratulate Player",
+        send_fsb: "Submit Iota [WIP]",
+        recv_fsb: "Accept Iota [WIP]",
+        check_queue: "Semaphore's Reflection [WIP]",
       },
 
       // use this to add shortened versions of pattern names if the full name won't fit in the ingame book
       // you don't need to add an entry for every pattern - the above value will be used as a default
       book: {
         "mediatransport:": {
-          congratulate: "Congratulate",
+          check_queue: "Semaphore's Refl.",
         },
       },
     },
-  },
-
-  text: {
-    mediatransport: {
-      congrats: "Tell %1$s they're doing a good job!",
-    },
+    mishap: {
+      not_sendable: "can't send %s",
+      not_sendable_ex: "can't send %s because %s",
+      too_large_to_send: "can't send: calculated size at least %s B, but server configured limit is %s B",
+      fsb_not_initialized: "Figura server isn't initialized (tell your local admin to use a dedicated server and install FSB)",
+      radio_silence: "%s" // see mediatransport.radio_silence_options
+    }
   },
 }

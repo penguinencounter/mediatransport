@@ -1,0 +1,36 @@
+{
+  name: "mediatransport.book.patterns.spells.fsb",
+  category: "hexcasting:patterns/spells",
+  icon: "minecraft:spruce_sign",
+  advancement: "hexcasting:root",
+  pages: [
+    {
+      type: "patchouli:text",
+      text: "mediatransport.book.patterns.spells.fsb.intro"
+    },
+    {
+      type: "hexcasting:pattern",
+      op_id: "mediatransport:send_fsb",
+      anchor: "mediatransport:send_fsb",
+      input: "(sendable)",
+      output: "",
+      text: "mediatransport.book.patterns.spells.fsb.send_fsb",
+    },
+    {
+      type: "hexcasting:pattern",
+      op_id: "mediatransport:recv_fsb",
+      anchor: "mediatransport:recv_fsb",
+      input: "",
+      output: "sendable | garbage",
+      text: "mediatransport.book.patterns.spells.fsb.recv_fsb",
+    },
+    {
+      type: "hexcasting:pattern",
+      op_id: "mediatransport:check_queue",
+      anchor: "mediatransport:check_queue",
+      input: "",
+      output: "number",
+      text: "mediatransport.book.patterns.spells.fsb.check_queue",
+    },
+  ],
+}

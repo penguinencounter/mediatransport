@@ -27,6 +27,7 @@ mediatransportModDependencies {
     requires(curseforge = "hexcasting", modrinth = "hex-casting")
     requires("fabric-api")
     requires("fabric-language-kotlin")
+    requires("figura")
     optional("modmenu")
 }
 
@@ -45,11 +46,20 @@ dependencies {
         // If not excluded here, calls a nonexistent method and crashes the dev client
         exclude(module = "phosphor")
     }
+
+    modApi(libs.figura.fabric)
+    localRuntime(libs.figura.luaj.core)
+    localRuntime(libs.figura.luaj.jse)
+    localRuntime(libs.oggus)
+    localRuntime(libs.concentus)
+    localRuntime(libs.nvwebsocketclient)
+
     // Hex Casting dependencies
     // we use modLocalRuntime to add these to the development runtime, but not at compile time or for consumers of this project
     modLocalRuntime(libs.paucal.fabric)
     modLocalRuntime(libs.patchouli.fabric)
     modLocalRuntime(libs.cardinalComponents)
+    modLocalRuntime(libs.moreiotas.fabric)
     modLocalRuntime(libs.serializationHooks)
     modLocalRuntime(libs.trinkets)
     modLocalRuntime(libs.inline.fabric) { isTransitive = false }

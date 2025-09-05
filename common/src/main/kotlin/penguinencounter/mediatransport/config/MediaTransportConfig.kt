@@ -63,23 +63,31 @@ object MediaTransportConfig {
 
     @Config(name = "client")
     class ClientConfig : ConfigData {
-        @Tooltip
-        val clientConfigOption: Boolean = true
+//        @Tooltip
+//        val clientConfigOption: Boolean = true
     }
 
     @Config(name = "server")
     class ServerConfig : ConfigData {
         @Tooltip
-        var serverConfigOption: Int = 64
+        var maximumSendSize: Int = 10240
+            private set
+        @Tooltip
+        var maximumRecvSize: Int = 10240
+            private set
+        @Tooltip
+        var matrixMaxArea: Int = 10240
             private set
 
         fun encode(buf: FriendlyByteBuf) {
-            buf.writeInt(serverConfigOption)
+            buf.writeInt(maximumSendSize)
+            buf.writeInt(maximumRecvSize)
         }
 
         companion object {
             fun decode(buf: FriendlyByteBuf) = ServerConfig().apply {
-                serverConfigOption = buf.readInt()
+                maximumSendSize = buf.readInt()
+                maximumRecvSize = buf.readInt()
             }
         }
     }

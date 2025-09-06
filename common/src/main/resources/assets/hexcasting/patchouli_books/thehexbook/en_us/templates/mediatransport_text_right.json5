@@ -1,0 +1,22 @@
+{
+  components: [
+    {
+      type: "patchouli:image",
+      width: 129,
+      height: 165,
+      u: 0,
+      v: 0,
+      texture_width: 256,
+      texture_height: 256,
+      x: -6,
+      y: -11,
+      image: "mediatransport:textures/gui/altn_page_right.png"
+    },
+    {
+      type: "patchouli:text",
+      text: "#text",
+      color: "FFFFFF",
+      y: -4, // push it back up to where the normal text would be
+    }
+  ]
+}

@@ -12,6 +12,11 @@
           },
         },
       },
+      admin_docs: {
+        "": "About FSB",
+        "1": "mediatransport relies on $(n)Figura Server Backend$() (also called $(n)FSB$()) to function. FSB is a feature in the development builds of Figura for 1.20.1 that enables hosting avatars and pings on the server itself instead of relying on the global backend.",
+        "2": "FSB $(n)doesn't work on Singleplayer$() or LAN worlds, so you might want to host a dedicated server to test your hexes out. Thanks for playing our addon! :)$(br2)$(l:https://github.com/penguinencounter/Figura/releases/tag/figura-fsb-placeholder)Figura FSB builds on GitHub$(/l)",
+      }
     },
     // "can't send (iota) because..."
     not_sendable: {

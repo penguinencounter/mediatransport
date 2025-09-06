@@ -18,21 +18,6 @@ loom {
             "mediatransport-forge.mixins.json",
         )
     }
-
-    runs {
-        register("commonDatagen") {
-            data()
-            programArgs(
-                "--mod", modId,
-                "--all",
-                // we use forge to do the common datagen because fabric's datagen kind of sucks
-                "--output", project(":common").file("src/generated/resources").absolutePath,
-                "--existing", file("src/main/resources").absolutePath,
-                "--existing", project(":common").file("src/main/resources").absolutePath,
-            )
-            property("mediatransport.apply-datagen-mixin", "true")
-        }
-    }
 }
 
 mediatransportModDependencies {
@@ -95,12 +80,5 @@ dependencies {
 tasks {
     shadowJar {
         exclude("fabric.mod.json")
-    }
-
-    named("runCommonDatagen") {
-        doFirst {
-            // avoid keeping stale generated resources
-            project(":common").delete("src/generated/resources")
-        }
     }
 }

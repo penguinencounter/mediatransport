@@ -1,0 +1,19 @@
+{
+  name: "mediatransport.book.interop.figura.about",
+  category: "hexcasting:interop/figura",
+  icon: "minecraft:warped_sign",
+  advancement: "hexcasting:root",
+  pages: [
+    "mediatransport.book.interop.figura.about.1",
+    "mediatransport.book.interop.figura.about.2",
+    {
+      type: "patchouli:relations",
+      title: "See Also",
+      entries: [
+        "hexcasting:interop/figura/mishaps",
+        "hexcasting:patterns/figura"
+      ],
+      text: "mediatransport.book.figura_see_also_1"
+    }
+  ]
+}

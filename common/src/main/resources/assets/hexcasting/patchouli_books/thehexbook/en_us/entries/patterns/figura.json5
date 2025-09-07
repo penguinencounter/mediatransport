@@ -1,20 +1,16 @@
 {
-  name: "mediatransport.book.patterns.spells.fsb",
-  category: "hexcasting:patterns/spells",
+  name: "mediatransport.book.patterns.figura",
+  category: "hexcasting:patterns",
   icon: "minecraft:spruce_sign",
   advancement: "hexcasting:root",
   pages: [
-    {
-      type: "patchouli:text",
-      text: "mediatransport.book.patterns.spells.fsb.intro"
-    },
     {
       type: "hexcasting:pattern",
       op_id: "mediatransport:send_fsb",
       anchor: "mediatransport:send_fsb",
       input: "(sendable)",
       output: "",
-      text: "mediatransport.book.patterns.spells.fsb.send_fsb",
+      text: "mediatransport.book.patterns.figura.send_fsb",
     },
     {
       type: "hexcasting:pattern",
@@ -22,7 +18,7 @@
       anchor: "mediatransport:recv_fsb",
       input: "",
       output: "sendable | garbage",
-      text: "mediatransport.book.patterns.spells.fsb.recv_fsb",
+      text: "mediatransport.book.patterns.figura.recv_fsb",
     },
     {
       type: "hexcasting:pattern",
@@ -30,7 +26,16 @@
       anchor: "mediatransport:check_queue",
       input: "",
       output: "number",
-      text: "mediatransport.book.patterns.spells.fsb.check_queue",
+      text: "mediatransport.book.patterns.figura.check_queue",
     },
+    {
+      type: "patchouli:relations",
+      title: "See Also",
+      entries: [
+        "hexcasting:interop/figura/about",
+        "hexcasting:interop/figura/mishaps",
+      ],
+      text: "mediatransport.book.figura_see_also_2"
+    }
   ],
 }

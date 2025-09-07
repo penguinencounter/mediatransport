@@ -47,6 +47,7 @@ dependencies {
 
     modApi(libs.figura.forge) { isTransitive = false }
     modApi(libs.hexcasting.forge) { isTransitive = false }
+    modImplementation(libs.patchouli.forge)
 
     forgeRuntimeLibrary(libs.figura.luaj.core)
     forgeRuntimeLibrary(libs.figura.luaj.jse)
@@ -59,7 +60,6 @@ dependencies {
     // we use modLocalRuntime to add these to the development runtime, but not at compile time or for consumers of this project
     // but we use PAUCAL for datagen, so that's part of the actual implementation
     modImplementation(libs.paucal.forge)
-    modLocalRuntime(libs.patchouli.forge)
     modLocalRuntime(libs.caelus)
     modLocalRuntime(libs.moreiotas.forge) { isTransitive = false }
     modLocalRuntime(libs.inline.forge) { isTransitive = false }

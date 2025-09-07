@@ -53,11 +53,11 @@ dependencies {
     localRuntime(libs.oggus)
     localRuntime(libs.concentus)
     localRuntime(libs.nvwebsocketclient)
+    modImplementation(libs.patchouli.fabric)
 
     // Hex Casting dependencies
     // we use modLocalRuntime to add these to the development runtime, but not at compile time or for consumers of this project
     modLocalRuntime(libs.paucal.fabric)
-    modLocalRuntime(libs.patchouli.fabric)
     modLocalRuntime(libs.cardinalComponents)
     modLocalRuntime(libs.moreiotas.fabric)
     modLocalRuntime(libs.serializationHooks)

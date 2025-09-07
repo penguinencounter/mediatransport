@@ -18,6 +18,7 @@ dependencies {
     modApi(libs.hexcasting.common)
     modCompileOnly(libs.moreiotas.common)
     modCompileOnly(libs.hexpose)
+    modCompileOnly(libs.patchouli.xplat)
     compileOnly(libs.jblas)
 
     modApi(libs.figura.common)

@@ -1,0 +1,56 @@
+{
+  name: "mediatransport.book.interop.figura.mishaps",
+  category: "hexcasting:interop/figura",
+  icon: "minecraft:music_disc_11",
+  advancement: "hexcasting:root",
+  pages: [
+    "mediatransport.book.interop.figura.mishaps.1",
+    {
+      type: "patchouli:text",
+      title: "mediatransport.mishap_names.init_fail",
+      text: "mediatransport.book.interop.figura.mishaps.init_fail"
+    },
+    {
+      type: "patchouli:text",
+      title: "mediatransport.mishap_names.bad_type",
+      text: "mediatransport.book.interop.figura.mishaps.bad_type"
+    },
+    {
+      type: "patchouli:text",
+      title: "mediatransport.mishap_names.corrupted",
+      text: "mediatransport.book.interop.figura.mishaps.corrupted"
+    },
+    {
+      type: "patchouli:text",
+      title: "mediatransport.mishap_names.matrix_too_large",
+      text: "mediatransport.book.interop.figura.mishaps.matrix_too_large"
+    },
+    {
+      type: "patchouli:text",
+      title: "mediatransport.mishap_names.iota_too_large",
+      text: "mediatransport.book.interop.figura.mishaps.iota_too_large"
+    },
+    {
+      type: "patchouli:text",
+      title: "mediatransport.mishap_names.radio_silence",
+      text: "mediatransport.book.interop.figura.mishaps.radio_silence"
+    },
+    "mediatransport.book.blank", // right
+    {
+      type: "hexcasting:mediatransport_text_left",
+      text: "mediatransport.book.interop.figura.mishaps.2"
+    },
+    {
+      type: "hexcasting:mediatransport_text_right",
+      text: "mediatransport.book.interop.figura.mishaps.3"
+    },
+    {
+      type: "hexcasting:mediatransport_text_left",
+      text: "mediatransport.book.interop.figura.mishaps.4"
+    },
+    {
+      type: "hexcasting:mediatransport_text_right",
+      text: "mediatransport.book.blank_dark"
+    },
+  ]
+}

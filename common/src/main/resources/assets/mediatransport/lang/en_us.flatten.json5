@@ -1,22 +1,55 @@
 {
   mediatransport: {
     book: {
+      category: {
+        interop: {
+          figura: {
+            "": "Figura",
+            desc: "It appears that these constructs called $(thing)avatars/$ are quite powerful, if a bit annoying to work with."
+          }
+        }
+      },
       patterns: {
-        spells: {
-          fsb: {
-            "": "Figura Integration",
-            intro: "",
-            send_fsb: "Submit an iota for use by [lore-relevant version of a Figura Avatar].",
-            recv_fsb: "Retrieve the next iota in the queue from Figura [todo].",
-            check_queue: "Checks the number of received iotas that are ready to be read. [todo]",
-          },
+        figura: {
+          "": "Transport Patterns",
+          intro: "",
+          send_fsb: "Sends the iota on the top of the stack into the ether to be received by my current avatar. Can fail for $(l:)various reasons$(/l).",
+          recv_fsb: "Retrieves the next iota from the $(thing)inbound queue/$, or $(l:)mishaps$(/l) if the queue is empty.",
+          check_queue: "Checks the number of received iotas that are ready to be read. [todo]",
         },
+      },
+      interop: {
+        figura: {
+          about: {
+            "": "Transports",
+            "1": "#TODO",
+            "2": "#TODO"
+          },
+          mishaps: {
+            "": "Transport Mishaps",
+            "1": "Various things can go wrong when interacting with the esoteric language of avatar transports.",
+            // first italic part is the same as first part of the mishap text
+            init_fail: "$(italic)Figura server isn't initialized .../$$(br2)Occurs if the server is misconfigured or if this universe is an \"integrated server\". Causes grey sparks and a general feeling of disappointment.",
+            bad_type: "$(italic)can't send ... because that type of iota can't be sent/$$(br2)That type of iota can't be submitted to Nature for transmission. Causes black sparks.$(br2)$(italic)Need support for an iota type? Ask on $(l:https://github.com/penguinencounter/mediatransport/issues)GitHub$(/l)!/$",
+            corrupted: "$(italic)can't send ... because it's corrupted or ill-formed/$$(br2)Something has gone horribly wrong. Causes black sparks, and probably should be reported on the relevant GitHub issue tracker.",
+            matrix_too_large: "$(italic)can't send ... because it's too big$(br)can't send ... because it has too many rows$(br)can't send ... because it has too many columns/$$(br2)The matrix you're trying to send has too many entries to be sent, or more than 255 rows or columns. Causes black sparks.",
+            iota_too_large: "$(italic)can't send: calculated size at least .../$$(br2)The iota you're sending is larger than the maximum allowed size. Causes black sparks.$(br2)$(italic)Note: Server administrators can change the limit in the config./$",
+            radio_silence: "Tried to accept an iota, but there's nothing to accept (i.e. the queue is empty.) Causes white sparks and the screams of $(k)the tormented minds/$ to echo within my ears.",
+            "2": "it looks like most of these errors only occur when $(italic)sending/$ (well, \"submitting\") data from within nature's domain. nature seems to be much more lenient in accepting bad data... in that it doesn't crash anything and instead outputs its favorite flavor of not-error: garbage!$(br)unfortunately this makes it hard to determine why data isn't making it across the boundary. we've compiled a list of reasons to look out for:",
+            "3": "- data is of a type (that's the first byte) that nature has no representation for$(br)- the transmission is missing some data at the end$(br)- the data is too large (seems like this could be different limit than the one going in the other direction...)$(br)- a variant of the above: the same matrix size restrictions apply (though it's impossible to have too many rows or columns, the total area could still be too much)",
+            "4": "also note that lists can also partially fail to transfer, leading to the entire decoder potentially derailing and interpreting types as data and vice versa. good luck!$(br2)~t"
+          }
+        }
       },
       admin_docs: {
         "": "About FSB",
-        "1": "mediatransport relies on $(n)Figura Server Backend$() (also called $(n)FSB$()) to function. FSB is a feature in the development builds of Figura for 1.20.1 that enables hosting avatars and pings on the server itself instead of relying on the global backend.",
-        "2": "FSB $(n)doesn't work on Singleplayer$() or LAN worlds, so you might want to host a dedicated server to test your hexes out. Thanks for playing our addon! :)$(br2)$(l:https://github.com/penguinencounter/Figura/releases/tag/figura-fsb-placeholder)Figura FSB builds on GitHub$(/l)",
-      }
+        "1": "mediatransport relies on $(n)Figura Server Backend/$ (also called $(n)FSB/$) to function. FSB is a feature in the development builds of Figura for 1.20.1 that enables hosting avatars and pings on the server itself instead of relying on the global backend.",
+        "2": "FSB $(n)doesn't work on Singleplayer/$ or LAN worlds, so you might want to host a dedicated server to test your hexes out. Thanks for playing our addon! :)$(br2)$(l:https://github.com/penguinencounter/Figura/releases/tag/figura-fsb-placeholder)Figura FSB builds on GitHub$(/l)",
+      },
+      figura_see_also_1: "I've cataloged the rest of the details in these entries.",
+      figura_see_also_2: "For more details, see these other entries.",
+      blank: "$(#b0b0b0)this page left blank for layout purposes/$",
+      blank_dark: "$(#504060)this page left blank for layout purposes/$",
     },
     // "can't send (iota) because..."
     not_sendable: {
@@ -29,22 +62,28 @@
     radio_silence_options: {
       // translators: good luck, sorry
       crickets: "*crickets*",
-      ellipsis: "...",
+      ellipsis: "......",
       help: "Maybe check if there's anything to receive first?",
-      megamind: "no data? 🤨",
-      insanity: "Seems like you aren't insane enough to hear the void's whispers. Yet.",
-      news: "Breaking News: there is no news.",
-    }
+      eof: "critical failure: EOFException: lmao xd",
+      insanity: "You hear the void whispering to you, but you can't make it out.",
+      informal: "we've got nothing for ya. how are you doing today?",
+    },
+    mishap_names: {
+      init_fail: "Transport Init Failure",
+      bad_type: "Not a Submittable Iota",
+      corrupted: "Corrupt Iota",
+      matrix_too_large: "Matrix Too Large",
+      iota_too_large: "Iota Too Large",
+      radio_silence: "Nothing to Accept"
+    },
   },
-
   hexcasting: {
     action: {
       "mediatransport:": {
-        send_fsb: "Submit Iota [WIP]",
-        recv_fsb: "Accept Iota [WIP]",
-        check_queue: "Semaphore's Reflection [WIP]",
+        send_fsb: "Submit Iota",
+        recv_fsb: "Accept Iota",
+        check_queue: "Semaphore's Reflection",
       },
-
       // use this to add shortened versions of pattern names if the full name won't fit in the ingame book
       // you don't need to add an entry for every pattern - the above value will be used as a default
       book: {
@@ -58,7 +97,8 @@
       not_sendable_ex: "can't send %s because %s",
       too_large_to_send: "can't send: calculated size at least %s B, but server configured limit is %s B",
       fsb_not_initialized: "Figura server isn't initialized (tell your local admin to use a dedicated server and install FSB)",
-      radio_silence: "%s" // see mediatransport.radio_silence_options
+      radio_silence: "%s"
+      // see mediatransport.radio_silence_options
     }
   },
 }

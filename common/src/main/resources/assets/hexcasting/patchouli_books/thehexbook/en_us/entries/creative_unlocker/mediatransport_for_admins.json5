@@ -6,11 +6,11 @@
   advancement: "hexcasting:creative_unlocker",
   pages: [
     {
-      type: "hexcasting:mediatransport_text",
+      type: "hexcasting:mediatransport/text",
       text: "mediatransport.book.admin_docs.1",
     },
     {
-      type: "hexcasting:mediatransport_text",
+      type: "hexcasting:mediatransport/text",
       text: "mediatransport.book.admin_docs.2",
     },
   ]

@@ -37,19 +37,19 @@
     },
     "mediatransport.book.blank",
     {
-      type: "hexcasting:mediatransport_text",
+      type: "hexcasting:mediatransport/text",
       text: "mediatransport.book.interop.figura.mishaps.2"
     },
     {
-      type: "hexcasting:mediatransport_text",
+      type: "hexcasting:mediatransport/text",
       text: "mediatransport.book.interop.figura.mishaps.3"
     },
     {
-      type: "hexcasting:mediatransport_text",
+      type: "hexcasting:mediatransport/text",
       text: "mediatransport.book.interop.figura.mishaps.4"
     },
     {
-      type: "hexcasting:mediatransport_text",
+      type: "hexcasting:mediatransport/text",
       text: "mediatransport.book.blank_dark"
     },
   ]

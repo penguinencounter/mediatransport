@@ -6,6 +6,21 @@
   pages: [
     "mediatransport.book.interop.figura.about.1",
     "mediatransport.book.interop.figura.about.2",
+    "mediatransport.book.interop.figura.about.3",
+    "mediatransport.book.interop.figura.about.4",
+    "mediatransport.book.interop.figura.about.5",
+    {
+      type: "hexcasting:mediatransport_text_right",
+      text: "mediatransport.book.interop.figura.about.A"
+    },
+    {
+      type: "hexcasting:mediatransport_text_left",
+      text: "mediatransport.book.interop.figura.about.B"
+    },
+    {
+      type: "hexcasting:mediatransport_text_right",
+      text: "mediatransport.book.interop.figura.about.C"
+    },
     {
       type: "patchouli:relations",
       title: "See Also",

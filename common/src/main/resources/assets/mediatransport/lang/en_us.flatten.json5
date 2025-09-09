@@ -13,8 +13,8 @@
         figura: {
           "": "Transport Patterns",
           intro: "",
-          send_fsb: "Sends the iota on the top of the stack into the ether to be received by my current avatar. Can fail for $(l:)various reasons$(/l).",
-          recv_fsb: "Retrieves the next iota from the $(thing)inbound queue/$, or $(l:)mishaps$(/l) if the queue is empty.",
+          send_fsb: "Sends the iota on the top of the stack into the ether to be received by my current avatar. Can fail for $(l:hexcasting:interop/figura/mishaps)various reasons$(/l).",
+          recv_fsb: "Retrieves the next iota from the $(thing)inbound queue/$, or $(l:hexcasting:interop/figura/mishaps)mishaps$(/l) if the queue is empty.",
           check_queue: "Checks the number of received iotas that are ready to be read. [todo]",
         },
       },
@@ -22,8 +22,14 @@
         figura: {
           about: {
             "": "Transports",
-            "1": "#TODO",
-            "2": "#TODO"
+            "1": "I appear to have discovered the notes of a collective of people who have also discovered the techniques of _Hexcasting. I've copied down what I could understand of the notes, but the last part is incomprehensible to me, and I've attached it as is. Perhaps I need to understand more about the artistry of these '$(thing)avatars/$' I see mentioned throughout the notes?",
+            "2": "The first section of the notes was dedicated to something called a $(hex)chatcaster/$. They seemed to describe a complex system that acts in response to what someone $(italic)speaks/$, rather than the patterns that they cast. I can certainly see the utility, especially for reducing the load on my mind (and my pockets) by not having to carry a $(thing)Spellbook/$ around with everything I want in it.",
+            "3": "However, it seems that the $(thing)avatars/$ these _Hexcasters used was able to $(italic)mimic/$ the interaction with Nature that one's speaking would normally invoke. The combination of these two systems allows proficient artists to compute complex inputs and run $(hex)Hexes/$ at a rate I had never anticipated.$(br2)In contrast, the second half of the notes detail something much more interesting...",
+            "4": "It appears that Nature created new patterns for communicating specifically with $(thing)avatars/$ after the artists continued to use their avatars to communicate more and more rapidly. As seems to be standard, Nature has twisted the appearance of the now-familiar iotas in exchange for this increased efficiency and throughput; they appear as boxes and seemingly random symbols by my eyes. The $(thing)avatars/$ and their artists seem to not have this problem, and have figured out how to decode the mess.",
+            "5": "Here's the rest of their notes for future reference. To be honest, I don't recognize much of what they mention.",
+            "A": "So we got a few new patterns (dubiously spells as well?) recently, and they facilitate direct communication between avatars and hexes! no more getting kicked for spam :D$(br2)Some of the more data-oriented of us have decoded the format. The entire thing is byte-aligned and uses $(#8bf)buffers/$ for data transfer. (that means we have to remember to close them!)",
+            "B": "Based on what we've seen, each iota starts with a single-byte $(#8bf)type/$ followed by zero or more bytes of $(#8bf)data/$. All multibyte forms are big endian. (that's the default for the Buffer read methods)$(br2)",
+            "C": "",
           },
           mishaps: {
             "": "Transport Mishaps",

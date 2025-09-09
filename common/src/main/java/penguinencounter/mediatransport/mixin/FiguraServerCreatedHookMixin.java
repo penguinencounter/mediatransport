@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import penguinencounter.mediatransport.MediaTransportServer;
 
-@Mixin(FiguraServer.class)
+@Mixin(value = FiguraServer.class, remap = false)
 public abstract class FiguraServerCreatedHookMixin {
     @Inject(method = "<init>", at = @At(value = "TAIL"))
     private void hookInit(CallbackInfo ci) {

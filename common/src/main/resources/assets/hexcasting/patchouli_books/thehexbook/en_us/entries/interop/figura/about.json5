@@ -10,15 +10,15 @@
     "mediatransport.book.interop.figura.about.4",
     "mediatransport.book.interop.figura.about.5",
     {
-      type: "hexcasting:mediatransport_text_right",
+      type: "hexcasting:mediatransport_text",
       text: "mediatransport.book.interop.figura.about.A"
     },
     {
-      type: "hexcasting:mediatransport_text_left",
+      type: "hexcasting:mediatransport_text",
       text: "mediatransport.book.interop.figura.about.B"
     },
     {
-      type: "hexcasting:mediatransport_text_right",
+      type: "hexcasting:mediatransport_text",
       text: "mediatransport.book.interop.figura.about.C"
     },
     {

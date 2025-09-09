@@ -9,6 +9,8 @@ from hexdoc.plugin import (
 )
 from typing_extensions import override
 
+from .book import pages
+
 import hexdoc_mediatransport
 
 from .__gradle_version__ import FULL_VERSION, MINECRAFT_VERSION, MOD_ID, MOD_VERSION
@@ -20,6 +22,11 @@ class MediaTransportPlugin(ModPluginImpl):
     @hookimpl
     def hexdoc_mod_plugin(branch: str) -> ModPlugin:
         return MediaTransportModPlugin(branch=branch)
+    
+    @staticmethod
+    @hookimpl
+    def hexdoc_load_tagged_unions() -> HookReturn[Package]:
+        return [pages]
 
 
 class MediaTransportModPlugin(ModPluginWithBook):

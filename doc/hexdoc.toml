@@ -28,6 +28,9 @@ mod_name = "mediatransport"
 author = "penguinencounter"
 show_landing_text = false
 
+[template.extend_render]
+"index.css" = "mediatransport:mediatransport.css.jinja"
+
 [extra.hexcasting]
 # NOTE: "!Raw" means "don't apply variable interpolation to this value"
 _pattern_regex = { "!Raw"='(?P<is_per_world>make|makePerWorld)\("(?P<name>[^"]+)",\s*HexDir\.(?P<startdir>\w+),\s*"(?P<signature>[qweasd]+)"' }

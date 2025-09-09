@@ -1,8 +1,8 @@
 {
   hexdoc: {
     mediatransport: {
-      title: "mediatransport Book",
-      description: "hex casting - fsb integration (the dev version of 1.20.1 figura)",
+      title: "mediatransport book",
+      description: "The Hex Casting + Figura Server Backend Addon",
     },
   }
 }

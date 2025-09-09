@@ -13,7 +13,7 @@ class ByteDiagramComponent : ICustomComponent {
     @Transient private var x: Int = 0
     @Transient private var y: Int = 0
 
-    public
+    public lateinit var header: String
 
     override fun build(componentX: Int, componentY: Int, pageNum: Int) {
         x = componentX

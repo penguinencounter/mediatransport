@@ -4,10 +4,12 @@ import penguinencounter.mediatransport.config.MediaTransportConfig
 import penguinencounter.mediatransport.config.MediaTransportConfig.GlobalConfig
 import me.shedaniel.autoconfig.AutoConfig
 import net.minecraft.client.gui.screens.Screen
+import vazkii.patchouli.api.PatchouliAPI
 
 object MediaTransportClient {
     fun init() {
         MediaTransportConfig.initClient()
+        PatchouliAPI.get().setConfigFlag("mediatransport:never", false)
     }
 
     fun getConfigScreen(parent: Screen): Screen {

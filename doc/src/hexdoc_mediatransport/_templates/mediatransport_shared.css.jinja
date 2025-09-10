@@ -1,0 +1,39 @@
+/* mediatransport theming */
+
+.book-body > section[id$="_virtual"] {
+  position: relative;
+
+  color: #ddd; /* Always dark */
+}
+
+.book-body > section[id$="_virtual"]::after {
+  position: absolute;
+  top: -2rem;
+  left: -2rem;
+  bottom: -2rem;
+  right: -50vw;
+  content: "";
+  background: linear-gradient(20deg, #050010, #100020);
+  z-index: -1;
+}
+
+.entry > br:nth-last-child(1) {
+  display: none;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.mediatransport-altn {
+  position: relative;
+
+  color: #ddd; /* Always dark */
+}
+.mediatransport-altn::after {
+  position: absolute;
+  inset: -2rem;
+  content: "";
+  background: #000000;
+  z-index: -1;
+}

@@ -1,0 +1,10 @@
+{
+  name: "mediatransport.book.admin_docs",
+  category: "hexcasting:mediatransport_admin_virtual",
+  icon: "hexcasting:staff/crimson",
+  flag: "mediatransport:never",
+  pages: [
+    "mediatransport.book.admin_docs.1",
+    "mediatransport.book.admin_docs.2"
+  ]
+}

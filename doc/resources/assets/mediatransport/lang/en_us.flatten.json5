@@ -3,6 +3,12 @@
     mediatransport: {
       title: "mediatransport book",
       description: "The Hex Casting + Figura Server Backend Addon",
+      categories: {
+        admin_virtual: {
+          "": "Info for Server Administrators",
+          "desc": "$(italic)$(bold)hexdoc only (not in in-game book)/$$(br)Information for server administrators installing mediatransport and FSB."
+        }
+      },
     },
   }
 }

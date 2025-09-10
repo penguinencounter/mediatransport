@@ -29,7 +29,7 @@ author = "penguinencounter"
 show_landing_text = false
 
 [template.extend_render]
-"index.css" = "mediatransport:mediatransport.css.jinja"
+"index.css" = "mediatransport:main.css.jinja"
 
 [extra.hexcasting]
 # NOTE: "!Raw" means "don't apply variable interpolation to this value"

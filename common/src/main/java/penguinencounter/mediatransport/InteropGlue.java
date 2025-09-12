@@ -6,6 +6,7 @@ import ram.talia.moreiotas.common.lib.hex.MoreIotasActions;
 
 // kotlin compiler is too good for tricks like this unfortunately
 // so we shelve it for Java to handle
+@SuppressWarnings("unused")
 public class InteropGlue {
     public static boolean moreiotas() {
         try {

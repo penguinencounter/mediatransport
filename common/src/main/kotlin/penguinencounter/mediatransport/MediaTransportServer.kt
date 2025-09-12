@@ -1,7 +1,10 @@
 package penguinencounter.mediatransport
 
 import net.minecraft.server.level.ServerPlayer
+import org.apache.logging.log4j.core.jmx.Server
 import org.figuramc.figura.server.FiguraServer
+import org.figuramc.figura.server.packets.CustomFSBPacket
+import penguinencounter.mediatransport.networking.figura.MediaTransportExternS2CMessage
 import penguinencounter.mediatransport.networking.figura.MediaTransportFigura
 import penguinencounter.mediatransport.networking.figura.MediaTransportListener
 import penguinencounter.mediatransport.networking.figura.MediaTransportS2CMessage
@@ -29,7 +32,7 @@ object MediaTransportServer {
         }
     }
 
-    fun tell(player: ServerPlayer, bytes: ByteArray) {
+    private inline fun tell(player: ServerPlayer, bytes: ByteArray, packet: (data: ByteArray) -> CustomFSBPacket) {
         if (!FiguraServer.initialized()) {
             MediaTransport.LOGGER.warn("not initialized")
             return
@@ -38,8 +41,11 @@ object MediaTransportServer {
         MediaTransport.LOGGER.info("Sending Figura packet, ${bytes.size} payload bytes")
 
         val server: FiguraServer = FiguraServer.getInstance()!!
-        server.sendPacket(player.uuid, MediaTransportS2CMessage(bytes))
+        server.sendPacket(player.uuid, packet(bytes))
     }
+
+    fun tell(player: ServerPlayer, bytes: ByteArray) = tell(player, bytes, ::MediaTransportS2CMessage)
+    fun tellExternal(player: ServerPlayer, bytes: ByteArray) = tell(player, bytes, ::MediaTransportExternS2CMessage)
 
     fun initializeFigura() {
         if (!FiguraServer.initialized()) throw IllegalStateException("the point was that you were supposed to mixin somewhere to call this...")

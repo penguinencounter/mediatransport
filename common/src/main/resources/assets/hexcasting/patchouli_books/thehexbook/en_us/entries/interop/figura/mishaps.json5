@@ -32,6 +32,11 @@
     },
     {
       type: "patchouli:text",
+      title: "mediatransport.mishap_names.iota_too_large_inter",
+      text: "mediatransport.book.interop.figura.mishaps.iota_too_large_inter"
+    },
+    {
+      type: "patchouli:text",
       title: "mediatransport.mishap_names.radio_silence",
       text: "mediatransport.book.interop.figura.mishaps.radio_silence"
     },

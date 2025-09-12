@@ -9,12 +9,14 @@ import at.petrak.hexcasting.common.lib.hex.HexActions
 import penguinencounter.mediatransport.casting.actions.spells.OpCheckQueue
 import penguinencounter.mediatransport.casting.actions.spells.OpRecvFSB
 import penguinencounter.mediatransport.casting.actions.spells.OpSendFSB
+import penguinencounter.mediatransport.casting.actions.spells.OpSendOther
 
 object MediaTransportActions : MediaTransportRegistrar<ActionRegistryEntry>(
     HexRegistries.ACTION,
     { HexActions.REGISTRY },
 ) {
     val SEND_FSB = make("send_fsb", HexDir.EAST, "edwdwad", OpSendFSB)
+    val SEND_OTHER_FSB = make("send_other", HexDir.EAST, "wewdwwwdwaawawdwawaqwdwwdada", OpSendOther)
     val RECV_FSB = make("recv_fsb", HexDir.EAST, "edwdwwaa", OpRecvFSB)
     val CHECK_QUEUE = make("check_queue", HexDir.EAST, "edwdwq", OpCheckQueue)
 

@@ -26,6 +26,8 @@ object MediaTransportConfig {
     @JvmStatic
     val server get() = syncedServerConfig ?: holder.config.server
 
+    const val VERSION_ID = 0
+
     // only used on the client, probably
     private var syncedServerConfig: ServerConfig? = null
 
@@ -73,6 +75,9 @@ object MediaTransportConfig {
         var maximumSendSize: Int = 10240
             private set
         @Tooltip
+        var maximumInterSendSize: Int = 10240
+            private set
+        @Tooltip
         var maximumRecvSize: Int = 10240
             private set
         @Tooltip
@@ -80,14 +85,34 @@ object MediaTransportConfig {
             private set
 
         fun encode(buf: FriendlyByteBuf) {
+            buf.writeInt(VERSION_ID)
+
             buf.writeInt(maximumSendSize)
+            buf.writeInt(maximumInterSendSize)
             buf.writeInt(maximumRecvSize)
+            buf.writeInt(matrixMaxArea)
         }
 
         companion object {
-            fun decode(buf: FriendlyByteBuf) = ServerConfig().apply {
+            fun decode(buf: FriendlyByteBuf) = when (val it = buf.readInt()) {
+                0 -> decode0(buf)
+                else -> {
+                    if (it in VERSION_ID..256) {
+                        throw IllegalArgumentException("can't decode config v$it (a newer version! this is v$VERSION_ID)")
+                    } else if (it < VERSION_ID) {
+                        throw IllegalArgumentException("can't decode config v$it (too old to decode - try an older version of this mod)")
+                    } else {
+                        throw IllegalArgumentException("can't decode config v$it (either way too old, or corrupt?)")
+                    }
+                }
+            }
+
+            // latest
+            fun decode0(buf: FriendlyByteBuf) = ServerConfig().apply {
                 maximumSendSize = buf.readInt()
+                maximumInterSendSize = buf.readInt()
                 maximumRecvSize = buf.readInt()
+                matrixMaxArea = buf.readInt()
             }
         }
     }

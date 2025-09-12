@@ -14,6 +14,7 @@
           "": "Transport Patterns",
           intro: "",
           send_fsb: "Sends the iota on the top of the stack into the ether to be received by my current avatar. Can fail for $(l:hexcasting:interop/figura/mishaps)various reasons$(/l).",
+          send_other: "Sends the iota on the top of the stack to be received by the player second from the top of the stack. It seems to have a separate receiver from the other one.",
           recv_fsb: "Retrieves the next iota from the $(thing)inbound queue/$, or $(l:hexcasting:interop/figura/mishaps)mishaps$(/l) if the queue is empty.",
           check_queue: "Checks the number of received iotas that are ready to be read. [todo]",
         },
@@ -40,6 +41,7 @@
             corrupted: "$(italic)can't send ... because it's corrupted or ill-formed/$$(br2)Something has gone horribly wrong. Causes black sparks, and probably should be reported on the relevant GitHub issue tracker.",
             matrix_too_large: "$(italic)can't send ... because it's too big$(br)can't send ... because it has too many rows$(br)can't send ... because it has too many columns/$$(br2)The matrix you're trying to send has too many entries to be sent, or more than 255 rows or columns. Causes black sparks.",
             iota_too_large: "$(italic)can't send: calculated size at least .../$$(br2)The iota you're sending is larger than the maximum allowed size. Causes black sparks.$(br2)$(italic)Note: Server administrators can change the limit in the config./$",
+            iota_too_large_inter: "$(italic)can't send to other players: calculated size at least .../$$(br2)The iota you're sending to another player's avatar is larger than the maximum allowed size. Causes black sparks.$(br2)$(italic)Note: Server administrators can change the limit in the config./$",
             radio_silence: "Tried to accept an iota, but there's nothing to accept (i.e. the queue is empty.) Causes white sparks and the screams of $(k)the tormented minds/$ to echo within my ears.",
             "2": "it looks like most of these errors only occur when $(italic)sending/$ (well, \"submitting\") data from within nature's domain. nature seems to be much more lenient in accepting bad data... in that it doesn't crash anything and instead outputs its favorite flavor of not-error: garbage!$(br)unfortunately this makes it hard to determine why data isn't making it across the boundary. we've compiled a list of reasons to look out for:",
             "3": "- data is of a type (that's the first byte) that nature has no representation for$(br)- the transmission is missing some data at the end$(br)- the data is too large (seems like this could be different limit than the one going in the other direction...)$(br)- a variant of the above: the same matrix size restrictions apply (though it's impossible to have too many rows or columns, the total area could still be too much)",
@@ -79,7 +81,8 @@
       bad_type: "Not a Submittable Iota",
       corrupted: "Corrupt Iota",
       matrix_too_large: "Matrix Too Large",
-      iota_too_large: "Iota Too Large",
+      iota_too_large: "Send Too Large",
+      iota_too_large_inter: "Send Other Too Large",
       radio_silence: "Nothing to Accept"
     },
   },
@@ -87,6 +90,7 @@
     action: {
       "mediatransport:": {
         send_fsb: "Submit Iota",
+        send_other: "Submit Iota II",
         recv_fsb: "Accept Iota",
         check_queue: "Semaphore's Reflection",
       },
@@ -102,6 +106,7 @@
       not_sendable: "can't send %s",
       not_sendable_ex: "can't send %s because %s",
       too_large_to_send: "can't send: calculated size at least %s B, but server configured limit is %s B",
+      too_large_to_send_inter: "can't send to other players: calculated size at least %s B, but server configured limit is %s B",
       fsb_not_initialized: "Figura server isn't initialized (tell your local admin to use a dedicated server and install FSB)",
       radio_silence: "%s"
       // see mediatransport.radio_silence_options

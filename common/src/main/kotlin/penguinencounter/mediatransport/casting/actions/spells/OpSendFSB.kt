@@ -29,14 +29,14 @@ object OpSendFSB : SpellAction {
         val toSendBytes = Encoder.encode(toSend)
         if (toSendBytes.size > MediaTransportConfig.server.maximumSendSize) throw MishapTooBigToSend(toSendBytes.size)
 
-        return SpellAction.Result(Spell(castingEntity, toSendBytes), 0, listOf(
+        return SpellAction.Result(Spell(castingEntity, toSendBytes, MediaTransportServer::tell), 0, listOf(
             ParticleSpray.burst(castingEntity.position(), 0.25, 5)
         ))
     }
 
-    private data class Spell(val destination: ServerPlayer, val data: ByteArray) : RenderedSpell {
+    internal data class Spell(val destination: ServerPlayer, val data: ByteArray, val via: (to: ServerPlayer, data: ByteArray) -> Unit) : RenderedSpell {
         override fun cast(env: CastingEnvironment) {
-            MediaTransportServer.tell(destination, data)
+            via(destination, data)
         }
 
         // intellij complains if I don't implement these

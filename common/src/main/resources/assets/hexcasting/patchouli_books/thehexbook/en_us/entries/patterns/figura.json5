@@ -8,7 +8,7 @@
       type: "hexcasting:pattern",
       op_id: "mediatransport:send_fsb",
       anchor: "mediatransport:send_fsb",
-      input: "(sendable)",
+      input: "sendable",
       output: "",
       text: "mediatransport.book.patterns.figura.send_fsb",
     },
@@ -27,6 +27,14 @@
       input: "",
       output: "number",
       text: "mediatransport.book.patterns.figura.check_queue",
+    },
+    {
+      type: "hexcasting:pattern",
+      op_id: "mediatransport:send_other",
+      anchor: "mediatransport:send_other",
+      input: "player, sendable",
+      output: "",
+      text: "mediatransport.book.patterns.figura.send_other",
     },
     {
       type: "patchouli:relations",

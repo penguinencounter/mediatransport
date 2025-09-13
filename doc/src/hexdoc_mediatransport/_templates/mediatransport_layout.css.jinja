@@ -7,6 +7,8 @@
   --navbar-background: #d0d0ff;
   --navbar-active-dropdown: #b0b0dd;
   --navbar-active-dropdown-item: #9d9ddb;
+
+  --box-opacity: .8;
 }
 
 @media screen and (prefers-color-scheme: dark) {
@@ -16,6 +18,8 @@
     --navbar-col: #e0e0f0;
     --navbar-active-dropdown: #101020;
     --navbar-active-dropdown-item: #201030;
+    
+    --box-opacity: .5;
   }
 }
 
@@ -38,6 +42,35 @@
 
 body {
   background-color: var(--page-background);
+  position: relative;
+}
+
+@keyframes animated-footer {
+  from {
+    background-position: 0px 0px, 0px 0px;
+  }
+  to {
+    background-position: 128px 64px, 192px -128px;
+  }
+}
+
+/* this just looks horrid in light mode. sorry light mode users */
+@media screen and (prefers-color-scheme: dark) {
+  body::after {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 256px;
+    content: "";
+    background-image:
+      url("{{ 'mediatransport:textures/gui/background_1.png' | hexdoc_texture }}"),
+      url("{{ 'mediatransport:textures/gui/background_2.png' | hexdoc_texture }}");
+    mask-image: linear-gradient(to top, #fff, transparent);
+    animation: animated-footer 10s linear infinite;
+    
+    z-index: -10;
+  }
 }
 
 .navbar {
@@ -50,5 +83,9 @@ body {
 }
 
 .footer {
-  margin-top: 64px;
+  padding-top: 64px;
+  padding-bottom: 64px;
+  margin-bottom: 0;
 }
+
+/* {{ "mediatransport:textures/gui/background_0.png" | hexdoc_texture }} */

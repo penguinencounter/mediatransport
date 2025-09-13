@@ -1,0 +1,9 @@
+{
+  components: [
+    {
+      type: "patchouli:text",
+      text: "You shouldn't see this! (make sure you set the flag on the page?)",
+      color: "802020"
+    }
+  ]
+}

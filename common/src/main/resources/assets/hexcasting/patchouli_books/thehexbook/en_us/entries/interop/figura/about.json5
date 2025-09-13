@@ -14,6 +14,10 @@
       flag: "mediatransport:never",
     },
     {
+      type: "hexcasting:mediatransport/hexdoc/parity",
+      flag: "mediatransport:never",
+    },
+    {
       type: "hexcasting:mediatransport/text",
       text: "mediatransport.book.interop.figura.about.A"
     },
@@ -27,6 +31,10 @@
     },
     {
       type: "hexcasting:mediatransport/hexdoc/end_altn",
+      flag: "mediatransport:never",
+    },
+    {
+      type: "hexcasting:mediatransport/hexdoc/parity",
       flag: "mediatransport:never",
     },
     {

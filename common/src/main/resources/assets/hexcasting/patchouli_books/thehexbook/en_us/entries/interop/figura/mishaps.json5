@@ -40,9 +40,12 @@
       title: "mediatransport.mishap_names.radio_silence",
       text: "mediatransport.book.interop.figura.mishaps.radio_silence"
     },
-    "mediatransport.book.blank",
     {
       type: "hexcasting:mediatransport/hexdoc/begin_altn",
+      flag: "mediatransport:never",
+    },
+    {
+      type: "hexcasting:mediatransport/hexdoc/parity",
       flag: "mediatransport:never",
     },
     {
@@ -58,11 +61,11 @@
       text: "mediatransport.book.interop.figura.mishaps.4"
     },
     {
-      type: "hexcasting:mediatransport/text",
-      text: "mediatransport.book.blank_dark"
+      type: "hexcasting:mediatransport/hexdoc/end_altn",
+      flag: "mediatransport:never",
     },
     {
-      type: "hexcasting:mediatransport/hexdoc/end_altn",
+      type: "hexcasting:mediatransport/hexdoc/parity",
       flag: "mediatransport:never",
     },
   ]

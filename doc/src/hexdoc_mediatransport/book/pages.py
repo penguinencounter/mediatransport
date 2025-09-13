@@ -17,3 +17,7 @@ class BeginAltnMarker(Page, type="hexcasting:mediatransport/hexdoc/begin_altn"):
 
 class EndAltnMarker(Page, type="hexcasting:mediatransport/hexdoc/end_altn"):
     pass
+
+class ParityPage(Page, type="hexcasting:mediatransport/hexdoc/parity"):
+    # Literally nothing
+    pass

@@ -3,6 +3,7 @@
   category: "hexcasting:interop/figura",
   icon: "minecraft:warped_sign",
   advancement: "hexcasting:root",
+  sortnum: 0,
   pages: [
     "mediatransport.book.interop.figura.about.1",
     "mediatransport.book.interop.figura.about.2",

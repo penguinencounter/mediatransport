@@ -3,6 +3,7 @@
   category: "hexcasting:interop/figura",
   icon: "minecraft:music_disc_11",
   advancement: "hexcasting:root",
+  sortnum: 10,
   pages: [
     "mediatransport.book.interop.figura.mishaps.1",
     {

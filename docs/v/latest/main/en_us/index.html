@@ -77,7 +77,7 @@
       <ul class="nav navbar-nav navbar-right">
             <li>
     <a
-      href="https://github.com/penguinencounter/mediatransport/tree/fe938e8815d906cf575e366f19f0209d54c9100b"
+      href="https://github.com/penguinencounter/mediatransport/tree/cbfbb8418eb0789ab66b697af14fe0755116dbed"
         target="_blank"
       class="navbar-link"
       role="button"
@@ -146,13 +146,6 @@
       class="item-texture  texture pixelated"
     > Figura</a></summary>
       <ul>
-          <li><a href="#interop/figura/mishaps" class="toc-elem "><img
-      title="Music Disc"
-      alt="Music Disc"
-      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/music_disc_11.png"
-      loading="lazy"
-      class="item-texture  texture pixelated"
-    > Transport Mishaps</a></li>
           <li><a href="#interop/figura/about" class="toc-elem "><img
       title="Warped Sign"
       alt="Warped Sign"
@@ -160,6 +153,13 @@
       loading="lazy"
       class="item-texture  texture pixelated"
     > Transports</a></li>
+          <li><a href="#interop/figura/mishaps" class="toc-elem "><img
+      title="Music Disc"
+      alt="Music Disc"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/music_disc_11.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > Transport Mishaps</a></li>
       </ul>
     </details>
     <details class="toc-category">
@@ -225,57 +225,6 @@
     title="Permalink"
   ><i class="bi bi-link-45deg"></i></a></h2>
     <p>It appears that these constructs called <span style="color: #8d6acc">avatars</span> are quite powerful, if a bit annoying to work with.</p>
-<div id="interop/figura/mishaps" class="entry">
-    <h3 class="entry-title page-header">
-    <img
-      title="Music Disc"
-      alt="Music Disc"
-      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/music_disc_11.png"
-      loading="lazy"
-      class="item-texture  texture pixelated"
-    >Transport Mishaps<a
-    href="#table-of-contents"
-    class="permalink small"
-    title="Jump to top"
-  ><i class="bi bi-box-arrow-up"></i></a><a
-    href="#interop/figura/mishaps"
-    class="permalink small"
-    title="Permalink"
-  ><i class="bi bi-link-45deg"></i></a></h3>
-    <p>Various things can go wrong when interacting with the esoteric language of avatar transports.</p>
-<br />
-  <h4>Transport Init Failure</h4>
-    <p><i>Figura server isn&#39;t initialized ...</i></p><p>Occurs if the server is misconfigured or if this universe is an &#34;integrated server&#34;. Causes grey sparks and a general feeling of disappointment.</p>
-<br />
-  <h4>Not a Submittable Iota</h4>
-    <p><i>can&#39;t send ... because that type of iota can&#39;t be sent</i></p><p>That type of iota can&#39;t be submitted to Nature for transmission. Causes black sparks.</p><p><i>Need support for an iota type? Ask on <a href="https://github.com/penguinencounter/mediatransport/issues" target="_blank">GitHub</a>!</i></p>
-<br />
-  <h4>Corrupt Iota</h4>
-    <p><i>can&#39;t send ... because it&#39;s corrupted or ill-formed</i></p><p>Something has gone horribly wrong. Causes black sparks, and probably should be reported on the relevant GitHub issue tracker.</p>
-<br />
-  <h4>Matrix Too Large</h4>
-    <p><i>can&#39;t send ... because it&#39;s too big<br />can&#39;t send ... because it has too many rows<br />can&#39;t send ... because it has too many columns</i></p><p>The matrix you&#39;re trying to send has too many entries to be sent, or more than 255 rows or columns. Causes black sparks.</p>
-<br />
-  <h4>Send Too Large</h4>
-    <p><i>can&#39;t send: calculated size at least ...</i></p><p>The iota you&#39;re sending is larger than the maximum allowed size. Causes black sparks.</p><p><i>Note: Server administrators can change the limit in the config.</i></p>
-<br />
-  <h4>Send Other Too Large</h4>
-    <p><i>can&#39;t send to other players: calculated size at least ...</i></p><p>The iota you&#39;re sending to another player&#39;s avatar is larger than the maximum allowed size. Causes black sparks.</p><p><i>Note: Server administrators can change the limit in the config.</i></p>
-<br />
-  <h4>Nothing to Accept</h4>
-    <p>Tried to accept an iota, but there&#39;s nothing to accept (i.e. the queue is empty.) Causes white sparks and the screams of <span class="obfuscated">the tormented minds</span> to echo within my ears.</p>
-<br />
-<div class="mediatransport-altn">
-<div class="-decoration"></div>
-<!-- begin-altn special page -->
-    <p>it looks like most of these errors only occur when <i>sending</i> (well, &#34;submitting&#34;) data from within nature&#39;s domain. nature seems to be much more lenient in accepting bad data... in that it doesn&#39;t crash anything and instead outputs its favorite flavor of not-error: garbage!<br />unfortunately this makes it hard to determine why data isn&#39;t making it across the boundary. we&#39;ve compiled a list of reasons to look out for:</p>
-<br />
-    <p>- data is of a type (that&#39;s the first byte) that nature has no representation for<br />- the transmission is missing some data at the end<br />- the data is too large (seems like this could be different limit than the one going in the other direction...)<br />- a variant of the above: the same matrix size restrictions apply (though it&#39;s impossible to have too many rows or columns, the total area could still be too much)</p>
-<br />
-    <p>also note that lists can also partially fail to transfer, leading to the entire decoder potentially derailing and interpreting types as data and vice versa. good luck!</p><p>~t</p>
-<br />
-</div>
-</div>
 <div id="interop/figura/about" class="entry">
     <h3 class="entry-title page-header">
     <img
@@ -332,6 +281,57 @@
 </ul>
     <p>I&#39;ve cataloged the rest of the details in these entries.</p>
 <br />
+</div>
+<div id="interop/figura/mishaps" class="entry">
+    <h3 class="entry-title page-header">
+    <img
+      title="Music Disc"
+      alt="Music Disc"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/music_disc_11.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >Transport Mishaps<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#interop/figura/mishaps"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h3>
+    <p>Various things can go wrong when interacting with the esoteric language of avatar transports.</p>
+<br />
+  <h4>Transport Init Failure</h4>
+    <p><i>Figura server isn&#39;t initialized ...</i></p><p>Occurs if the server is misconfigured or if this universe is an &#34;integrated server&#34;. Causes grey sparks and a general feeling of disappointment.</p>
+<br />
+  <h4>Not a Submittable Iota</h4>
+    <p><i>can&#39;t send ... because that type of iota can&#39;t be sent</i></p><p>That type of iota can&#39;t be submitted to Nature for transmission. Causes black sparks.</p><p><i>Need support for an iota type? Ask on <a href="https://github.com/penguinencounter/mediatransport/issues" target="_blank">GitHub</a>!</i></p>
+<br />
+  <h4>Corrupt Iota</h4>
+    <p><i>can&#39;t send ... because it&#39;s corrupted or ill-formed</i></p><p>Something has gone horribly wrong. Causes black sparks, and probably should be reported on the relevant GitHub issue tracker.</p>
+<br />
+  <h4>Matrix Too Large</h4>
+    <p><i>can&#39;t send ... because it&#39;s too big<br />can&#39;t send ... because it has too many rows<br />can&#39;t send ... because it has too many columns</i></p><p>The matrix you&#39;re trying to send has too many entries to be sent, or more than 255 rows or columns. Causes black sparks.</p>
+<br />
+  <h4>Send Too Large</h4>
+    <p><i>can&#39;t send: calculated size at least ...</i></p><p>The iota you&#39;re sending is larger than the maximum allowed size. Causes black sparks.</p><p><i>Note: Server administrators can change the limit in the config.</i></p>
+<br />
+  <h4>Send Other Too Large</h4>
+    <p><i>can&#39;t send to other players: calculated size at least ...</i></p><p>The iota you&#39;re sending to another player&#39;s avatar is larger than the maximum allowed size. Causes black sparks.</p><p><i>Note: Server administrators can change the limit in the config.</i></p>
+<br />
+  <h4>Nothing to Accept</h4>
+    <p>Tried to accept an iota, but there&#39;s nothing to accept (i.e. the queue is empty.) Causes white sparks and the screams of <span class="obfuscated">the tormented minds</span> to echo within my ears.</p>
+<br />
+<div class="mediatransport-altn">
+<div class="-decoration"></div>
+<!-- begin-altn special page -->
+    <p>it looks like most of these errors only occur when <i>sending</i> (well, &#34;submitting&#34;) data from within nature&#39;s domain. nature seems to be much more lenient in accepting bad data... in that it doesn&#39;t crash anything and instead outputs its favorite flavor of not-error: garbage!<br />unfortunately this makes it hard to determine why data isn&#39;t making it across the boundary. we&#39;ve compiled a list of reasons to look out for:</p>
+<br />
+    <p>- data is of a type (that&#39;s the first byte) that nature has no representation for<br />- the transmission is missing some data at the end<br />- the data is too large (seems like this could be different limit than the one going in the other direction...)<br />- a variant of the above: the same matrix size restrictions apply (though it&#39;s impossible to have too many rows or columns, the total area could still be too much)</p>
+<br />
+    <p>also note that lists can also partially fail to transfer, leading to the entire decoder potentially derailing and interpreting types as data and vice versa. good luck!</p><p>~t</p>
+<br />
+</div>
 </div>
 </section>
 <section id="patterns">

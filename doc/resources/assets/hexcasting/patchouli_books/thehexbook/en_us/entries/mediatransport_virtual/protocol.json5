@@ -1,0 +1,17 @@
+{
+  name: "mediatransport.book.protocol",
+  category: "hexcasting:interop/figura",
+  icon: "minecraft:bundle",
+  sortnum: 5,
+  flag: "mediatransport:never",
+  pages: [
+    {
+      type: "hexcasting:mediatransport/hexdoc/begin_altn"
+    },
+    // no need for special page type since this is hexdoc only anyway
+    "mediatransport.book.protocol.1",
+    {
+      type: "hexcasting:mediatransport/hexdoc/end_altn"
+    },
+  ]
+}

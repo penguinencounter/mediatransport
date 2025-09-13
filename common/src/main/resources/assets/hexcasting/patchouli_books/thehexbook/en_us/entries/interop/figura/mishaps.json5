@@ -63,8 +63,8 @@
     },
     {
       type: "hexcasting:mediatransport/text",
-      text: "YOU SHOULDN'T SEE THIS IN HEXDOC <3",
-      hexdoc_hide: true, // WOOOO
+      text: "mediatransport.book.blank_dark",
+      hexdoc_hide: true,
     },
     {
       type: "hexcasting:mediatransport/hexdoc/end_altn",

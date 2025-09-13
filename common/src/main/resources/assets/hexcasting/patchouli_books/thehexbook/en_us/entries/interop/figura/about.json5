@@ -26,9 +26,22 @@
       type: "hexcasting:mediatransport/text",
       text: "mediatransport.book.interop.figura.about.B"
     },
+    // either this (no hexdoc)
     {
       type: "hexcasting:mediatransport/text",
-      text: "mediatransport.book.interop.figura.about.C"
+      text: "mediatransport.book.interop.figura.about.C1",
+      hexdoc_hide: true,
+    },
+    // or this (yes hexdoc)
+    {
+      type: "hexcasting:mediatransport/text",
+      text: "mediatransport.book.interop.figura.about.C2",
+      flag: "mediatransport:never",
+    },
+    // parity page to bring even/odd back into alignment (fixes backgrounds)
+    {
+      type: "hexcasting:mediatransport/hexdoc/parity",
+      flag: "mediatransport:never",
     },
     {
       type: "hexcasting:mediatransport/hexdoc/end_altn",

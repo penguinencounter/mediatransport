@@ -30,7 +30,8 @@
             "5": "Here's the rest of their notes for future reference. To be honest, I don't recognize much of what they mention.",
             "A": "So we got a few new patterns (dubiously spells as well?) recently, and they facilitate direct communication between avatars and hexes! no more getting kicked for spam :D$(br2)Some of the more data-oriented of us have decoded the format. The entire thing is byte-aligned and uses $(#8bf)buffers/$ for data transfer. (that means we have to remember to close them!)",
             "B": "Based on what we've seen, each iota starts with a single-byte $(#8bf)type/$ followed by zero or more bytes of $(#8bf)data/$. All multibyte forms are big endian. (that's the default for the Buffer read methods)$(br2)",
-            "C": "Perhaps with a better writing medium we could communicate this better?",
+            "C1": "Unfortunately, due to annoying restrictions with this unwieldy notebook, it's difficult to express the format in more detail here. Perhaps it would be easier in a $(l:https://penguinencounter.github.io/mediatransport/v/latest/main/en_us/mediatransport_virtual/protocol)more flexible medium$(/l)?",
+            "C2": "The format in its entirety is described here: $(l:hexcasting:mediatransport_virtual/protocol)Iota Transport Protocol$(/l)"
           },
           mishaps: {
             "": "Transport Mishaps",
@@ -48,6 +49,10 @@
             "4": "also note that lists can also partially fail to transfer, leading to the entire decoder potentially derailing and interpreting types as data and vice versa. good luck!$(br2)~t"
           }
         }
+      },
+      protocol: {
+        "": "Iota Transport Protocol",
+        "1": "Ah, the freedom! I've drawn up some diagrams of the format."
       },
       admin: {
         // These entries are only rendered in hexdoc, so we don't have to worry

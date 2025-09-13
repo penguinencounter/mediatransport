@@ -501,17 +501,21 @@ img.spell-viz {
   background: linear-gradient(20deg, #050010, #100020);
   z-index: -1;
 }
-.entry > br:nth-last-child(1) {
+br:nth-last-child(1) {
   display: none;
 }
 body {
   overflow-x: hidden;
 }
+br:has(+ .mediatransport-altn) {
+  display: none;
+}
 .mediatransport-altn {
   position: relative;
   color: #ddd; /* Always dark */
+  margin: 3rem 0;
 }
-.mediatransport-altn::after {
+.mediatransport-altn::before {
   position: absolute;
   inset: -2rem;
   content: "";

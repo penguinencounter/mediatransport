@@ -515,12 +515,24 @@ br:has(+ .mediatransport-altn) {
   color: #ddd; /* Always dark */
   margin: 3rem 0;
 }
-.mediatransport-altn::before {
+.mediatransport-altn > .-decoration {
   position: absolute;
   inset: -2rem;
-  content: "";
-  background: #000000;
+  background-color: #000000;
+  border-radius: 1rem;
+  /* sync with body ::after */;
+  background-image:
+    url("https://raw.githubusercontent.com/penguinencounter/mediatransport/cffb5e202d60e95a8552fc3deb18525ca474fd2f/doc/resources/assets/mediatransport/textures/gui/background_1.png"),
+    url("https://raw.githubusercontent.com/penguinencounter/mediatransport/cffb5e202d60e95a8552fc3deb18525ca474fd2f/doc/resources/assets/mediatransport/textures/gui/background_2.png");
+  animation: animated-footer 10s linear infinite;
+  animation-play-state: running;
+  /* unique */
+  opacity: var(--box-opacity);
   z-index: -1;
+  pointer-events: none;
+}
+.mediatransport-altn:hover > .-decoration {
+  animation-play-state: paused;
 }/* things that probably shouldn't be merged into other books */
 :root {
   --navbar-col: #101020;
@@ -528,6 +540,7 @@ br:has(+ .mediatransport-altn) {
   --navbar-background: #d0d0ff;
   --navbar-active-dropdown: #b0b0dd;
   --navbar-active-dropdown-item: #9d9ddb;
+  --box-opacity: .8;
 }
 @media screen and (prefers-color-scheme: dark) {
   :root {
@@ -536,6 +549,7 @@ br:has(+ .mediatransport-altn) {
     --navbar-col: #e0e0f0;
     --navbar-active-dropdown: #101020;
     --navbar-active-dropdown-item: #201030;
+    --box-opacity: .5;
   }
 }
 .navbar-default .navbar-nav > .open > a {
@@ -554,6 +568,32 @@ br:has(+ .mediatransport-altn) {
 }
 body {
   background-color: var(--page-background);
+  position: relative;
+}
+@keyframes animated-footer {
+  from {
+    background-position: 0px 0px, 0px 0px;
+  }
+  to {
+    background-position: 128px 64px, 192px -128px;
+  }
+}
+/* this just looks horrid in light mode. sorry light mode users */
+@media screen and (prefers-color-scheme: dark) {
+  body::after {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 256px;
+    content: "";
+    background-image:
+      url("https://raw.githubusercontent.com/penguinencounter/mediatransport/cffb5e202d60e95a8552fc3deb18525ca474fd2f/doc/resources/assets/mediatransport/textures/gui/background_1.png"),
+      url("https://raw.githubusercontent.com/penguinencounter/mediatransport/cffb5e202d60e95a8552fc3deb18525ca474fd2f/doc/resources/assets/mediatransport/textures/gui/background_2.png");
+    mask-image: linear-gradient(to top, #fff, transparent);
+    animation: animated-footer 10s linear infinite;
+    z-index: -10;
+  }
 }
 .navbar {
   background-color: var(--navbar-background);
@@ -563,5 +603,8 @@ body {
   color: var(--navbar-col);
 }
 .footer {
-  margin-top: 64px;
+  padding-top: 64px;
+  padding-bottom: 64px;
+  margin-bottom: 0;
 }
+/* https://raw.githubusercontent.com/penguinencounter/mediatransport/cffb5e202d60e95a8552fc3deb18525ca474fd2f/doc/resources/assets/mediatransport/textures/gui/background_0.png */

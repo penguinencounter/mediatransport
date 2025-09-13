@@ -1,0 +1,18 @@
+{
+  name: "mediatransport.book.index",
+  category: "hexcasting:interop/figura",
+  icon: "minecraft:arrow",
+  advancement: "hexcasting:root",
+  sortnum: 100,
+  pages: [
+    {
+      type: "patchouli:relations",
+      entries: [
+        "hexcasting:interop/figura/about",
+        "hexcasting:interop/figura/mishaps",
+        "hexcasting:patterns/figura",
+      ],
+      text: "mediatransport.book.index.desc",
+    },
+  ]
+}

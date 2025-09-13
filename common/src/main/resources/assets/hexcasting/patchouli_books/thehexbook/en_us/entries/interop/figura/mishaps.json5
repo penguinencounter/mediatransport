@@ -62,6 +62,11 @@
       text: "mediatransport.book.interop.figura.mishaps.4"
     },
     {
+      type: "hexcasting:mediatransport/text",
+      text: "YOU SHOULDN'T SEE THIS IN HEXDOC <3",
+      hexdoc_hide: true, // WOOOO
+    },
+    {
       type: "hexcasting:mediatransport/hexdoc/end_altn",
       flag: "mediatransport:never",
     },

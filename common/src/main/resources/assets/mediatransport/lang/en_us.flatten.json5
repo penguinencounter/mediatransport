@@ -79,7 +79,11 @@
         }
       },
       figura_see_also_1: "I've cataloged the rest of the details in these entries.",
-      figura_see_also_2: "For more details, see these other entries.",
+      see_also: "See Also",
+      index: {
+        "": "Transports: Index",
+        desc: "An index of all the entries related to transports and Figura.",
+      },
       blank: "$(#b0b0b0)this page left blank for layout purposes/$",
       blank_dark: "$(#504060)this page left blank for layout purposes/$",
     },

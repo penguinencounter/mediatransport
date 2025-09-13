@@ -40,7 +40,7 @@
     },
     {
       type: "patchouli:relations",
-      title: "See Also",
+      title: "mediatransport.book.see_also",
       entries: [
         "hexcasting:interop/figura/mishaps",
         "hexcasting:patterns/figura"

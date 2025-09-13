@@ -35,15 +35,6 @@
       input: "player, sendable",
       output: "",
       text: "mediatransport.book.patterns.figura.send_other",
-    },
-    {
-      type: "patchouli:relations",
-      title: "See Also",
-      entries: [
-        "hexcasting:interop/figura/about",
-        "hexcasting:interop/figura/mishaps",
-      ],
-      text: "mediatransport.book.figura_see_also_2"
     }
   ],
 }

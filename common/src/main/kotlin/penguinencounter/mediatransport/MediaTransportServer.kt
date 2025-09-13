@@ -24,14 +24,6 @@ object MediaTransportServer {
         }
     }
 
-    fun pollQueue(uuid: UUID): ByteArray? {
-        val theQueue = transportQueue.computeIfAbsent(uuid) { _ -> mutableListOf() }
-        return synchronized(theQueue) {
-            if (theQueue.isEmpty()) null
-            else theQueue.removeAt(0)
-        }
-    }
-
     private inline fun tell(player: ServerPlayer, bytes: ByteArray, packet: (data: ByteArray) -> CustomFSBPacket) {
         if (!FiguraServer.initialized()) {
             MediaTransport.LOGGER.warn("not initialized")

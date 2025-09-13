@@ -10,6 +10,10 @@
     "mediatransport.book.interop.figura.about.4",
     "mediatransport.book.interop.figura.about.5",
     {
+      type: "hexcasting:mediatransport/hexdoc/begin_altn",
+      flag: "mediatransport:never",
+    },
+    {
       type: "hexcasting:mediatransport/text",
       text: "mediatransport.book.interop.figura.about.A"
     },
@@ -20,6 +24,10 @@
     {
       type: "hexcasting:mediatransport/text",
       text: "mediatransport.book.interop.figura.about.C"
+    },
+    {
+      type: "hexcasting:mediatransport/hexdoc/end_altn",
+      flag: "mediatransport:never",
     },
     {
       type: "patchouli:relations",

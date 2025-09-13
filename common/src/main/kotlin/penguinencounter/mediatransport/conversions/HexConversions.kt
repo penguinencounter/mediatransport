@@ -5,6 +5,18 @@ import at.petrak.hexcasting.api.casting.math.HexAngle
 import at.petrak.hexcasting.api.casting.math.HexDir
 import at.petrak.hexcasting.api.casting.math.HexPattern
 import net.minecraft.world.phys.Vec3
+import penguinencounter.mediatransport.conversions.Types.BOOLEAN_FALSE
+import penguinencounter.mediatransport.conversions.Types.BOOLEAN_TRUE
+import penguinencounter.mediatransport.conversions.Types.DOUBLE
+import penguinencounter.mediatransport.conversions.Types.GARBAGE
+import penguinencounter.mediatransport.conversions.Types.LIST
+import penguinencounter.mediatransport.conversions.Types.NULL
+import penguinencounter.mediatransport.conversions.Types.PATTERN
+import penguinencounter.mediatransport.conversions.Types.VEC3
+import penguinencounter.mediatransport.conversions.Types.falseData
+import penguinencounter.mediatransport.conversions.Types.garbageData
+import penguinencounter.mediatransport.conversions.Types.nullData
+import penguinencounter.mediatransport.conversions.Types.trueData
 import java.io.ByteArrayInputStream
 import java.io.EOFException
 
@@ -19,28 +31,28 @@ class HexConversions : Encoder, Decoder {
 
     override fun encode(it: Iota): ByteArray = when (it) {
         is BooleanIota -> convertBoolean(it)
-        is NullIota -> Types.nullData
-        is GarbageIota -> Types.garbageData
+        is NullIota -> nullData
+        is GarbageIota -> garbageData
         is DoubleIota -> convertDouble(it)
         is PatternIota -> convertPattern(it)
         is Vec3Iota -> convertVec3(it)
         is ListIota -> convertList(it)
-        else -> throw IllegalStateException("catastrophic failure: dispatch; HexConversions doesn't know what a ${it::class.simpleName ?: "<anonymous?>"} is")
+        else -> misdispatched(this::class, it)
     }
 
     fun convertBoolean(it: BooleanIota) = when (it.bool) {
-        true -> Types.trueData
-        false -> Types.falseData
+        true -> trueData
+        false -> falseData
     }
 
     fun convertDouble(it: DoubleIota) = buildData {
-        writeByte(Types.DOUBLE)
+        writeByte(DOUBLE)
         writeDouble(it.double)
     }
 
     fun convertPattern(it: PatternIota) = buildData {
         val pattern = it.pattern
-        writeByte(Types.PATTERN)
+        writeByte(PATTERN)
         writeByte(pattern.startDir.ordinal)
         writeInt(pattern.angles.size)
         for (angle in pattern.angles) {
@@ -49,7 +61,7 @@ class HexConversions : Encoder, Decoder {
     }
 
     fun convertVec3(it: Vec3Iota) = buildData {
-        writeByte(Types.VEC3)
+        writeByte(VEC3)
         val vec3 = it.vec3
         writeDouble(vec3.x)
         writeDouble(vec3.y)
@@ -57,7 +69,7 @@ class HexConversions : Encoder, Decoder {
     }
 
     fun convertList(it: ListIota) = buildData {
-        writeByte(Types.LIST)
+        writeByte(LIST)
         var size = 0
         var theList = it.list
         // Why did you have to build lists like this petra
@@ -74,7 +86,7 @@ class HexConversions : Encoder, Decoder {
 
     override fun canDecode(type: Int): Boolean {
         return when (type) {
-            Types.DOUBLE, Types.LIST, Types.PATTERN, Types.VEC3, Types.BOOLEAN_TRUE, Types.BOOLEAN_FALSE, Types.GARBAGE, Types.NULL -> true
+            DOUBLE, LIST, PATTERN, VEC3, BOOLEAN_TRUE, BOOLEAN_FALSE, GARBAGE, NULL -> true
             else -> false
         }
     }
@@ -114,18 +126,31 @@ class HexConversions : Encoder, Decoder {
     override fun decode(type: Int, bytes: ByteArrayInputStream): Iota {
         return try {
             when (type) {
-                Types.BOOLEAN_TRUE -> BooleanIota(true)
-                Types.BOOLEAN_FALSE -> BooleanIota(false)
-                Types.NULL -> NullIota()
-                Types.GARBAGE -> GarbageIota()
-                Types.DOUBLE -> readDouble(bytes)
-                Types.VEC3 -> readVec3(bytes)
-                Types.PATTERN -> readPattern(bytes)
-                Types.LIST -> readList(bytes)
+                BOOLEAN_TRUE -> BooleanIota(true)
+                BOOLEAN_FALSE -> BooleanIota(false)
+                NULL -> NullIota()
+                GARBAGE -> GarbageIota()
+                DOUBLE -> readDouble(bytes)
+                VEC3 -> readVec3(bytes)
+                PATTERN -> readPattern(bytes)
+                LIST -> readList(bytes)
                 else -> GarbageIota()
             }
         } catch (_: EOFException) {
             GarbageIota()
         }
+    }
+
+    override fun defineTypes(target: MutableMap<Int, IotaType<*>>) {
+        target.define(
+            BOOLEAN_TRUE to BooleanIota.TYPE,
+            BOOLEAN_FALSE to BooleanIota.TYPE,
+            NULL to NullIota.TYPE,
+            GARBAGE to GarbageIota.TYPE,
+            DOUBLE to DoubleIota.TYPE,
+            VEC3 to Vec3Iota.TYPE,
+            PATTERN to PatternIota.TYPE,
+            LIST to ListIota.TYPE
+        )
     }
 }

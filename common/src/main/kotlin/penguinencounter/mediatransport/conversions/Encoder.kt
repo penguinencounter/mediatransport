@@ -6,7 +6,7 @@ import penguinencounter.mediatransport.casting.mishaps.MishapNotSendable
 import penguinencounter.mediatransport.casting.mishaps.MishapTooBigToSend
 import penguinencounter.mediatransport.config.MediaTransportConfig
 
-interface Encoder {
+interface Encoder : TypeRegistrar {
     fun canEncode(it: Iota): Boolean
 
     @Throws(MishapNotSendable::class)
@@ -17,6 +17,9 @@ interface Encoder {
             val result: MutableList<Encoder> = mutableListOf()
             result.add(HexConversions())
             if (InteropGlue.moreiotas()) result.add(MoreIotasConversions())
+            if (InteropGlue.hexpose()) result.add(HexposeConversions())
+
+            for (item in result) item.defineTypes(Types.types)
 
             result
         }

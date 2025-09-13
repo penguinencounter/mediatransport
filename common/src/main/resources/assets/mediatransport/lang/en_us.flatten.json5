@@ -30,7 +30,7 @@
             "5": "Here's the rest of their notes for future reference. To be honest, I don't recognize much of what they mention.",
             "A": "So we got a few new patterns (dubiously spells as well?) recently, and they facilitate direct communication between avatars and hexes! no more getting kicked for spam :D$(br2)Some of the more data-oriented of us have decoded the format. The entire thing is byte-aligned and uses $(#8bf)buffers/$ for data transfer. (that means we have to remember to close them!)",
             "B": "Based on what we've seen, each iota starts with a single-byte $(#8bf)type/$ followed by zero or more bytes of $(#8bf)data/$. All multibyte forms are big endian. (that's the default for the Buffer read methods)$(br2)",
-            "C": "",
+            "C": "Perhaps with a better writing medium we could communicate this better?",
           },
           mishaps: {
             "": "Transport Mishaps",
@@ -49,10 +49,34 @@
           }
         }
       },
-      admin_docs: {
-        "": "About FSB",
-        "1": "mediatransport relies on $(n)Figura Server Backend/$ (also called $(n)FSB/$) to function. FSB is a feature in the development builds of Figura for 1.20.1 that enables hosting avatars and pings on the server itself instead of relying on the global backend.",
-        "2": "FSB $(n)doesn't work on Singleplayer/$ or LAN worlds, so you might want to host a dedicated server to test your hexes out. Thanks for playing our addon! :)$(br2)$(l:https://github.com/penguinencounter/Figura/releases/tag/figura-fsb-placeholder)Figura FSB builds on GitHub$(/l)",
+      admin: {
+        // These entries are only rendered in hexdoc, so we don't have to worry
+        // about not overflowing the page!
+        fsb: {
+          "": "About FSB",
+          "1": "mediatransport relies on $(n)Figura Server Backend/$ (also called $(n)FSB/$) to function. FSB is a feature in the development builds of Figura for 1.20.1 that enables hosting avatars and pings on the server itself instead of relying on the global backend.",
+          "2": "FSB $(n)doesn't work on Singleplayer/$ or LAN worlds, so you might want to host a dedicated server to test your hexes out. Thanks for playing our addon! :)$(br2)$(l:https://github.com/penguinencounter/Figura/releases/tag/figura-fsb-placeholder)Figura FSB builds on GitHub$(/l)",
+        },
+        config: {
+          "": "mediatransport config",
+          "1": "mediatransport has various server configuration options to limit what data can be sent between avatars and casting environments.",
+          maxSize: {
+            "": "Size Restrictions",
+            "1": "All values in bytes.$(br2)$(n)maximumSendSize/$: maximum amount of data that can be sent through $(l:hexcasting:patterns/figura#mediatransport:send_fsb)Submit Iota$(/l).$(br2)$(n)maximumInterSendSize/$: maxmimum amount of data that can be sent through $(l:hexcasting:patterns/figura#mediatransport:send_other)Submit Iota II$(/l).$(br2)$(n)maximumRecvSize/$: maximum amount of data that can be received from Figura. If this is exceeded, garbage will be pushed into the queue instead of the actual data.$(br2)$(n)matrixMaxArea/$: MoreIotas only; sets the maximum matrix area (width * height) that can be sent or receieved, separately from other restrictions and the maximum row/column count of 255."
+          },
+          filterIntro: {
+            "": "Filters",
+            "1": "mediatransport has three separate $(italic)filter/$ configuration sets for controlling what types of iota can be sent. Each one has a $(n)mode/$ and a $(n)list of entries/$.$(br2)The $(n)mode/$ can either be $(bold)\"Block\"/$ (forbids certain types, 'blocklist') or $(bold)\"Allow\"/$ (only allows certain types, 'allowlist').$(br2)The list contains the list of resource locations to apply the filter with. For example, to disallow sending lists, set the $(n)mode/$ to $(bold)\"Block\"/$ and the list to $(bold)[\"hexcasting:list\"]/$.$(br2)Note that allowing an iota type won't magically make it sendable if mediatransport lacks encoders or decoders for that type."
+          },
+          sendFilters: {
+            "": "Sending Filters",
+            "1": "Just like the size limits, there are separate filters for $(l:hexcasting:patterns/figura#mediatransport:send_fsb)Submit Iota$(/l) and $(l:hexcasting:patterns/figura#mediatransport:send_other)Submit Iota II$(/l).$(br2)$(n)sendFilter/$ and $(n)sendFilterMode/$ apply to Submit Iota. $(n)interSendFilter/$ and $(n)interSendFilterMode/$ apply to Submit Iota II.$(br2)If an iota is blocked by these filters, it will cause an 'bad type' mishap on the relevant iota (even if it's nested in a list.)"
+          },
+          recvFilters: {
+            "": "Receiving Filters",
+            "1": "$(n)recvFilter/$ and $(n)recvFilterMode/$ control what types of iota can be received from Figura.$(br2)Any iota that are blocked by this filter are replaced with Garbage, but any containing iota will be unaffected. (ex. a list containing an invalid iota will be received as a list containing garbage instead, provided lists are allowed.)"
+          },
+        }
       },
       figura_see_also_1: "I've cataloged the rest of the details in these entries.",
       figura_see_also_2: "For more details, see these other entries.",
@@ -68,13 +92,13 @@
       matrix_too_many_cols: "it has too many columns (max 255)",
     },
     radio_silence_options: {
-      // translators: good luck, sorry
+      // translators: good luck, sorry (you can replace all of these with the 'help' one if you want)
       crickets: "*crickets*",
       ellipsis: "......",
-      help: "Maybe check if there's anything to receive first?",
-      eof: "critical failure: EOFException: lmao xd",
-      insanity: "You hear the void whispering to you, but you can't make it out.",
-      informal: "we've got nothing for ya. how are you doing today?",
+      help: "Recieving queue is empty",
+      eof: "java.util.NoSuchElementException: collection is empty",
+      insanity: "You hear whispering, but you can't make it out.",
+      informal: "there's nothing here.",
     },
     mishap_names: {
       init_fail: "Transport Init Failure",
@@ -108,7 +132,7 @@
       too_large_to_send: "can't send: calculated size at least %s B, but server configured limit is %s B",
       too_large_to_send_inter: "can't send to other players: calculated size at least %s B, but server configured limit is %s B",
       fsb_not_initialized: "Figura server isn't initialized (tell your local admin to use a dedicated server and install FSB)",
-      radio_silence: "%s"
+      radio_silence: "%s",
       // see mediatransport.radio_silence_options
     }
   },

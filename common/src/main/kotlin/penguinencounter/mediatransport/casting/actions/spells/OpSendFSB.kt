@@ -25,7 +25,11 @@ object OpSendFSB : SpellAction {
         val castingEntity = env.castingEntity
         if (castingEntity !is ServerPlayer) throw MishapBadCaster()
 
+
         val toSend = args[0]
+        // Check if this is sendable
+        MediaTransportConfig.server.validateSend(toSend)
+
         val toSendBytes = Encoder.encode(toSend)
         if (toSendBytes.size > MediaTransportConfig.server.maximumSendSize) throw MishapTooBigToSend(toSendBytes.size)
 

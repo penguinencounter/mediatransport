@@ -6,7 +6,7 @@
       categories: {
         admin_virtual: {
           "": "Info for Server Administrators",
-          "desc": "$(italic)$(bold)hexdoc only (not in in-game book)/$$(br)Information for server administrators installing mediatransport and FSB."
+          "desc": "This category is $(bold)hexdoc only/$ (not in in-game book)$(br)Information for server administrators installing mediatransport and FSB."
         }
       },
     },

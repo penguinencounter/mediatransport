@@ -42,6 +42,10 @@
     },
     "mediatransport.book.blank",
     {
+      type: "hexcasting:mediatransport/hexdoc/begin_altn",
+      flag: "mediatransport:never",
+    },
+    {
       type: "hexcasting:mediatransport/text",
       text: "mediatransport.book.interop.figura.mishaps.2"
     },
@@ -56,6 +60,10 @@
     {
       type: "hexcasting:mediatransport/text",
       text: "mediatransport.book.blank_dark"
+    },
+    {
+      type: "hexcasting:mediatransport/hexdoc/end_altn",
+      flag: "mediatransport:never",
     },
   ]
 }

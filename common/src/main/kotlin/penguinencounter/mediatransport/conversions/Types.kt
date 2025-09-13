@@ -1,13 +1,17 @@
 package penguinencounter.mediatransport.conversions
 
+import at.petrak.hexcasting.api.casting.iota.Iota
+import at.petrak.hexcasting.api.casting.iota.IotaType
 import java.io.*
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
+import kotlin.reflect.KClass
 
 const val PROTOCOL_VERSION = 0x01
 
 object Types {
+    val types: MutableMap<Int, IotaType<*>> = mutableMapOf()
 
     const val GARBAGE = 0xff
     val garbageData = byteArrayOf(GARBAGE.toByte())
@@ -31,8 +35,11 @@ object Types {
 
     const val LIST = 0x08 // octxxy?
 
-    // TODO: assign these
-    const val MATRIX = 0xd0
+    // moreiotas x4_
+    const val MATRIX = 0x40
+
+    // hexpose x5_
+    const val TEXT = 0x50
 }
 
 @OptIn(ExperimentalContracts::class)
@@ -60,9 +67,6 @@ inline fun <R> unpackData(data: ByteArrayInputStream, func: DataInputStream.() -
     }
 }
 
-internal fun ByteArrayInputStream.peek(): Int {
-    mark(0)
-    val result = read()
-    reset()
-    return result
+internal fun misdispatched(myself: KClass<*>, theThing: Iota): Nothing {
+    throw IllegalStateException("catastrophic failure: ${myself.simpleName ?: "<anonymous?>"} doesn't know what a ${theThing::class.simpleName ?: "<anonymous?>"} is")
 }

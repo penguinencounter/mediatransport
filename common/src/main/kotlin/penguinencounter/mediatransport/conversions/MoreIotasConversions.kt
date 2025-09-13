@@ -2,10 +2,13 @@ package penguinencounter.mediatransport.conversions
 
 import at.petrak.hexcasting.api.casting.iota.GarbageIota
 import at.petrak.hexcasting.api.casting.iota.Iota
+import at.petrak.hexcasting.api.casting.iota.IotaType
 import at.petrak.hexcasting.api.casting.mishaps.MishapInvalidIota
 import org.jblas.DoubleMatrix
 import penguinencounter.mediatransport.casting.mishaps.MishapNotSendable
 import penguinencounter.mediatransport.config.MediaTransportConfig
+import penguinencounter.mediatransport.conversions.Types.MATRIX
+import penguinencounter.mediatransport.conversions.Types.STRING
 import ram.talia.moreiotas.api.casting.iota.MatrixIota
 import ram.talia.moreiotas.api.casting.iota.StringIota
 import java.io.ByteArrayInputStream
@@ -26,12 +29,12 @@ class MoreIotasConversions : Encoder, Decoder {
     ): ByteArray = when (it) {
         is StringIota -> convertString(it)
         is MatrixIota -> convertMatrix(it)
-        else -> throw IllegalStateException("catastrophic failure: dispatch; MoreIotasConversions doesn't know what a ${it::class.simpleName ?: "<anonymous?>"} is")
+        else -> misdispatched(this::class, it)
     }
 
     fun convertString(it: StringIota): ByteArray = buildData {
         val theString = it.string.toByteArray(Charsets.UTF_8)
-        writeByte(Types.STRING)
+        writeByte(STRING)
         writeInt(theString.size)
         write(theString)
     }
@@ -49,7 +52,7 @@ class MoreIotasConversions : Encoder, Decoder {
             throw MishapNotSendable.reason(it, "corrupt")
 
         return buildData {
-            writeByte(Types.MATRIX)
+            writeByte(MATRIX)
             writeByte(data.rows)
             writeByte(data.columns)
             // send rows in order
@@ -94,8 +97,8 @@ class MoreIotasConversions : Encoder, Decoder {
     ): Iota {
         return try {
             when (type) {
-                Types.STRING -> readString(bytes)
-                Types.MATRIX -> readMatrix(bytes)
+                STRING -> readString(bytes)
+                MATRIX -> readMatrix(bytes)
                 else -> GarbageIota()
             }
         } catch (_: EOFException) {
@@ -104,7 +107,14 @@ class MoreIotasConversions : Encoder, Decoder {
     }
 
     override fun canDecode(type: Int): Boolean = when (type) {
-        Types.STRING, Types.MATRIX -> true
+        STRING, MATRIX -> true
         else -> false
+    }
+
+    override fun defineTypes(target: MutableMap<Int, IotaType<*>>) {
+        target.define(
+            STRING to StringIota.TYPE,
+            MATRIX to MatrixIota.TYPE
+        )
     }
 }

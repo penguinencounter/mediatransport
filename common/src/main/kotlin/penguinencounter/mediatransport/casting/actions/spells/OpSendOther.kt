@@ -24,6 +24,9 @@ object OpSendOther : SpellAction {
         if (!FiguraServer.initialized()) throw MishapForSomeReasonFSBIsDedicatedServerOnly()
         val target = args.getPlayer(0, argc = 2)
         val toSend = args[1]
+
+        MediaTransportConfig.server.validateInterSend(toSend)
+
         val toSendBytes = Encoder.encode(toSend)
         if (toSendBytes.size > MediaTransportConfig.server.maximumInterSendSize)
             throw MishapTooBigToSendInter(toSendBytes.size)

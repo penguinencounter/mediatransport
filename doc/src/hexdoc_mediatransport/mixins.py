@@ -67,7 +67,6 @@ def mess_everything_up():
         flush=True,
     )
     added_hide = inject_recursive(Page, add_hide)
-    added_hide = inject_recursive(Entry, add_hide, added_hide)
     entry_types = inject_recursive(Entry, add_entry_after)
     rp(
         "[bold green] ok![/] [bold cyan]Changes summary:[/]\n"

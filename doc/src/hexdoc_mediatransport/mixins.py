@@ -3,7 +3,7 @@ from typing import Callable, Self, cast
 from hexdoc.patchouli import Entry
 from hexdoc.patchouli.page.abstract_pages import Page
 from hexdoc.plugin import PluginManager
-from pydantic import BaseModel, model_validator
+from pydantic import BaseModel, Field, model_validator
 from pydantic.fields import FieldInfo
 from rich import print as rp
 
@@ -33,6 +33,9 @@ def inject_recursive(
 def add_entry_after(entry_type: type[Entry]):
     name = "mediatransport_filter_hidden"
 
+    # wrapper class to get pydantic to generate the model validator data
+    # the relevant type is internal, so we can't make it from scratch
+    # instead, copy-paste the internal stuff from one model to another
     class TransplantModel(BaseModel):
         @model_validator(mode="after")
         def mediatransport_filter_hidden(self) -> Self:
@@ -47,6 +50,8 @@ def add_entry_after(entry_type: type[Entry]):
                 self_.pages = filtered_pages
             return self
 
+    # theoretically we could do better by changing the class names in the
+    # validator spec, but this seems to work anyway
     entry_type.__pydantic_decorators__.model_validators[name] = (
         TransplantModel.__pydantic_decorators__.model_validators[name]
     )
@@ -54,8 +59,13 @@ def add_entry_after(entry_type: type[Entry]):
 
 
 def add_hide(it: type[BaseModel]):
-    rp(rf"[bright_black] patch {it}[/]")
+    # add the field to the existing model
     it.model_fields["hexdoc_hide"] = FieldInfo(annotation=bool, default=False)
+
+    # add the field to future subclasses
+    it.__annotations__["hexdoc_hide"] = bool
+    setattr(it, "hexdoc_hide", Field(default=False))
+
     it.model_rebuild(force=True)
 
 
@@ -77,9 +87,18 @@ def stage_2():
 def stage_1():
     _init_plugins = PluginManager.init_plugins
 
+    if hasattr(_init_plugins, "is_mixin"):
+        return  # Already wrapped
+
+    rp(
+        R"[bold]\[INFO][/] [bright_black]mediatransport[/] [cyan]Attaching to init_plugins...[/]",
+    )
+
     def init_plugins_wrapper(self: PluginManager):
         result = _init_plugins(self)
         stage_2()
         return result
+
+    init_plugins_wrapper.is_mixin = True  # pyright: ignore[reportFunctionMemberAccess]
 
     PluginManager.init_plugins = init_plugins_wrapper

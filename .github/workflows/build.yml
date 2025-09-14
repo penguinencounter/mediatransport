@@ -50,7 +50,7 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
 
       - name: Prepare Figura
-        run: pushd figura && ./gradlew publishToMavenLocal; popd
+        run: pushd figura && ./gradlew publishToMavenLocal --build-cache; popd
 
       - name: Build mod
         env:

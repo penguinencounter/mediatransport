@@ -48,6 +48,16 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          path: mediatransport
+      - name: Clone Figura
+        uses: actions/checkout@v4
+        with:
+          repository: penguinencounter/Figura
+          filter: tree:0
+          fetch-depth: 0
+          ref: maven-server-common
+          path: figura
 
       - uses: actions/setup-java@v4
         with:
@@ -56,10 +66,15 @@ jobs:
 
       - uses: gradle/actions/setup-gradle@v4
 
+      - name: Build Figura
+        env:
+          RELEASE: true
+        run: pushd figura && ./gradlew publishToMavenLocal --build-cache; popd
+
       - name: Build mod
         env:
           RELEASE: true
-        run: ./gradlew build
+        run: pushd mediatransport && ./gradlew build; popd
 
       # do this first so we fail if we've already published this version
       # because CurseForge and Modrinth apparently don't care!
@@ -69,7 +84,7 @@ jobs:
           RELEASE: true
           DRY_RUN: ${{ inputs.dry_run && 'true' || '' }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./gradlew publishGithub
+        run: pushd mediatransport && ./gradlew publishGithub; popd
 
       - name: Publish to CurseForge
         if: inputs.publish_curseforge
@@ -77,7 +92,7 @@ jobs:
           RELEASE: true
           DRY_RUN: ${{ inputs.dry_run && 'true' || '' }}
           CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
-        run: ./gradlew publishCurseforge
+        run: pushd mediatransport && ./gradlew publishCurseforge; popd
 
       - name: Publish to Modrinth
         if: inputs.publish_modrinth
@@ -85,7 +100,7 @@ jobs:
           RELEASE: true
           DRY_RUN: ${{ inputs.dry_run && 'true' || '' }}
           MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
-        run: ./gradlew publishModrinth
+        run: pushd mediatransport && ./gradlew publishModrinth; popd
 
       - name: Upload dry run artifact
         if: inputs.dry_run

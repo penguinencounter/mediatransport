@@ -77,7 +77,7 @@
       <ul class="nav navbar-nav navbar-right">
             <li>
     <a
-      href="https://github.com/penguinencounter/mediatransport/tree/1260d0fde5c140e279ad0c47750096ad9350b78e"
+      href="https://github.com/penguinencounter/mediatransport/tree/337b176aef21b70856b86f7e1c0798fe8784ed43"
         target="_blank"
       class="navbar-link"
       role="button"
@@ -317,6 +317,89 @@
 <div class="-decoration"></div>
 <!-- begin-altn special page -->
     <p>Ah, the freedom! I&#39;ve drawn up some diagrams of the format.</p>
+<br />
+  <!-- ahh, freedom from that stupid book format. lots of room to play here! -->
+<div class="protocoldocs">
+<p>As previously described, an iota consists of a single-byte <span class="protocol-sym-def" id="mediatransport-protocol-type" title="type&#10;size: 1 byte">type</span> followed by some amount of <span class="protocol-sym-raw" title="data">data</span>, depending on the type.</p>
+<div class="block-diagram">
+      <div class="block -sized -sym" style="--width: 1">
+        <span class="-name">type</span>
+        <span class="-size">1</span>
+      </div>
+      <div class="block -indefinite -sym">
+        <span class="-name">data</span>
+        <span class="-size"> ... </span>
+      </div>
+</div>
+<p>Each iota type has a different <a class="protocol-sym" href="#mediatransport-protocol-type" title="type&#10;size: 1 byte">type</a> value and has a different format for <span class="protocol-sym-raw" title="data">data</span>.</p>
+<h4><code>ff</code>: Garbage</h4>
+<p>All these types have no data. Also, since Garbage is used to represent decoding failures, it's generally a bad idea to create it on purpose.</p>
+<div class="block-diagram">
+      <div class="block -sized -literal" style="--width: 1">
+        <span class="-name">ff</span>
+        <span class="-size">1</span>
+      </div>
+</div>
+<h4><code>02</code>: True and <code>03</code>: False</h4>
+<div class="diagram-sbs">
+<div class="block-diagram">
+      <div class="block -sized -literal" style="--width: 1">
+        <span class="-name">02</span>
+        <span class="-size">1</span>
+      </div>
+</div>
+<div class="block-diagram">
+      <div class="block -sized -literal" style="--width: 1">
+        <span class="-name">03</span>
+        <span class="-size">1</span>
+      </div>
+</div>
+</div>
+<h4><code>04</code>: Null</h4>
+<div class="block-diagram">
+      <div class="block -sized -literal" style="--width: 1">
+        <span class="-name">04</span>
+        <span class="-size">1</span>
+      </div>
+</div>
+<h4><code>05</code>: Double</h4>
+<p>Finally, something interesting! Hexcasting uses IEEE 754 double-width floats (that's 8 bytes, 64 bits), so that's what's being used here for <span class="protocol-sym-def" id="mediatransport-protocol-double_value" title="value&#10;size: 8 bytes">value</span>.</p>
+<div class="block-diagram">
+      <div class="block -sized -literal" style="--width: 1">
+        <span class="-name">05</span>
+        <span class="-size">1</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 8">
+        <span class="-name">value</span>
+        <span class="-size">8</span>
+      </div>
+</div>
+<h4><code>06</code>: Pattern</h4>
+<p>In honor of Hexxy, patterns are type 6. They're a bit complicated:</p>
+<ul>
+<li>First is a byte representing the <span class="protocol-sym-def" id="mediatransport-protocol-dir" title="dir&#10;size: 1 byte">dir</span>. This is based on some internal representation, and appears to be as follows: 0 = north east, 1 = east, 2 = south east, 3 = south west, 4 = west, and 5 = north west.</li>
+<li>Next is a four-byte integer holding the number of angles in the pattern (effectively, strokes minus 1, or the <span class="protocol-sym-def" id="mediatransport-protocol-pattern_len" title="length&#10;size: 4 bytes">length</span>)</li>
+<li>Following that are the <span class="protocol-sym-def" id="mediatransport-protocol-angles" title="angles&#10;size: (len) bytes">angles</span>, each 1 byte. Once again this appears to be based on some internal representation, as follows: 0 = forward, 1 = right, 2 = right back, 3 = back, 4 = left back, and 5 = left.</li>
+</ul>
+<div class="block-diagram">
+      <div class="block -sized -literal" style="--width: 1">
+        <span class="-name">06</span>
+        <span class="-size">1</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 1">
+        <span class="-name">dir</span>
+        <span class="-size">1</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 4">
+        <span class="-name">length</span>
+        <span class="-size">4</span>
+      </div>
+      <div class="block -flexible -sym">
+        <span class="-name">angles</span>
+        <span class="-size">=length*1</span>
+      </div>
+</div>
+</div>
 <br />
 </div>
 </div>

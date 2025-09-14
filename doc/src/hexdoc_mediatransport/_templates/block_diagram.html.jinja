@@ -11,14 +11,14 @@
     {% if width is integer %}
       <div class="block -sized -{{kind}}" style="--width: {{ width }}">
         <span class="-name">{{- name -}}</span>
-        <span class="-size">{{- width -}}</span>
+        <span class="-size">{{- d.plural("byte", width) -}}</span>
       </div>
     {% elif width is sequence %}
       {% set ref = width[0] %}
       {% set mod = width[1] %}
       <div class="block -flexible -{{kind}}">
         <span class="-name">{{- name -}}</span>
-        <span class="-size">={{- d.sym_name(ref) -}}{{- mod -}}</span>
+        <span class="-size">{{ d.plural_var("byte", "=" ~ d.sym_name(ref) ~ mod) -}}</span>
       </div>
     {% else %}
       <div class="block -indefinite -{{kind}}">

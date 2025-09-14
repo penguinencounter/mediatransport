@@ -14,7 +14,15 @@ from .lang import ArglessI18n, I18nTuple, plural_factory
 PROTOCOL = "mediatransport.book.protocol"
 SYMBOLS = f"{PROTOCOL}.symbols"
 TOOLTIPS = f"{PROTOCOL}.tooltips"
-plural = plural_factory("mediatransport.book.pluralizations")
+PLURAL = "mediatransport.book.pluralizations"
+plural = plural_factory(PLURAL)
+
+
+@pass_context
+def plural_var(context: Context, key: str, amount: str) -> str:
+    i18n = I18n.of(context)
+    rkey = f"{PLURAL}.{key}"
+    return I18nTuple.ofa(i18n.localize(rkey), (amount,)).resolve()
 
 
 @dataclass
@@ -34,7 +42,8 @@ class ProtoSymbol:
             contents: I18nTuple[Any]
             if isinstance(self.size, str):
                 contents = I18nTuple.ofa(
-                    i18n.localize(f"{TOOLTIPS}.size_ref"), (self.size,)
+                    i18n.localize(f"{TOOLTIPS}.size_ref"),
+                    (I18nTuple.of(i18n.localize(f"{SYMBOLS}.{self.size}")),)
                 )
             else:  # int
                 contents = plural(ctx, "byte", self.size)
@@ -50,7 +59,19 @@ symbols = {
     "double_value": ProtoSymbol(name="value", size=8),
     "dir": ProtoSymbol(name="dir", size=1),
     "pattern_len": ProtoSymbol(name="length", size=4),
-    "angles": ProtoSymbol(name="angles", size="len")
+    "angles": ProtoSymbol(name="angles", size="length"),
+    "vec_x": ProtoSymbol(name="x", size=8),
+    "vec_y": ProtoSymbol(name="y", size=8),
+    "vec_z": ProtoSymbol(name="z", size=8),
+    "list_len": ProtoSymbol(name="length", size=4),
+    "list_iotas": ProtoSymbol(name="iotas", size=None),
+    "str_len": ProtoSymbol(name="length", size=4),
+    "string": ProtoSymbol(name="string", size="length"),
+    "rows": ProtoSymbol(name="rows", size=1),
+    "cols": ProtoSymbol(name="cols", size=1),
+    "matrix_contents": ProtoSymbol(name="contents", size="rowscols"),
+    "rowscols": ProtoSymbol(name="rowscols", size=None), # combination key, not actual
+
 }
 
 
@@ -70,6 +91,7 @@ def symdef(ctx: Context, word: str) -> str:
         "</span>"
     )
 
+
 @pass_context
 def symr(ctx: Context, word: str) -> str:
     symbol = symbols[word]
@@ -80,6 +102,7 @@ def symr(ctx: Context, word: str) -> str:
         "</span>"
     )
 
+
 @pass_context
 def sym(ctx: Context, word: str) -> str:
     symbol = symbols[word]
@@ -89,7 +112,6 @@ def sym(ctx: Context, word: str) -> str:
         f"{symbol.render_name(ctx).resolve()}"
         "</a>"
     )
-
 
 
 tags = {"symdef": symdef, "sym": sym, "symr": symr}

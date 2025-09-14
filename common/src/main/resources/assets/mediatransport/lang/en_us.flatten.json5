@@ -66,6 +66,7 @@
         // btw this section uses HTML
         "intro1": "As previously described, an iota consists of a single-byte {symdef:type} followed by some amount of {symr:data}, depending on the type.",
         "intro2": "Each iota type has a different {sym:type} value and has a different format for {symr:data}.",
+        stdtypes: "Built-in types",
         garbage: {
           "": "<code>ff</code>: Garbage",
           "description": "All these types have no data. Also, since Garbage is used to represent decoding failures, it's generally a bad idea to create it on purpose.",
@@ -87,6 +88,30 @@
           "2": "Next is a four-byte integer holding the number of angles in the pattern (effectively, strokes minus 1, or the {symdef:pattern_len})",
           "3": "Following that are the {symdef:angles}, each 1 byte. Once again this appears to be based on some internal representation, as follows: 0 = forward, 1 = right, 2 = right back, 3 = back, 4 = left back, and 5 = left."
         },
+        vec3: {
+          "": "<code>07</code>: Vector",
+          "description": "A vector is three doubles in sequence - {symdef:vec_x}, {symdef:vec_y}, and {symdef:vec_z}."
+        },
+        list: {
+          "": "<code>08</code>: List",
+          "description": "Lists are the primary structuring tool that Hexcasting has, and are similar to patterns - first is a four-byte {symdef:list_len}, followed by that many iota of any type."
+        },
+        moreiotas: "MoreIotas types",
+        string: {
+          "": "<code>01</code>: String",
+          "description": "Strings, like the rest of the variable-length iotas, have a 4-byte {symdef:str_len} followed by the data (in this case, the {symdef:string}.) Strings are expected to be encoded in UTF-8."
+        },
+        matrix: {
+          "": "<code>40</code>: Matrix",
+          "description": "Matrices are two-dimensional arrays of doubles.",
+          "1": "First is a single byte for the number of {symdef:rows}, followed by another byte for the number of {symdef:cols}.",
+          "2": "This is followed by the {symdef:matrix_contents} of the matrix - one double for each entry. Each row is written out in sequence (ex. for a 2 by 2 matrix, the order would be row 1 column 1, followed by row 1 column 2, and then row 2 after that)"
+        },
+        hexpose: "Hexpose types",
+        text: {
+          "": "<code>50</code>: Text",
+          "description": "It appears that this format is not suitable for communicating the decorative properties of text (also called 'display') iota. Nevertheless, the actual text content can be transmitted. Text iota have the same format as strings:"
+        },
 
         // that's the end of the HTML
         // here's a bunch of things that the renderer puts together
@@ -98,6 +123,15 @@
           dir: "dir", // direction
           length: "length", // length
           angles: "angles",
+          x: "x",
+          y: "y",
+          z: "z",
+          iotas: "iotas",
+          string: "string",
+          contents: "contents",
+          rows: "rows",
+          cols: "cols", // columns
+          rowscols: "rows*cols",
         },
         tooltips: {
           size: "size: %s",

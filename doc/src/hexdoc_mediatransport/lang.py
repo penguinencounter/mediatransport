@@ -61,6 +61,7 @@ ArglessI18n = I18nTuple[Never]
 
 
 def plural_factory(root: str):
+    @pass_context
     def plural(ctx: Context, key: str, amount: int) -> I18nTuple[int]:
         rkey = f"{root}.{key}"
         i18n = I18n.of(ctx)

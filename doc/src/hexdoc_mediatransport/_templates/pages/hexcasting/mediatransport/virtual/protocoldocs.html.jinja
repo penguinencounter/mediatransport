@@ -13,6 +13,8 @@
 ])}}
 <p>{{d.tl("intro2")}}</p>
 
+<h3>{{d.tl("stdtypes")}}</h3>
+
 <h4>{{d.tl("garbage")}}</h4>
 <p>{{d.tl("garbage.description")}}</p>
 {{d.dia([
@@ -53,6 +55,56 @@
   (1, 'sym', 'dir'),
   (4, 'sym', 'pattern_len'),
   (('pattern_len', '*1'), 'sym', 'angles'),
+])}}
+
+<h4>{{d.tl("vec3")}}</h4>
+<p>{{d.tl("vec3.description")}}</p>
+{{d.dia([
+  (1, 'literal', '07'),
+  (8, 'sym', 'vec_x'),
+  (8, 'sym', 'vec_y'),
+  (8, 'sym', 'vec_z'),
+])}}
+
+<h4>{{d.tl("list")}}</h4>
+<p>{{d.tl("list.description")}}</p>
+{{d.dia([
+  (1, 'literal', '08'),
+  (4, 'sym', 'list_len'),
+  (None, 'sym', 'list_iotas'),
+])}}
+
+<h3>{{d.tl("moreiotas")}}</h3>
+
+<h4>{{d.tl("string")}}</h4>
+<p>{{d.tl("string.description")}}</p>
+{{d.dia([
+  (1, 'literal', '01'),
+  (4, 'sym', 'str_len'),
+  (('str_len', '*1'), 'sym', 'string'),
+])}}
+
+<h4>{{d.tl("matrix")}}</h4>
+<p>{{d.tl("matrix.description")}}</p>
+<ul>
+  <li>{{d.tl("matrix.1")}}</li>
+  <li>{{d.tl("matrix.2")}}</li>
+</ul>
+{{d.dia([
+  (1, 'literal', '40'),
+  (1, 'sym', 'rows'),
+  (1, 'sym', 'cols'),
+  (('rowscols', '*8'), 'sym', 'matrix_contents'),
+])}}
+
+<h3>{{d.tl("hexpose")}}</h3>
+
+<h4>{{d.tl("text")}}</h4>
+<p>{{d.tl("text.description")}}</p>
+{{d.dia([
+  (1, 'literal', '50'),
+  (4, 'sym', 'str_len'),
+  (('str_len', '*1'), 'sym', 'string'),
 ])}}
 
 </div>

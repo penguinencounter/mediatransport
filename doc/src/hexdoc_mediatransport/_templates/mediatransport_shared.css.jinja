@@ -85,6 +85,11 @@ br:has(+ .mediatransport-altn) {
   animation-play-state: paused;
 }
 
+.mediatransport-altn code {
+  color: #b8f;
+  background: none;
+}
+
 
 /* PROTOCOL DOCS */
 /* definition */
@@ -116,10 +121,11 @@ br:has(+ .mediatransport-altn) {
 :root { /* light */
   --sized-block-border: #8bf8;
   --flexible-block-border: #f8b8;
-  --indef-block-border: #8884;
+  --indefinite-block-border: #8884;
   --diagram-background: #50408020;
 
   --block: 7rem;
+  --block-add: calc(var(--block) / 2);
 }
 @media screen and (prefers-color-scheme: dark) {
   :root {
@@ -173,7 +179,7 @@ br:has(+ .mediatransport-altn) {
 
 .block-diagram > .block.-sized {
   border-color: var(--sized-block-border);
-  width: calc(var(--width) * var(--block));
+  width: calc((var(--width) - 1) * var(--block-add) + var(--block));
 }
 
 .block-diagram > .block.-flexible {

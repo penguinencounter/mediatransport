@@ -2,6 +2,8 @@
 
 from typing import Callable, Self, cast
 
+from hexdoc_hexcasting.book.page import pages
+
 from hexdoc.patchouli import Entry
 from hexdoc.patchouli.page.abstract_pages import Page
 from pydantic import BaseModel, model_validator
@@ -55,6 +57,7 @@ def add_entry_after(entry_type: type[Entry]):
 
 
 def add_hide(it: type[BaseModel]):
+    rp(rf'[bright_black] patch {it}[/]')
     it.model_fields["hexdoc_hide"] = FieldInfo(annotation=bool, default=False)
     it.model_rebuild(force=True)
 

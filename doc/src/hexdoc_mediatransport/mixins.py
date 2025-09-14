@@ -2,8 +2,7 @@
 
 from typing import Callable, Self, cast
 
-from hexdoc.core import ResourceLocation
-from hexdoc.patchouli import Category, Entry
+from hexdoc.patchouli import Entry
 from hexdoc.patchouli.page.abstract_pages import Page
 from pydantic import BaseModel, model_validator
 from pydantic.fields import FieldInfo

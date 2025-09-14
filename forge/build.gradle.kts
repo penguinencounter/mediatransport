@@ -34,9 +34,10 @@ mediatransportModDependencies {
     // CurseForge/Modrinth mod dependency metadata
     requires("architectury-api")
     requires("cloth-config")
-    requires("figura")
     requires(curseforge = "hexcasting", modrinth = "hex-casting")
     requires("kotlin-for-forge")
+    optional("moreiotas")
+    optional(curseforge=null, modrinth="hexpose")
 }
 
 dependencies {
@@ -52,7 +53,7 @@ dependencies {
     forgeRuntimeLibrary(libs.figura.luaj.core)
     forgeRuntimeLibrary(libs.figura.luaj.jse)
     forgeRuntimeLibrary(libs.nvwebsocketclient)
-    forgeRuntimeLibrary(libs.jblas)
+//    forgeRuntimeLibrary(libs.jblas)
     forgeRuntimeLibrary(libs.oggus)
     forgeRuntimeLibrary(libs.concentus)
 
@@ -61,7 +62,7 @@ dependencies {
     // but we use PAUCAL for datagen, so that's part of the actual implementation
     modImplementation(libs.paucal.forge)
     modLocalRuntime(libs.caelus)
-    modLocalRuntime(libs.moreiotas.forge) { isTransitive = false }
+    modLocalRuntime(libs.moreiotas.forge)
     modLocalRuntime(libs.inline.forge) { isTransitive = false }
 
     modApi(libs.clothConfig.forge)

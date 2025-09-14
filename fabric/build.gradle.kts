@@ -27,8 +27,10 @@ mediatransportModDependencies {
     requires(curseforge = "hexcasting", modrinth = "hex-casting")
     requires("fabric-api")
     requires("fabric-language-kotlin")
-    requires("figura")
+//    requires("figura") // no, because that could cause bad auto-downloads
     optional("modmenu")
+    optional("moreiotas")
+    optional(curseforge=null, modrinth="hexpose")
 }
 
 dependencies {
@@ -59,7 +61,7 @@ dependencies {
     // we use modLocalRuntime to add these to the development runtime, but not at compile time or for consumers of this project
     modLocalRuntime(libs.paucal.fabric)
     modLocalRuntime(libs.cardinalComponents)
-    modLocalRuntime(libs.moreiotas.fabric)
+    modLocalRuntime(libs.moreiotas.fabric) { isTransitive = false }
     modLocalRuntime(libs.serializationHooks)
     modLocalRuntime(libs.trinkets)
     modLocalRuntime(libs.inline.fabric) { isTransitive = false }

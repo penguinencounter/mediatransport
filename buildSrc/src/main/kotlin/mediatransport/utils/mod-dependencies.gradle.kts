@@ -40,10 +40,14 @@ abstract class MediaTransportModDependenciesExtension(private val project: Proje
 
     fun optional(slug: String) = optional(slug, slug)
 
-    fun optional(curseforge: String, modrinth: String) = project.run {
+    fun optional(curseforge: String? = null, modrinth: String? = null) = project.run {
         publishMods {
-            curseforge { optional(curseforge) }
-            modrinth { optional(modrinth) }
+            curseforge?.let {
+                curseforge { optional(it) }
+            }
+            modrinth?.let {
+                modrinth { optional(modrinth) }
+            }
         }
     }
 

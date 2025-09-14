@@ -1,0 +1,59 @@
+{% extends "pages/patchouli/page.html.jinja" %}
+{% set d = mediatransport.diagrams %}
+
+{% block body %}
+<!-- ahh, freedom from that stupid book format. lots of room to play here! -->
+<div class="protocoldocs">
+{# comments are for reference when building layout -#}
+{# about {type} and {data} -#}
+<p>{{d.tl("intro1")}}</p>
+{{d.dia([
+  (1, 'sym', 'type'),
+  (None, 'sym', 'data'),
+])}}
+<p>{{d.tl("intro2")}}</p>
+
+<h4>{{d.tl("garbage")}}</h4>
+<p>{{d.tl("garbage.description")}}</p>
+{{d.dia([
+  (1, 'literal', 'ff')
+])}}
+
+<h4>{{d.tl("truefalse")}}</h4>
+<div class="diagram-sbs">
+{{d.dia([
+  (1, 'literal', '02')
+])}}
+{{d.dia([
+  (1, 'literal', '03')
+])}}
+</div>
+
+<h4>{{d.tl("null")}}</h4>
+{{d.dia([
+  (1, 'literal', '04')
+])}}
+
+<h4>{{d.tl("double")}}</h4>
+<p>{{d.tl("double.description")}}</p>
+{{d.dia([
+  (1, 'literal', '05'),
+  (8, 'sym', 'double_value')
+])}}
+
+<h4>{{d.tl("pattern")}}</h4>
+<p>{{d.tl("pattern.description")}}</p>
+<ul>
+<li>{{d.tl("pattern.1")}}</li>
+<li>{{d.tl("pattern.2")}}</li>
+<li>{{d.tl("pattern.3")}}</li>
+</ul>
+{{d.dia([
+  (1, 'literal', '06'),
+  (1, 'sym', 'dir'),
+  (4, 'sym', 'pattern_len'),
+  (('pattern_len', '*1'), 'sym', 'angles'),
+])}}
+
+</div>
+{% endblock body %}

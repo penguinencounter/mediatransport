@@ -1,3 +1,7 @@
+# Kyra: if you're reading this, we're sorry but hope you understand
+# We've tried our best to make it not break with other books
+# but haven't tested it, so... hope it works?
+
 from typing import Callable, Self, cast
 
 from hexdoc.patchouli import Entry

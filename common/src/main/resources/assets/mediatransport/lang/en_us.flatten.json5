@@ -50,9 +50,59 @@
           }
         }
       },
+
+      pluralizations: {
+        // 0, 1, "" (any)
+        byte: {
+          "1": "%s byte",
+          "": "%s bytes"
+        }
+      },
+
       protocol: {
         "": "Iota Transport Protocol",
-        "1": "Ah, the freedom! I've drawn up some diagrams of the format."
+        "1": "Ah, the freedom! I've drawn up some diagrams of the format.",
+        // text in {curly brackets} are keywords. Don't translate the text inside.
+        // btw this section uses HTML
+        "intro1": "As previously described, an iota consists of a single-byte {symdef:type} followed by some amount of {symr:data}, depending on the type.",
+        "intro2": "Each iota type has a different {sym:type} value and has a different format for {symr:data}.",
+        garbage: {
+          "": "<code>ff</code>: Garbage",
+          "description": "All these types have no data. Also, since Garbage is used to represent decoding failures, it's generally a bad idea to create it on purpose.",
+        },
+        truefalse: {
+          "": "<code>02</code>: True and <code>03</code>: False",
+        },
+        null: {
+          "": "<code>04</code>: Null",
+        },
+        double: {
+          "": "<code>05</code>: Double",
+          "description": "Finally, something interesting! Hexcasting uses IEEE 754 double-width floats (that's 8 bytes, 64 bits), so that's what's being used here for {symdef:double_value}."
+        },
+        pattern: {
+          "": "<code>06</code>: Pattern",
+          "description": "In honor of Hexxy, patterns are type 6. They're a bit complicated:",
+          "1": "First is a byte representing the {symdef:dir}. This is based on some internal representation, and appears to be as follows: 0 = north east, 1 = east, 2 = south east, 3 = south west, 4 = west, and 5 = north west.",
+          "2": "Next is a four-byte integer holding the number of angles in the pattern (effectively, strokes minus 1, or the {symdef:pattern_len})",
+          "3": "Following that are the {symdef:angles}, each 1 byte. Once again this appears to be based on some internal representation, as follows: 0 = forward, 1 = right, 2 = right back, 3 = back, 4 = left back, and 5 = left."
+        },
+
+        // that's the end of the HTML
+        // here's a bunch of things that the renderer puts together
+        // to form all of those symbols and markup
+        symbols: {
+          type: "type",
+          data: "data",
+          value: "value",
+          dir: "dir", // direction
+          length: "length", // length
+          angles: "angles",
+        },
+        tooltips: {
+          size: "size: %s",
+          size_ref: "(%s) bytes", // as in "(size) bytes"
+        }
       },
       admin: {
         // These entries are only rendered in hexdoc, so we don't have to worry

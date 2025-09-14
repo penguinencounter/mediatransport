@@ -1,4 +1,5 @@
 from importlib.resources import Package
+from typing import Any
 
 from hexdoc.plugin import (
     HookReturn,
@@ -7,14 +8,20 @@ from hexdoc.plugin import (
     ModPluginWithBook,
     hookimpl,
 )
+from rich import print as rp
 from typing_extensions import override
 
 import hexdoc_mediatransport
 
+from . import diagrams
 from .__gradle_version__ import FULL_VERSION, MINECRAFT_VERSION, MOD_ID, MOD_VERSION
 from .__version__ import PY_VERSION
 from .book import pages
 from .mixins import stage_1
+
+
+class MediaTransportContext:
+    diagrams = diagrams
 
 
 class MediaTransportPlugin(ModPluginImpl):
@@ -27,6 +34,14 @@ class MediaTransportPlugin(ModPluginImpl):
     @hookimpl
     def hexdoc_load_tagged_unions() -> HookReturn[Package]:
         return [pages]
+
+    @staticmethod
+    @hookimpl
+    def hexdoc_update_template_args(template_args: dict[str, Any]) -> None:
+        rp(
+            R"[bold]\[INFO][/] [bright_black]mediatransport[/] [green]got template hook[/]"
+        )
+        template_args["mediatransport"] = MediaTransportContext
 
 
 class MediaTransportModPlugin(ModPluginWithBook):

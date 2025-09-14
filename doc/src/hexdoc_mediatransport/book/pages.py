@@ -21,3 +21,7 @@ class EndAltnMarker(Page, type="hexcasting:mediatransport/hexdoc/end_altn"):
 class ParityPage(Page, type="hexcasting:mediatransport/hexdoc/parity"):
     # Literally nothing
     pass
+
+class ProtocolDocsPage(Page, type="hexcasting:mediatransport/virtual/protocoldocs"):
+    # Literally nothing
+    pass

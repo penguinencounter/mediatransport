@@ -14,7 +14,7 @@ import hexdoc_mediatransport
 from .__gradle_version__ import FULL_VERSION, MINECRAFT_VERSION, MOD_ID, MOD_VERSION
 from .__version__ import PY_VERSION
 from .book import pages
-from .mixins import mess_everything_up
+from .mixins import stage_1
 
 
 class MediaTransportPlugin(ModPluginImpl):
@@ -65,4 +65,4 @@ class MediaTransportModPlugin(ModPluginWithBook):
 
 
 # off we go
-mess_everything_up()
+stage_1()

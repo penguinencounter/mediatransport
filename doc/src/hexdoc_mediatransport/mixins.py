@@ -1,11 +1,8 @@
-# the cursedness is contained within this file ok
-
 from typing import Callable, Self, cast
-
-from hexdoc_hexcasting.book.page import pages
 
 from hexdoc.patchouli import Entry
 from hexdoc.patchouli.page.abstract_pages import Page
+from hexdoc.plugin import PluginManager
 from pydantic import BaseModel, model_validator
 from pydantic.fields import FieldInfo
 from rich import print as rp
@@ -57,12 +54,12 @@ def add_entry_after(entry_type: type[Entry]):
 
 
 def add_hide(it: type[BaseModel]):
-    rp(rf'[bright_black] patch {it}[/]')
+    rp(rf"[bright_black] patch {it}[/]")
     it.model_fields["hexdoc_hide"] = FieldInfo(annotation=bool, default=False)
     it.model_rebuild(force=True)
 
 
-def mess_everything_up():
+def stage_2():
     rp(
         R"[bold]\[INFO][/] [bright_black]mediatransport[/] [yellow]Patching...[/]",
         end="",
@@ -75,3 +72,14 @@ def mess_everything_up():
         f" * [blue_violet]{len(added_hide): 4d} +hexdoc_hide[/]\n"
         f" * [bright_blue]{len(entry_types): 4d} Entry types[/]\n"
     )
+
+
+def stage_1():
+    _init_plugins = PluginManager.init_plugins
+
+    def init_plugins_wrapper(self: PluginManager):
+        result = _init_plugins(self)
+        stage_2()
+        return result
+
+    PluginManager.init_plugins = init_plugins_wrapper

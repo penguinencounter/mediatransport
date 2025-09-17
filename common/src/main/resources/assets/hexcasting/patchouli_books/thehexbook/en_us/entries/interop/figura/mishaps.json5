@@ -42,6 +42,11 @@
       text: "mediatransport.book.interop.figura.mishaps.radio_silence"
     },
     {
+      type: "patchouli:text",
+      title: "mediatransport.mishap_names.rate_limit_exceeded",
+      text: "mediatransport.book.interop.figura.mishaps.rate_limit_exceeded"
+    },
+    {
       type: "hexcasting:mediatransport/hexdoc/begin_altn",
       flag: "mediatransport:never",
     },

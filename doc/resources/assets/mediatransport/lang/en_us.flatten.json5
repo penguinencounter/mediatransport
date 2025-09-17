@@ -10,5 +10,10 @@
         }
       },
     },
+  },
+  opengraph: {
+    descriptions: {
+      api: "mediatransport for avatar scripts"
+    }
   }
 }

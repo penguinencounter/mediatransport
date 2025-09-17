@@ -35,6 +35,32 @@
       input: "player, sendable",
       output: "",
       text: "mediatransport.book.patterns.figura.send_other",
-    }
+    },
+    {
+      type: "hexcasting:pattern",
+      op_id: "mediatransport:check_rate_limit",
+      anchor: "mediatransport:check_rate_limit",
+      input: "",
+      output: "number",
+      text: "mediatransport.book.patterns.figura.check_rate_limit",
+    },
+    {
+      type: "hexcasting:pattern",
+      op_id: "mediatransport:send_server_info",
+      anchor: "mediatransport:send_server_info",
+      input: "",
+      output: "",
+      text: "mediatransport.book.patterns.figura.send_server_info_a",
+      hexdoc_hide: true,
+    },
+    {
+      type: "hexcasting:pattern",
+      op_id: "mediatransport:send_server_info",
+      anchor: "mediatransport:send_server_info",
+      input: "",
+      output: "",
+      text: "mediatransport.book.patterns.figura.send_server_info_b",
+      flag: "mediatransport:never",
+    },
   ],
 }

@@ -7,6 +7,8 @@ import at.petrak.hexcasting.api.casting.math.HexPattern
 import at.petrak.hexcasting.common.lib.HexRegistries
 import at.petrak.hexcasting.common.lib.hex.HexActions
 import penguinencounter.mediatransport.casting.actions.spells.OpCheckQueue
+import penguinencounter.mediatransport.casting.actions.spells.OpCheckRateLimit
+import penguinencounter.mediatransport.casting.actions.spells.OpSendServerInfo
 import penguinencounter.mediatransport.casting.actions.spells.OpRecvFSB
 import penguinencounter.mediatransport.casting.actions.spells.OpSendFSB
 import penguinencounter.mediatransport.casting.actions.spells.OpSendOther
@@ -19,6 +21,8 @@ object MediaTransportActions : MediaTransportRegistrar<ActionRegistryEntry>(
     val SEND_OTHER_FSB = make("send_other", HexDir.EAST, "wewdwwwdwaawawdwawaqwdwwdada", OpSendOther)
     val RECV_FSB = make("recv_fsb", HexDir.EAST, "edwdwwaa", OpRecvFSB)
     val CHECK_QUEUE = make("check_queue", HexDir.EAST, "edwdwq", OpCheckQueue)
+    val CHECK_RATE_LIMIT = make("check_rate_limit", HexDir.EAST, "edwdwda", OpCheckRateLimit)
+    val SEND_SERVER_INFO = make("send_server_info", HexDir.EAST, "edwdwwdde", OpSendServerInfo)
 
     @Suppress("SameParameterValue")
     private fun make(name: String, startDir: HexDir, signature: String, action: Action) =

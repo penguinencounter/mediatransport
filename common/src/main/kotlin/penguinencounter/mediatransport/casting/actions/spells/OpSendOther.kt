@@ -5,7 +5,9 @@ import at.petrak.hexcasting.api.casting.castables.SpellAction
 import at.petrak.hexcasting.api.casting.eval.CastingEnvironment
 import at.petrak.hexcasting.api.casting.getPlayer
 import at.petrak.hexcasting.api.casting.iota.Iota
+import at.petrak.hexcasting.api.casting.mishaps.MishapBadCaster
 import at.petrak.hexcasting.api.misc.MediaConstants
+import net.minecraft.server.level.ServerPlayer
 import org.figuramc.figura.server.FiguraServer
 import penguinencounter.mediatransport.MediaTransportServer
 import penguinencounter.mediatransport.casting.mishaps.MishapForSomeReasonFSBIsDedicatedServerOnly
@@ -24,6 +26,13 @@ object OpSendOther : SpellAction {
         if (!FiguraServer.initialized()) throw MishapForSomeReasonFSBIsDedicatedServerOnly()
         val target = args.getPlayer(0, argc = 2)
         val toSend = args[1]
+
+        val cost = MediaTransportConfig.server.interSendCostMultiplier
+        if (cost > 0.0) {
+            val caster = env.castingEntity
+            if (caster !is ServerPlayer) throw MishapBadCaster()
+            MediaTransportServer.useCooldown(caster, cost)
+        }
 
         MediaTransportConfig.server.validateInterSend(toSend)
 

@@ -44,6 +44,14 @@
       flag: "mediatransport:never",
     },
     {
+      type: "hexcasting:mediatransport/text",
+      text: "mediatransport.book.interop.figura.about.D"
+    },
+    {
+      type: "hexcasting:mediatransport/text",
+      text: "mediatransport.book.interop.figura.about.E"
+    },
+    {
       type: "hexcasting:mediatransport/hexdoc/end_altn",
       flag: "mediatransport:never",
     },
@@ -58,7 +66,8 @@
         "hexcasting:interop/figura/mishaps",
         "hexcasting:patterns/figura"
       ],
-      text: "mediatransport.book.figura_see_also_1"
+      text: "mediatransport.book.figura_see_also_1",
+      hexdoc_hide: true
     }
   ]
 }

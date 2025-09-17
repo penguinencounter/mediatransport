@@ -2,7 +2,7 @@
 
 import re
 from dataclasses import dataclass
-from typing import Any, Literal, NamedTuple
+from typing import Any, Callable, Literal, NamedTuple
 
 from hexdoc.minecraft import I18n
 from jinja2 import pass_context
@@ -11,10 +11,10 @@ from markupsafe import Markup
 
 from .lang import ArglessI18n, I18nTuple, plural_factory
 
-PROTOCOL = "mediatransport.book.protocol"
-SYMBOLS = f"{PROTOCOL}.symbols"
-TOOLTIPS = f"{PROTOCOL}.tooltips"
-PLURAL = "mediatransport.book.pluralizations"
+BOOK = "mediatransport.book"
+SYMBOLS = f"{BOOK}.symbols"
+TOOLTIPS = f"{BOOK}.tooltips"
+PLURAL = f"{BOOK}.pluralizations"
 plural = plural_factory(PLURAL)
 
 
@@ -43,7 +43,7 @@ class ProtoSymbol:
             if isinstance(self.size, str):
                 contents = I18nTuple.ofa(
                     i18n.localize(f"{TOOLTIPS}.size_ref"),
-                    (I18nTuple.of(i18n.localize(f"{SYMBOLS}.{self.size}")),)
+                    (I18nTuple.of(i18n.localize(f"{SYMBOLS}.{self.size}")),),
                 )
             else:  # int
                 contents = plural(ctx, "byte", self.size)
@@ -70,8 +70,17 @@ symbols = {
     "rows": ProtoSymbol(name="rows", size=1),
     "cols": ProtoSymbol(name="cols", size=1),
     "matrix_contents": ProtoSymbol(name="contents", size="rowscols"),
-    "rowscols": ProtoSymbol(name="rowscols", size=None), # combination key, not actual
+    "rowscols": ProtoSymbol(name="rowscols", size=None),  # combination key, not actual
+    "protocol_version": ProtoSymbol(name="version", size=2),
+    "max_send": ProtoSymbol(name="max_send", size=4),
+    "max_inter_send": ProtoSymbol(name="max_inter_send", size=4),
+    "max_recv": ProtoSymbol(name="max_recv", size=4),
+    "max_power": ProtoSymbol(name="max_power", size=8),
+    "power_regen_rate": ProtoSymbol(name="power_regen_rate", size=8),
+    "inter_cost": ProtoSymbol(name="inter_cost", size=8),
 
+    # Figura things that aren't actual protocol stuff but are useful to link
+    "Buffer": ProtoSymbol(name="Buffer", size=None),
 }
 
 
@@ -131,13 +140,6 @@ def process_markup(context: Context, raw: str) -> Markup:
     return Markup(matching_pattern.sub(_make_matcher(context), raw))
 
 
-@pass_context
-def tl(context: Context, key: str) -> Markup:
-    i18n = I18n.of(context)
-    translated = i18n.localize(f"{PROTOCOL}.{key}").value
-    return process_markup(context, translated)
-
-
 class Block(NamedTuple):
     size: int | tuple[str, str] | None
     kind: Literal["literal", "sym"]
@@ -150,3 +152,41 @@ def dia(context: Context, blocks: list[Block]) -> Markup:
     new_ctx = context.get_all().copy()
     new_ctx["blocks"] = blocks
     return Markup(block_template.render(new_ctx))
+
+
+codeblock_matcher = re.compile(r"\|(.*)\\$")
+
+
+class _Box(object):
+    # you can setattr on it.
+    pass
+
+
+def context(section: str):
+    base = f"{BOOK}.{section}"
+
+    @pass_context
+    def tl(context: Context, key: str) -> Markup:
+        i18n = I18n.of(context)
+        translated = i18n.localize(f"{base}.{key}").value
+        return process_markup(context, translated)
+
+    @pass_context
+    def codeblock(context: Context, key: str) -> Markup:
+        i18n = I18n.of(context)
+        raw = i18n.localize(f"{base}.{key}").value
+        raw = re.sub(r"^\.", "", raw, flags=re.MULTILINE)
+        return Markup(f"<pre>{raw}</pre>")
+
+    Box = _Box()
+    Box.tl = tl
+    Box.dia = dia
+    Box.sym = sym
+    Box.sym_name = sym_name
+
+    Box.codeblock = codeblock
+
+    Box.plural = plural
+    Box.plural_var = plural_var
+
+    return Box

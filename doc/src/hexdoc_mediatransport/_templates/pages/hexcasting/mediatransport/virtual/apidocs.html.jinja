@@ -1,0 +1,33 @@
+{% extends "pages/patchouli/page.html.jinja" %}
+{% set d = mediatransport.diagrams.context("api") %}
+{#
+despite the name, diagrams also contains all the
+localization features, so it's useful here
+#}
+
+{% block body %}
+<p>
+{{d.tl("intro1")}}
+</p>
+<p>
+{{d.tl("intro2")}}
+</p>
+<p>
+{{d.tl("intro3")}}
+</p>
+
+<h3>{{d.tl("overview")}}</h3>
+<p>
+{{d.tl("overview.1")}}
+</p>
+<p>
+{{d.tl("overview.2")}}
+</p>
+{{d.codeblock("overview.code1")}}
+<p>
+{{d.tl("overview.3")}}
+</p>
+<p>
+{{d.tl("overview.4")}}
+</p>
+{% endblock body %}

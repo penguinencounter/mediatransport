@@ -25,6 +25,7 @@ object OpSendFSB : SpellAction {
         val castingEntity = env.castingEntity
         if (castingEntity !is ServerPlayer) throw MishapBadCaster()
 
+        MediaTransportServer.useCooldown(castingEntity, 1.0)
 
         val toSend = args[0]
         // Check if this is sendable

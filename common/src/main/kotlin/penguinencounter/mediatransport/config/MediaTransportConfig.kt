@@ -95,6 +95,18 @@ object MediaTransportConfig {
         var matrixMaxArea: Int = 10240
             private set
 
+        @Tooltip
+        var rateLimitChargePerTick: Double = 1.0
+            private set
+
+        @Tooltip
+        var rateLimitMaxValue: Double = 8.0
+            private set
+
+        @Tooltip
+        var interSendCostMultiplier: Double = 2.0
+            private set
+
         @ConfigEntry.Gui.Excluded
         var sendFilterMode: FilterMode = FilterMode.Block
 

@@ -18,10 +18,16 @@ class BeginAltnMarker(Page, type="hexcasting:mediatransport/hexdoc/begin_altn"):
 class EndAltnMarker(Page, type="hexcasting:mediatransport/hexdoc/end_altn"):
     pass
 
+# Literally nothing
+
 class ParityPage(Page, type="hexcasting:mediatransport/hexdoc/parity"):
-    # Literally nothing
     pass
 
 class ProtocolDocsPage(Page, type="hexcasting:mediatransport/virtual/protocoldocs"):
-    # Literally nothing
+    pass
+
+class APIDocsPage(Page, type="hexcasting:mediatransport/virtual/apidocs"):
+    pass
+
+class NullPage(PageWithText, type="hexcasting:mediatransport/hexdoc/null"):
     pass

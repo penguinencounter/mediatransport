@@ -14,6 +14,9 @@ object Types {
     val types: MutableMap<Int, IotaType<*>> = mutableMapOf()
 
     const val GARBAGE = 0xff
+    const val SERVER_INFO = 0xfe
+    const val PROTOCOL_VERSION = 1
+
     val garbageData = byteArrayOf(GARBAGE.toByte())
 
     // technically moreiotas but it's pretty important

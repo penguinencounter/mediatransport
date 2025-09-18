@@ -2,6 +2,7 @@
 
 import re
 from dataclasses import dataclass
+from types import SimpleNamespace
 from typing import Any, Callable, Literal, NamedTuple
 
 from hexdoc.minecraft import I18n
@@ -78,7 +79,6 @@ symbols = {
     "max_power": ProtoSymbol(name="max_power", size=8),
     "power_regen_rate": ProtoSymbol(name="power_regen_rate", size=8),
     "inter_cost": ProtoSymbol(name="inter_cost", size=8),
-
     # Figura things that aren't actual protocol stuff but are useful to link
     "Buffer": ProtoSymbol(name="Buffer", size=None),
 }
@@ -157,9 +157,15 @@ def dia(context: Context, blocks: list[Block]) -> Markup:
 codeblock_matcher = re.compile(r"\|(.*)\\$")
 
 
-class _Box(object):
+class _Box(SimpleNamespace):
     # you can setattr on it.
-    pass
+    tl: Callable[[Context, str], Markup]
+    dia: Callable[[Context, list[Block]], Markup]
+    sym: Callable[[Context, str], str]
+    sym_name: Callable[[Context, str], str]
+    codeblock: Callable[[Context, str], Markup]
+    plural: Callable[[Context, str, int], I18nTuple[int]]
+    plural_var: Callable[[Context, str, str], str]
 
 
 def context(section: str):

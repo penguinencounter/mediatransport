@@ -6,6 +6,8 @@ localization features, so it's useful here
 #}
 
 {% block body %}
+{% include "csscheck.html.jinja" without context %}
+
 <p>
 {{d.tl("intro1")}}
 </p>

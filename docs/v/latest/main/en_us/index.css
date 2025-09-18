@@ -548,8 +548,8 @@ br:has(+ .mediatransport-altn) {
   border-radius: 1rem;
   /* sync with body ::after */;
   background-image:
-    url("https://raw.githubusercontent.com/penguinencounter/mediatransport/3e7f917c631c1531a941cfb1f8755698d6bd29f6/doc/resources/assets/mediatransport/textures/gui/background_1.png"),
-    url("https://raw.githubusercontent.com/penguinencounter/mediatransport/3e7f917c631c1531a941cfb1f8755698d6bd29f6/doc/resources/assets/mediatransport/textures/gui/background_2.png");
+    url("https://raw.githubusercontent.com/penguinencounter/mediatransport/4370efb2461f3caf5e6baa6d4ec9524d745d240e/doc/resources/assets/mediatransport/textures/gui/background_1.png"),
+    url("https://raw.githubusercontent.com/penguinencounter/mediatransport/4370efb2461f3caf5e6baa6d4ec9524d745d240e/doc/resources/assets/mediatransport/textures/gui/background_2.png");
   animation: animated-footer 10s linear infinite;
   animation-play-state: running;
   /* unique */
@@ -712,8 +712,8 @@ body {
     height: 256px;
     content: "";
     background-image:
-      url("https://raw.githubusercontent.com/penguinencounter/mediatransport/3e7f917c631c1531a941cfb1f8755698d6bd29f6/doc/resources/assets/mediatransport/textures/gui/background_1.png"),
-      url("https://raw.githubusercontent.com/penguinencounter/mediatransport/3e7f917c631c1531a941cfb1f8755698d6bd29f6/doc/resources/assets/mediatransport/textures/gui/background_2.png");
+      url("https://raw.githubusercontent.com/penguinencounter/mediatransport/4370efb2461f3caf5e6baa6d4ec9524d745d240e/doc/resources/assets/mediatransport/textures/gui/background_1.png"),
+      url("https://raw.githubusercontent.com/penguinencounter/mediatransport/4370efb2461f3caf5e6baa6d4ec9524d745d240e/doc/resources/assets/mediatransport/textures/gui/background_2.png");
     mask-image: linear-gradient(to top, #fff, transparent);
     animation: animated-footer 10s linear infinite;
     z-index: -10;
@@ -731,4 +731,4 @@ body {
   padding-bottom: 64px;
   margin-bottom: 0;
 }
-/* https://raw.githubusercontent.com/penguinencounter/mediatransport/3e7f917c631c1531a941cfb1f8755698d6bd29f6/doc/resources/assets/mediatransport/textures/gui/background_0.png */
+/* https://raw.githubusercontent.com/penguinencounter/mediatransport/4370efb2461f3caf5e6baa6d4ec9524d745d240e/doc/resources/assets/mediatransport/textures/gui/background_0.png */

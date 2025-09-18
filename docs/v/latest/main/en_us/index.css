@@ -495,6 +495,10 @@ img.spell-viz {
     --box-opacity: .4;
   }
 }
+/* for checking that the stylesheet is loaded */
+.mediatransport-hidden {
+  display: none;
+}
 .book-body > section[id$="_virtual"] {
   position: relative;
   color: #ddd; /* Always dark */
@@ -544,8 +548,8 @@ br:has(+ .mediatransport-altn) {
   border-radius: 1rem;
   /* sync with body ::after */;
   background-image:
-    url("https://raw.githubusercontent.com/penguinencounter/mediatransport/02f7031b8f85b573c074fba1ca16bf0c85c8fe9b/doc/resources/assets/mediatransport/textures/gui/background_1.png"),
-    url("https://raw.githubusercontent.com/penguinencounter/mediatransport/02f7031b8f85b573c074fba1ca16bf0c85c8fe9b/doc/resources/assets/mediatransport/textures/gui/background_2.png");
+    url("https://raw.githubusercontent.com/penguinencounter/mediatransport/3e7f917c631c1531a941cfb1f8755698d6bd29f6/doc/resources/assets/mediatransport/textures/gui/background_1.png"),
+    url("https://raw.githubusercontent.com/penguinencounter/mediatransport/3e7f917c631c1531a941cfb1f8755698d6bd29f6/doc/resources/assets/mediatransport/textures/gui/background_2.png");
   animation: animated-footer 10s linear infinite;
   animation-play-state: running;
   /* unique */
@@ -559,6 +563,14 @@ br:has(+ .mediatransport-altn) {
 .mediatransport-altn code {
   color: #b8f;
   background: none;
+}
+.mediatransport-altn pre {
+  color: #dbf;
+  background: var(--diagram-background);
+  border-radius: 8px;
+  padding: 8px;
+  border: 1px solid #b8f;
+  margin: 1rem 0.5rem;
 }
 /* PROTOCOL DOCS */
 /* definition */
@@ -700,8 +712,8 @@ body {
     height: 256px;
     content: "";
     background-image:
-      url("https://raw.githubusercontent.com/penguinencounter/mediatransport/02f7031b8f85b573c074fba1ca16bf0c85c8fe9b/doc/resources/assets/mediatransport/textures/gui/background_1.png"),
-      url("https://raw.githubusercontent.com/penguinencounter/mediatransport/02f7031b8f85b573c074fba1ca16bf0c85c8fe9b/doc/resources/assets/mediatransport/textures/gui/background_2.png");
+      url("https://raw.githubusercontent.com/penguinencounter/mediatransport/3e7f917c631c1531a941cfb1f8755698d6bd29f6/doc/resources/assets/mediatransport/textures/gui/background_1.png"),
+      url("https://raw.githubusercontent.com/penguinencounter/mediatransport/3e7f917c631c1531a941cfb1f8755698d6bd29f6/doc/resources/assets/mediatransport/textures/gui/background_2.png");
     mask-image: linear-gradient(to top, #fff, transparent);
     animation: animated-footer 10s linear infinite;
     z-index: -10;
@@ -719,4 +731,4 @@ body {
   padding-bottom: 64px;
   margin-bottom: 0;
 }
-/* https://raw.githubusercontent.com/penguinencounter/mediatransport/02f7031b8f85b573c074fba1ca16bf0c85c8fe9b/doc/resources/assets/mediatransport/textures/gui/background_0.png */
+/* https://raw.githubusercontent.com/penguinencounter/mediatransport/3e7f917c631c1531a941cfb1f8755698d6bd29f6/doc/resources/assets/mediatransport/textures/gui/background_0.png */

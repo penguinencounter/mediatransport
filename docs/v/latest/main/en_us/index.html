@@ -77,7 +77,7 @@
       <ul class="nav navbar-nav navbar-right">
             <li>
     <a
-      href="https://github.com/penguinencounter/mediatransport/tree/02f7031b8f85b573c074fba1ca16bf0c85c8fe9b"
+      href="https://github.com/penguinencounter/mediatransport/tree/3e7f917c631c1531a941cfb1f8755698d6bd29f6"
         target="_blank"
       class="navbar-link"
       role="button"
@@ -160,6 +160,13 @@
       loading="lazy"
       class="item-texture  texture pixelated"
     > Iota Transport Protocol</a></li>
+          <li><a href="#mediatransport_virtual/api" class="toc-elem "><img
+      title="Book"
+      alt="Book"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/book.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > Figura API Documentation</a></li>
           <li><a href="#interop/figura/mishaps" class="toc-elem "><img
       title="Music Disc"
       alt="Music Disc"
@@ -269,32 +276,17 @@
 <div class="mediatransport-altn">
 <div class="-decoration"></div>
 <!-- begin-altn special page -->
-    <p>So we got a few new patterns (dubiously spells as well?) recently, and they facilitate direct communication between avatars and hexes! no more getting kicked for spam :D</p><p>Some of the more data-oriented of us have decoded the format. The entire thing is byte-aligned and uses <span style="color: #8bf">buffers</span> for data transfer. (that means we have to remember to close them!)</p>
+    <p>We&#39;ve discovered (created?) a few new spells. They facilitate direct communication between avatars and hexes; no more getting kicked for spam!</p><p>Some of the more data-oriented of us have decoded the format. The entire thing is byte-aligned and uses <span style="color: #8bf">buffers</span> for data transfer. (that means we have to remember to close them!)</p>
 <br />
     <p>Based on what we&#39;ve seen, each iota starts with a single-byte <span style="color: #8bf">type</span> followed by zero or more bytes of <span style="color: #8bf">data</span>. All multibyte forms are big endian. (that&#39;s the default for the Buffer read methods)</p><p></p>
 <br />
     <p>The format in its entirety is described here: <a href="#mediatransport_virtual/protocol">Iota Transport Protocol</a></p>
 <br />
-</div>
-  <h4>See Also</h4>
-<ul>
-    <li><a href="#interop/figura/mishaps" class="toc-elem "><img
-      title="Music Disc"
-      alt="Music Disc"
-      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/music_disc_11.png"
-      loading="lazy"
-      class="item-texture  texture pixelated"
-    > Transport Mishaps</a></li>
-    <li><a href="#patterns/figura" class="toc-elem "><img
-      title="Spruce Sign"
-      alt="Spruce Sign"
-      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/spruce_sign.png"
-      loading="lazy"
-      class="item-texture  texture pixelated"
-    > Transport Patterns</a></li>
-</ul>
-    <p>I&#39;ve cataloged the rest of the details in these entries.</p>
+    <p>Moreover, Nature doesn&#39;t take kindly to being asked to send megabytes of data at a time; to prevent such (ab)use, there is a system of so-called &#34;sending power&#34;. It refills quite rapidly (under normal circumstances), and every transmission-related action consumes some.</p>
 <br />
+    <p>When you run out of &#34;sending power&#34;, trying to submit more iota will result in a mishap. To avoid running into the limit, <a href="#patterns/figura@mediatransport:check_rate_limit">Quota&#39;s Reflection</a> can be useful.</p>
+<br />
+</div>
 </div>
 <div id="mediatransport_virtual/protocol" class="entry">
     <h3 class="entry-title page-header">
@@ -316,10 +308,18 @@
 <div class="mediatransport-altn">
 <div class="-decoration"></div>
 <!-- begin-altn special page -->
-    <p>Ah, the freedom! I&#39;ve drawn up some diagrams of the format.</p>
-<br />
   <!-- ahh, freedom from that stupid book format. lots of room to play here! -->
+<div class="mediatransport-hidden" style="padding: 8px; border: 2px solid #f44;">
+  <div style="font-size: 3rem;">Loading error</div>
+  <p>
+  It appears that mediatransport's styles failed to load. Something's wrong with this book's setup.
+  </p>
+<pre>
+{% include &#34;mediatransport:mediatransport_shared.css.jinja&#34; %}
+</pre>
+</div>
 <div class="protocoldocs">
+<p><b>This documentation is for protocol <a class="protocol-sym" href="#mediatransport-protocol-protocol_version" title="version&#10;size: 2 bytes">version</a> 1.</b></p>
 <p>As previously described, an iota consists of a single-byte <span class="protocol-sym-def" id="mediatransport-protocol-type" title="type&#10;size: 1 byte">type</span> followed by some amount of <span class="protocol-sym-raw" title="data">data</span>, depending on the type.</p>
 <div class="block-diagram">
       <div class="block -sized -sym" style="--width: 1">
@@ -494,7 +494,114 @@
         <span class="-size">=length*1 bytes</span>
       </div>
 </div>
+<h3>Non-types</h3>
+<p>These don't seem to represent iota at all! What's going on here?!</p>
+<h4><code>fe</code>: Configuration Data</h4>
+<p>This glob of information is Nature's repsonse to <a href="#patterns/figura@mediatransport:send_server_info">Query Configuration</a>.</p>
+<ul>
+  <li>First is the protocol's <span class="protocol-sym-def" id="mediatransport-protocol-protocol_version" title="version&#10;size: 2 bytes">version</span> as a two-byte 'short'. This documentation is written form <em>protocol version 1</em>.</li>
+  <li>Next is the maximum amount of data that can be sent with Submit Iota, in bytes.</li>
+  <li>That is followed by the maximum amount of data that can be sent with Submit Iota II...</li>
+  <li>and the maximum amount of data that can be received from an avatar.</li>
+  <li>That's followed by the maximum amount of 'sending power' that can be held at a time, as a double precision floating point...</li>
+  <li>and how much 'sending power' is regained per tick...</li>
+  <li>and finally, how much 'sending power' Submit Iota II costs.</li>
+</ul>
+<div class="block-diagram">
+      <div class="block -sized -literal" style="--width: 1">
+        <span class="-name">fe</span>
+        <span class="-size">1 byte</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 2">
+        <span class="-name">version</span>
+        <span class="-size">2 bytes</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 4">
+        <span class="-name">max_send</span>
+        <span class="-size">4 bytes</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 4">
+        <span class="-name">max_inter</span>
+        <span class="-size">4 bytes</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 4">
+        <span class="-name">max_recv</span>
+        <span class="-size">4 bytes</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 8">
+        <span class="-name">max_power</span>
+        <span class="-size">8 bytes</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 8">
+        <span class="-name">power_regen_rate</span>
+        <span class="-size">8 bytes</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 8">
+        <span class="-name">inter_cost</span>
+        <span class="-size">8 bytes</span>
+      </div>
 </div>
+</div>
+<br />
+</div>
+</div>
+<div id="mediatransport_virtual/api" class="entry">
+    <h3 class="entry-title page-header">
+    <img
+      title="Book"
+      alt="Book"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/book.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >Figura API Documentation<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#mediatransport_virtual/api"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h3>
+    <p>This was attached as a supplementary document to the other notes I found.</p>
+<br />
+<div class="mediatransport-altn">
+<div class="-decoration"></div>
+<!-- begin-altn special page -->
+  <div class="mediatransport-hidden" style="padding: 8px; border: 2px solid #f44;">
+  <div style="font-size: 3rem;">Loading error</div>
+  <p>
+  It appears that mediatransport's styles failed to load. Something's wrong with this book's setup.
+  </p>
+<pre>
+{% include &#34;mediatransport:mediatransport_shared.css.jinja&#34; %}
+</pre>
+</div>
+<p>
+It seems that the avatar side of the communication isn't without complexity, either - due to <s>a complete lack of wiki maintence</s> ...less than optimal bookkeeping practices, the only source of information about the systems to interact with Nature seem to be the built-in documentation, which leaves much to be desired.
+</p>
+<p>
+(If one is curious about that, it seems to be available via the incantation <code>/figura docs globals server_packets</code> and its various branches.)
+</p>
+<p>
+To act as reference material in the meantime, I have created this supplementary document, which should hopefully provide the reader with a reasonable understanding of how the API works.
+</p>
+<h3>Overview of <code>server_packets</code></h3>
+<p>
+Internally called <code>ServerPacketsAPI</code>, <code>server_packets</code> functions very similarily to the much more familiar <code>pings</code>, with a few slight differences.
+</p>
+<p>
+To recieve data, use the function definition syntax you're probably familiar with:
+</p>
+<pre>function server_packets.packet_id(data)
+  -- Handle data here!
+end
+</pre>
+<p>
+Compared to pings, server_packets receivers always have exactly one parameter, through which a <a class="protocol-sym" href="#mediatransport-protocol-Buffer" title="Buffer">Buffer</a> is passed containing the packet's data.
+</p>
+<p>
+The other main difference from pings is that sending data is explicit and not activated by calling the receiver function - that means calling <code>server_packets.packet_id()</code> <em>does not send anything</em>. To send packets, [TODO]
+</p>
 <br />
 </div>
 </div>
@@ -537,6 +644,9 @@
 <br />
   <h4>Nothing to Accept</h4>
     <p>Tried to accept an iota, but there&#39;s nothing to accept (i.e. the queue is empty.) Causes white sparks and the screams of <span class="obfuscated">the tormented minds</span> to echo within my ears.</p>
+<br />
+  <h4>Too Fast</h4>
+    <p>I ran out of &#39;sending power&#39;. Perhaps I should consider consolidating usages of Submit Iota? Causes orange sparks and the sound of something breaking.</p>
 <br />
 <div class="mediatransport-altn">
 <div class="-decoration"></div>
@@ -689,7 +799,7 @@
         data-per-world="False"
       >Your browser does not support visualizing patterns. Pattern code: edwdwad</canvas>
   </details>
-      <p>Sends the iota on the top of the stack into the ether to be received by my current avatar. Can fail for <a href="#interop/figura/mishaps">various reasons</a>.</p>
+      <p>Sends the iota on the top of the stack into the ether to be received by my current avatar. Can fail for <a href="#interop/figura/mishaps">various reasons</a>. Always costs a fixed 1 &#39;sending power.&#39;</p>
   </div>
 <br />
   <div id="patterns/figura@mediatransport:recv_fsb" class="">
@@ -801,7 +911,7 @@
         data-per-world="False"
       >Your browser does not support visualizing patterns. Pattern code: edwdwq</canvas>
   </details>
-      <p>Checks the number of received iotas that are ready to be read. [todo]</p>
+      <p>Queries the number of iotas in the queue.</p>
   </div>
 <br />
   <div id="patterns/figura@mediatransport:send_other" class="">
@@ -857,7 +967,119 @@
         data-per-world="True"
       >Your browser does not support visualizing patterns. Pattern code: wewdwwwdwaawawdwawaqwdwwdada</canvas>
   </details>
-      <p>Sends the iota on the top of the stack to be received by the player second from the top of the stack. It seems to have a separate receiver from the other one.</p>
+      <p>Sends the iota on the top of the stack to be received by the player second from the top of the stack. It seems to have a separate receiver from the other one. Usually costs 2 &#39;sending power&#39;, but this could be different depending on the server configuration.</p>
+  </div>
+<br />
+  <div id="patterns/figura@mediatransport:check_rate_limit" class="">
+<h4 class="pattern-title">Quota&#39;s Reflection (→ number)<a
+    href="#patterns/figura@mediatransport:check_rate_limit"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Renders</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Palettes</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="edwdwda"
+        data-start="east"
+        data-per-world="False"
+      >Your browser does not support visualizing patterns. Pattern code: edwdwda</canvas>
+  </details>
+      <p>Queries the amount of &#39;sending power&#39; remaining.</p>
+  </div>
+<br />
+  <div id="patterns/figura@mediatransport:send_server_info" class="">
+<h4 class="pattern-title">Query Configuration<a
+    href="#patterns/figura@mediatransport:send_server_info"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Renders</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Palettes</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="edwdwwdde"
+        data-start="east"
+        data-per-world="False"
+      >Your browser does not support visualizing patterns. Pattern code: edwdwwdde</canvas>
+  </details>
+      <p>Asks Nature to send information about its preferences to my current avatar. Costs 1 &#39;spending power&#39;. See <a href="#mediatransport_virtual/protocol">the protocol documentation</a> for details.</p>
   </div>
 <br />
 </div>

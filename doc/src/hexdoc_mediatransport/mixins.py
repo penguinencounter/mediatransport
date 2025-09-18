@@ -2,7 +2,6 @@
 # We've tried our best to make it not break with other books
 # but haven't tested it, so... hope it works?
 
-import logging
 from typing import Callable, Self, cast
 
 from hexdoc.patchouli import Entry
@@ -10,16 +9,7 @@ from hexdoc.patchouli.page.abstract_pages import Page
 from hexdoc.plugin import PluginManager
 from pydantic import BaseModel, Field, model_validator
 from pydantic.fields import FieldInfo
-from rich import print as rp
-from rich.logging import RichHandler
-
-logger = logging.getLogger(__name__)
-
-
-# def _info(markup: str):
-
-
-print("IT'S HANDLERS", logger.handlers)
+from .prettylog import info, warning
 
 
 def inject_recursive(
@@ -29,9 +19,8 @@ def inject_recursive(
     Apply the mutator to the base class and all subclasses, except those in the exclusion set.
     """
     if exclude is not None and base in exclude:
-        logger.warning(
-            f"[yellow][bold]warning[/]: not doing anything because root class {base} is in exclusion list[/]",
-            extra={"markup": True},
+        warning(
+            f"[yellow]not doing anything because root class {base} is in exclusion list[/]",
         )
         return exclude
 
@@ -59,9 +48,8 @@ def add_entry_after(entry_type: type[Entry]):
                 filter(lambda x: not x.hexdoc_hide, self_.pages)  # type: ignore (added by mixin)
             )
             if len(filtered_pages) != len(self_.pages):
-                logger.info(
-                    Rf"[blue_violet][bold]Filtered[/] entry {self_.id}: [bold]{len(filtered_pages) - len(self_.pages):+} page(s)[/][/]",
-                    extra={"markup": True},
+                info(
+                    Rf"[blue_violet][bold]Filtered[/] entry {self_.id}: [bold]{len(filtered_pages) - len(self_.pages):+} page(s)[/][/]"
                 )
                 self_.pages = filtered_pages
             return self
@@ -86,15 +74,13 @@ def add_hide(it: type[BaseModel]):
 
 
 def stage_2():
-    rp(
-        R"[bold]\[INFO][/] [bright_black]mediatransport[/] [yellow]Patching...[/]",
-        end="",
-        flush=True,
+    info(
+        R"[yellow]Patching...[/]"
     )
     added_hide = inject_recursive(Page, add_hide)
     entry_types = inject_recursive(Entry, add_entry_after)
-    rp(
-        "[bold green] ok![/] [bold cyan]Changes summary:[/]\n"
+    info(
+        "[bold green]ok![/] [bold cyan]Changes summary:[/]\n"
         f" * [blue_violet]{len(added_hide): 4d} +hexdoc_hide[/]\n"
         f" * [bright_blue]{len(entry_types): 4d} Entry types[/]\n"
     )
@@ -106,8 +92,8 @@ def stage_1():
     if hasattr(_init_plugins, "is_mixin"):
         return  # Already wrapped
 
-    rp(
-        R"[bold]\[INFO][/] [bright_black]mediatransport[/] [cyan]Attaching to init_plugins...[/]",
+    info(
+        R"[cyan]Attaching to init_plugins...[/]",
     )
 
     def init_plugins_wrapper(self: PluginManager):

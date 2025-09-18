@@ -8,7 +8,6 @@ from hexdoc.plugin import (
     ModPluginWithBook,
     hookimpl,
 )
-from rich import print as rp
 from typing_extensions import override
 
 import hexdoc_mediatransport

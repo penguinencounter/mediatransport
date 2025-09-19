@@ -5,7 +5,7 @@
       description: "The Hex Casting + Figura Server Backend Addon",
       categories: {
         admin_virtual: {
-          "": "Info for Server Administrators",
+          "": "mediatransport admin",
           "desc": "This category is $(bold)hexdoc only/$ (not in in-game book) and contains information for server administrators installing mediatransport and FSB."
         }
       },

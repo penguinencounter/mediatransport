@@ -7,30 +7,13 @@
 
 @media screen and (prefers-color-scheme: dark) {
   :root {
-    --box-opacity: .4;
+    --box-opacity: .6;
   }
 }
 
 /* for checking that the stylesheet is loaded */
 .mediatransport-hidden {
   display: none;
-}
-
-.book-body > section[id$="_virtual"] {
-  position: relative;
-
-  color: #ddd; /* Always dark */
-}
-
-.book-body > section[id$="_virtual"]::after {
-  position: absolute;
-  top: -2rem;
-  left: -2rem;
-  bottom: -2rem;
-  right: -50vw;
-  content: "";
-  background: linear-gradient(20deg, #050010, #100020);
-  z-index: -1;
 }
 
 .entry > br:nth-last-child(1), .mediatransport-altn > br:nth-last-child(1) {

@@ -62,6 +62,7 @@ dependencies {
     modLocalRuntime(libs.paucal.fabric)
     modLocalRuntime(libs.cardinalComponents)
     modLocalRuntime(libs.moreiotas.fabric) { isTransitive = false }
+    modLocalRuntime(libs.hexpose)
     modLocalRuntime(libs.serializationHooks)
     modLocalRuntime(libs.trinkets)
     modLocalRuntime(libs.inline.fabric) { isTransitive = false }

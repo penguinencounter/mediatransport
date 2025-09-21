@@ -16,7 +16,7 @@ resource_dirs = [  # top takes priority
 export_dir = "src/hexdoc_mediatransport/_export/generated"
 
 [template]
-icon = "{$_common.src}/main/resources/assets/mediatransport/icon.png"
+icon = "{$_common.src}/main/resources/assets/mediatransport/iconFavi512.png"
 include = [
     "mediatransport",
     "hexcasting",

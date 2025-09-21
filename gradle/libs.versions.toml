@@ -56,6 +56,7 @@ figuraLuaj = "3.0.8-figura"
 nvWebsocket = "2.14"
 oggus = "1.2.0"
 concentus = "1.0-SNAPSHOT"
+fabricPermissionsApi = "0.3.1"
 
 # All the addons
 moreiotas = "1.20.1-0.1.0-6"
@@ -127,6 +128,7 @@ figura-luaj-jse = { module = "com.github.FiguraMC.luaj:luaj-jse", version.ref="f
 nvwebsocketclient = { module = "com.neovisionaries:nv-websocket-client", version.ref="nvWebsocket" }
 oggus = { module = "org.chenliang.oggus:oggus", version.ref="oggus" }
 concentus = { module = "org.concentus:Concentus", version.ref="concentus" }
+fabricPermissionsApi = { module = "me.lucko:fabric-permissions-api", version.ref="fabricPermissionsApi" }
 
 inline-fabric = { module = "com.samsthenerd.inline:inline-fabric", version.ref = "inline" }
 inline-forge = { module = "com.samsthenerd.inline:inline-forge", version.ref = "inline" }

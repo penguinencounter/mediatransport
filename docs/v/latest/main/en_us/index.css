@@ -534,8 +534,8 @@ br:has(+ .mediatransport-altn) {
   border-radius: 1rem;
   /* sync with body ::after */;
   background-image:
-    url("https://raw.githubusercontent.com/penguinencounter/mediatransport/8cf283c3ecbe2e8c2d3a0c8356d25777fc221003/doc/resources/assets/mediatransport/textures/gui/background_1.png"),
-    url("https://raw.githubusercontent.com/penguinencounter/mediatransport/8cf283c3ecbe2e8c2d3a0c8356d25777fc221003/doc/resources/assets/mediatransport/textures/gui/background_2.png");
+    url("https://raw.githubusercontent.com/penguinencounter/mediatransport/fc88e77d8df249c574da34a754bd53c84e621924/doc/resources/assets/mediatransport/textures/gui/background_1.png"),
+    url("https://raw.githubusercontent.com/penguinencounter/mediatransport/fc88e77d8df249c574da34a754bd53c84e621924/doc/resources/assets/mediatransport/textures/gui/background_2.png");
   animation: animated-footer 10s linear infinite;
   animation-play-state: running;
   /* unique */
@@ -557,6 +557,17 @@ br:has(+ .mediatransport-altn) {
   padding: 8px;
   border: 1px solid #b8f;
   margin: 1rem 0.5rem;
+}
+/* CALLOUTS */
+.mediatransport-callout {
+  padding: .5rem 1rem;
+}
+.mediatransport-callout.-warning {
+  border-left: 0.5rem solid #fb8;
+  background-color: #fb82;
+}
+.mediatransport-hatnote {
+  font-style: italic;
 }
 /* PROTOCOL DOCS */
 /* definition */
@@ -698,8 +709,8 @@ body {
     height: 256px;
     content: "";
     background-image:
-      url("https://raw.githubusercontent.com/penguinencounter/mediatransport/8cf283c3ecbe2e8c2d3a0c8356d25777fc221003/doc/resources/assets/mediatransport/textures/gui/background_1.png"),
-      url("https://raw.githubusercontent.com/penguinencounter/mediatransport/8cf283c3ecbe2e8c2d3a0c8356d25777fc221003/doc/resources/assets/mediatransport/textures/gui/background_2.png");
+      url("https://raw.githubusercontent.com/penguinencounter/mediatransport/fc88e77d8df249c574da34a754bd53c84e621924/doc/resources/assets/mediatransport/textures/gui/background_1.png"),
+      url("https://raw.githubusercontent.com/penguinencounter/mediatransport/fc88e77d8df249c574da34a754bd53c84e621924/doc/resources/assets/mediatransport/textures/gui/background_2.png");
     mask-image: linear-gradient(to top, #fff, transparent);
     animation: animated-footer 10s linear infinite;
     z-index: -10;
@@ -717,4 +728,4 @@ body {
   padding-bottom: 64px;
   margin-bottom: 0;
 }
-/* https://raw.githubusercontent.com/penguinencounter/mediatransport/8cf283c3ecbe2e8c2d3a0c8356d25777fc221003/doc/resources/assets/mediatransport/textures/gui/background_0.png */
+/* https://raw.githubusercontent.com/penguinencounter/mediatransport/fc88e77d8df249c574da34a754bd53c84e621924/doc/resources/assets/mediatransport/textures/gui/background_0.png */

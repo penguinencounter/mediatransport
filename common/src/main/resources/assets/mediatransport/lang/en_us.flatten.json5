@@ -54,7 +54,6 @@
           }
         }
       },
-
       pluralizations: {
         // 0, 1, "" (any)
         byte: {
@@ -62,7 +61,6 @@
           "": "%s bytes"
         }
       },
-
       protocol: {
         "": "Iota Transport Protocol",
         "1": "Ah, the freedom! I've drawn up some diagrams of the format.",
@@ -130,7 +128,6 @@
           "6": "and how much 'sending power' is regained per tick...",
           "7": "and finally, how much 'sending power' Submit Iota II costs."
         },
-
         // that's the end of the HTML
       },
       api: {
@@ -140,12 +137,10 @@
         intro1: "It seems that the avatar side of the communication isn't without complexity, either - due to <s>a complete lack of wiki maintence</s> ...less than optimal bookkeeping practices, the only source of information about the systems to interact with Nature seem to be the built-in documentation, which leaves much to be desired.",
         intro2: "(If one is curious about that, it seems to be available via the incantation <code>/figura docs globals server_packets</code> and its various branches.)",
         intro3: "To act as reference material in the meantime, I have created this supplementary document, which should hopefully provide the reader with a reasonable understanding of how the API works.",
-
         overview: {
           "": "Overview of <code>server_packets</code>",
           "1": "Internally called <code>ServerPacketsAPI</code>, <code>server_packets</code> functions very similarly to the much more familiar <code>pings</code>, with a few slight differences.",
           "2": "To receive data, use the function definition syntax you're probably familiar with:",
-
           // this is a codeblock! keep the '\n\' on the right of each line, as well as the '.' at the beginning.
           // probably don't translate code
           "code1": "\
@@ -201,14 +196,12 @@
         max_power: "max_power",
         power_regen_rate: "power_regen_rate",
         inter_cost: "inter_cost",
-
         Buffer: "Buffer", // Don't translate - Figura type
       },
       tooltips: {
         size: "size: %s",
         size_ref: "(%s) bytes", // as in "(size) bytes"
       },
-
       admin: {
         // These entries are only rendered in hexdoc, so we don't have to worry
         // about not overflowing the page!

@@ -8,8 +8,6 @@
     "mediatransport.book.interop.figura.about.1",
     "mediatransport.book.interop.figura.about.2",
     "mediatransport.book.interop.figura.about.3",
-    "mediatransport.book.interop.figura.about.4",
-    "mediatransport.book.interop.figura.about.5",
     {
       type: "hexcasting:mediatransport/hexdoc/begin_altn",
       flag: "mediatransport:never",

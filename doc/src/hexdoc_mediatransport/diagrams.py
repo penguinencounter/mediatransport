@@ -154,9 +154,6 @@ def dia(context: Context, blocks: list[Block]) -> Markup:
     return Markup(block_template.render(new_ctx))
 
 
-codeblock_matcher = re.compile(r"\|(.*)\\$")
-
-
 class _Box(SimpleNamespace):
     # you can setattr on it.
     tl: Callable[[Context, str], Markup]

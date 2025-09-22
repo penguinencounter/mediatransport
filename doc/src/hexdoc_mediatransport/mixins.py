@@ -1,6 +1,4 @@
-# Kyra: if you're reading this, we're sorry but hope you understand
-# We've tried our best to make it not break with other books
-# but haven't tested it, so... hope it works?
+# this works in book of hexxy so it's good enough for me
 
 from typing import Callable, Self, cast
 

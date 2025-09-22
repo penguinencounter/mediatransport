@@ -26,11 +26,9 @@
         figura: {
           about: {
             "": "Transports",
-            "1": "I appear to have discovered the notes of a collective of people who have also discovered the techniques of _Hexcasting. I've copied down what I could understand of the notes, but the last part is incomprehensible to me, and I've attached it as is. Perhaps I need to understand more about the artistry of these '$(thing)avatars/$' I see mentioned throughout the notes?",
-            "2": "The first section of the notes was dedicated to something called a $(hex)chatcaster/$. They seemed to describe a complex system that acts in response to what someone $(italic)speaks/$, rather than the patterns that they cast. I can certainly see the utility, especially for reducing the load on my mind (and my pockets) by not having to carry a $(thing)Spellbook/$ around with everything I want in it.",
-            "3": "However, it seems that the $(thing)avatars/$ these _Hexcasters used was able to $(italic)mimic/$ the interaction with Nature that one's speaking would normally invoke. The combination of these two systems allows proficient artists to compute complex inputs and run $(hex)Hexes/$ at a rate I had never anticipated.$(br2)In contrast, the second half of the notes detail something much more interesting...",
-            "4": "It appears that Nature created new patterns for communicating specifically with $(thing)avatars/$ after the artists continued to use their avatars to communicate more and more rapidly. As seems to be standard, Nature has twisted the appearance of the now-familiar iotas in exchange for this increased efficiency and throughput; they appear as boxes and seemingly random symbols by my eyes. The $(thing)avatars/$ and their artists seem to not have this problem, and have figured out how to decode the mess.",
-            "5": "Here's the rest of their notes for future reference. To be honest, I don't recognize much of what they mention.",
+            "1": "I appear to have discovered the notes of a collective of people who have also discovered the techniques of _Hexcasting. I've copied down what I could understand of the notes, but the last part is so filled with jargon as to be incomprehensible. Perhaps I need to understand more about the artistry of these '$(thing)avatars/$' I see mentioned throughout?",
+            "2": "It appears that Nature created new patterns for communicating specifically with $(thing)avatars/$ after the artists used more primitive methods to communicate rapidly. As seems to be standard, Nature has twisted the appearance of the now-familiar iotas in exchange for this increased efficiency and throughput; they appear as boxes and random symbols by my eyes.",
+            "3": "The $(thing)avatars/$ and their artists seem to not have this problem, and have figured out how to decode the mess. Here's the rest of their notes for reference. To be honest, I don't understand much of what's going on here.",
             "A": "We've discovered (created?) a few new spells. They facilitate direct communication between avatars and hexes; no more getting kicked for spam!$(br2)Some of the more data-oriented of us have decoded the format. The entire thing is byte-aligned and uses $(#8bf)buffers/$ for data transfer. (that means we have to remember to close them!)",
             "B": "Based on what we've seen, each iota starts with a single-byte $(#8bf)type/$ followed by zero or more bytes of $(#8bf)data/$. All multibyte forms are big endian. (that's the default for the Buffer read methods)$(br2)",
             "C1": "Unfortunately, due to annoying restrictions with this unwieldy notebook, it's difficult to express the format in more detail here. Perhaps it would be easier in a $(l:https://penguinencounter.github.io/mediatransport/v/latest/main/en_us/mediatransport_virtual/protocol)more flexible medium$(/l)?",
@@ -120,7 +118,7 @@
           "description": "It appears that this format is not suitable for communicating the decorative properties of text (also called 'display') iota. Nevertheless, the actual text content can be transmitted. Text iota have the same format as strings:"
         },
         meta: "Non-types",
-        meta_intro: "These don't seem to represent iota at all! What's going on here?!",
+        meta_intro: "These don't seem to represent iota at all!",
         server_info: {
           "": "<code>fe</code>: Configuration Data",
           "description": "This glob of information is Nature's repsonse to <a href=\"#patterns/figura@mediatransport:send_server_info\">Query Configuration</a>.",
@@ -145,8 +143,8 @@
 
         overview: {
           "": "Overview of <code>server_packets</code>",
-          "1": "Internally called <code>ServerPacketsAPI</code>, <code>server_packets</code> functions very similarily to the much more familiar <code>pings</code>, with a few slight differences.",
-          "2": "To recieve data, use the function definition syntax you're probably familiar with:",
+          "1": "Internally called <code>ServerPacketsAPI</code>, <code>server_packets</code> functions very similarly to the much more familiar <code>pings</code>, with a few slight differences.",
+          "2": "To receive data, use the function definition syntax you're probably familiar with:",
 
           // this is a codeblock! keep the '\n\' on the right of each line, as well as the '.' at the beginning.
           // probably don't translate code
@@ -156,7 +154,25 @@
           .end\n\
           ",
           "3": "Compared to pings, server_packets receivers always have exactly one parameter, through which a {sym:Buffer} is passed containing the packet's data.",
-          "4": "The other main difference from pings is that sending data is explicit and not activated by calling the receiver function - that means calling <code>server_packets.packet_id()</code> <em>does not send anything</em>. To send packets, [TODO]"
+          "4": "Make sure to <em>close</em> the {sym:Buffer} you are given! If you don't, the buffer slot will continue to be considered \"used\" and you will eventually run out of buffers (from my research, most people are unaware there is a limit on buffer count at all, but it exists as part of the permissions system and this is one of the easiest ways to have latent bugs.)",
+          "5": "The other main difference from pings is that sending data is explicit and not activated by calling the receiver function - that means calling <code>server_packets.packet_id()</code> <em>does not send anything</em>. To send packets, use <code>server_packets:sendPacket(id, data)</code>, where <code>id</code> is a <code>string</code> and <code>data</code> is a <code>Buffer</code>."
+        },
+        buffers: {
+          "": "Quick Introduction to {symdef:Buffer}s",
+          "h1": "The canonical documentation for Buffers is accessible via the incantation <code>/figura docs globals data Buffer</code>.",
+          "h2": "It's also available <a href='https://applejuiceyy.github.io/figs/latest/Buffer/'>on FIGS</a> or the <a href='https://figura-wiki.pages.dev/globals/Data/Buffer'>Figura Wiki</a>.",
+          "1": "Buffers provide a convenient interface for reading structured data like the one Nature provides. It's almost like it's <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/DataOutputStream.html'>based on something else</a>...",
+          manage: {
+            "": "Managing Buffers",
+            close: {
+              "": "<code>:close()</code>",
+              "1": "As mentioned in the warning callout above, there is a limit on the number of buffers you can have, and it's tied to the permission system.",
+              "2": "On <em>Default</em>, the limit is <b>4 buffers</b>.",
+              "3": "On <em>High</em>, the limit is <b>16 buffers</b>.",
+              "4": "On <em>MAX</em>, the limit is <b>32 buffers</b>.",
+              "5": "To free up a buffer, call <code>close()</code> on it. This will render the contents unusable."
+            },
+          },
         },
         // End of HTML
       },
@@ -206,7 +222,7 @@
           "1": "mediatransport has various server configuration options to limit what data can be sent between avatars and casting environments.",
           maxSize: {
             "": "Size Restrictions",
-            "1": "All values in bytes.$(br2)$(n)maximumSendSize/$: maximum amount of data that can be sent through $(l:hexcasting:patterns/figura#mediatransport:send_fsb)Submit Iota$(/l).$(br2)$(n)maximumInterSendSize/$: maxmimum amount of data that can be sent through $(l:hexcasting:patterns/figura#mediatransport:send_other)Submit Iota II$(/l).$(br2)$(n)maximumRecvSize/$: maximum amount of data that can be received from Figura. If this is exceeded, garbage will be pushed into the queue instead of the actual data.$(br2)$(n)matrixMaxArea/$: MoreIotas only; sets the maximum matrix area (width * height) that can be sent or receieved, separately from other restrictions and the maximum row/column count of 255."
+            "1": "All values in bytes.$(br2)$(n)maximumSendSize/$: maximum amount of data that can be sent through $(l:hexcasting:patterns/figura#mediatransport:send_fsb)Submit Iota$(/l).$(br2)$(n)maximumInterSendSize/$: maximum amount of data that can be sent through $(l:hexcasting:patterns/figura#mediatransport:send_other)Submit Iota II$(/l).$(br2)$(n)maximumRecvSize/$: maximum amount of data that can be received from Figura. If this is exceeded, garbage will be pushed into the queue instead of the actual data.$(br2)$(n)matrixMaxArea/$: MoreIotas only; sets the maximum matrix area (width * height) that can be sent or received, separately from other restrictions and the maximum row/column count of 255."
           },
           filterIntro: {
             "": "Filters",

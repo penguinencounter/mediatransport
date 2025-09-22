@@ -55,7 +55,7 @@ dependencies {
     localRuntime(libs.oggus)
     localRuntime(libs.concentus)
     localRuntime(libs.nvwebsocketclient)
-    modLocalRuntime(libs.fabricPermissionsApi)
+    modLocalRuntime(libs.fabricPermissionsApi) { isTransitive = false }
 
     // Hex Casting dependencies
     // we use modLocalRuntime to add these to the development runtime, but not at compile time or for consumers of this project

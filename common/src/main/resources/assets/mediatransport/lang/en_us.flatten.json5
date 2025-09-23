@@ -159,6 +159,9 @@
           "1": "Buffers provide a convenient interface for reading structured data like the one Nature provides. It's almost like it's <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/DataOutputStream.html'>based on something else</a>...",
           manage: {
             "": "Managing Buffers",
+            new: {
+              "": "Creating New Buffers"
+            },
             close: {
               "": "<code>:close()</code>",
               "1": "As mentioned in the warning callout above, there is a limit on the number of buffers you can have, and it's tied to the permission system.",

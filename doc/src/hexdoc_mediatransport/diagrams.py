@@ -179,7 +179,7 @@ def context(section: str):
         i18n = I18n.of(context)
         raw = i18n.localize(f"{base}.{key}").value
         raw = re.sub(r"^\.", "", raw, flags=re.MULTILINE)
-        return Markup(f"<pre>{raw}</pre>")
+        return Markup(f"<pre>\n{raw}\n</pre>")
 
     Box = _Box()
     Box.tl = tl

@@ -35,6 +35,9 @@ localization features, so it's useful here
 <p>
 {{d.tl("overview.5")}}
 </p>
+<p class="mediatransport-callout -warning">
+{{d.tl("overview.6")}}
+</p>
 
 <h3>{{d.tl("buffers")}}</h3>
 <p class="mediatransport-hatnote">
@@ -47,10 +50,17 @@ localization features, so it's useful here
 {{d.tl("buffers.1")}}
 </p>
 
-<h4>{{d.tl("buffers.manage")}}</h4>
+{# data:createBuffer([capacity?]) #}
+<h4>{{d.tl("buffers.manage.new")}}</h4>
+<p>
+{{d.tl("buffers.manage.new.1")}}
+</p>
+<p>
+{{d.tl("buffers.manage.new.2")}}
+</p>
 
 {# :close() #}
-<h5>{{d.tl("buffers.manage.close")}}</h5>
+<h4>{{d.tl("buffers.manage.close")}}</h4>
 <p>
 {{d.tl("buffers.manage.close.1")}}
 </p>
@@ -62,5 +72,22 @@ localization features, so it's useful here
 <p>
 {{d.tl("buffers.manage.close.5")}}
 </p>
+
+{# Example 1 #}
+{{d.codeblock("buffers.manage.code1")}}
+
+{# setPosition #}
+<h4 id="mediatransport-setPosition">{{d.tl("buffers.manage.setPosition")}}</h4>
+<p>
+{{d.tl("buffers.manage.setPosition.1")}}
+</p>
+<p>
+{{d.tl("buffers.manage.setPosition.2")}}
+</p>
+<p>
+{{d.tl("buffers.manage.setPosition.3")}}
+</p>
+{# rewinding example #}
+{{d.codeblock("buffers.manage.setPosition.code")}}
 
 {% endblock body %}

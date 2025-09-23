@@ -134,7 +134,7 @@
         "": "Figura API Documentation",
         "1": "This was attached as a supplementary document to the other notes I found.",
         // We are once again in HTML land
-        intro1: "It seems that the avatar side of the communication isn't without complexity, either - due to <s>a complete lack of wiki maintence</s> ...less than optimal bookkeeping practices, the only source of information about the systems to interact with Nature seem to be the built-in documentation, which leaves much to be desired.",
+        intro1: "It seems that the avatar side of the communication isn't without complexity, either - due to <s>a complete lack of wiki maintenance</s> ...less than optimal bookkeeping practices, the only source of information about the systems to interact with Nature seem to be the built-in documentation, which leaves much to be desired.",
         intro2: "(If one is curious about that, it seems to be available via the incantation <code>/figura docs globals server_packets</code> and its various branches.)",
         intro3: "To act as reference material in the meantime, I have created this supplementary document, which should hopefully provide the reader with a reasonable understanding of how the API works.",
         overview: {
@@ -150,7 +150,8 @@
           ",
           "3": "Compared to pings, server_packets receivers always have exactly one parameter, through which a {sym:Buffer} is passed containing the packet's data.",
           "4": "Make sure to <em>close</em> the {sym:Buffer} you are given! If you don't, the buffer slot will continue to be considered \"used\" and you will eventually run out of buffers (from my research, most people are unaware there is a limit on buffer count at all, but it exists as part of the permissions system and this is one of the easiest ways to have latent bugs.)",
-          "5": "The other main difference from pings is that sending data is explicit and not activated by calling the receiver function - that means calling <code>server_packets.packet_id()</code> <em>does not send anything</em>. To send packets, use <code>server_packets:sendPacket(id, data)</code>, where <code>id</code> is a <code>string</code> and <code>data</code> is a <code>Buffer</code>."
+          "5": "The other main difference from pings is that sending data is explicit and not activated by calling the receiver function - that means calling <code>server_packets.packet_id()</code> <em>does not send anything</em>. To send packets, use <code>server_packets:sendPacket(id, data)</code>, where <code>id</code> is a <code>string</code> and <code>data</code> is a <code>Buffer</code>.",
+          "6": "Make sure to <a href='#mediatransport-setPosition'>rewind the Buffer</a> before sending it.",
         },
         buffers: {
           "": "Quick Introduction to {symdef:Buffer}s",
@@ -158,17 +159,34 @@
           "h2": "It's also available <a href='https://applejuiceyy.github.io/figs/latest/Buffer/'>on FIGS</a> or the <a href='https://figura-wiki.pages.dev/globals/Data/Buffer'>Figura Wiki</a>.",
           "1": "Buffers provide a convenient interface for reading structured data like the one Nature provides. It's almost like it's <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/DataOutputStream.html'>based on something else</a>...",
           manage: {
-            "": "Managing Buffers",
             new: {
-              "": "Creating New Buffers"
+              "": "Creating new buffers: <code>data:createBuffer()</code>",
+              "1": "To create a new buffer, use <code>data:createBuffer()</code>, which returns a new Buffer object.",
+              "2": "You can also specify the initial allocated size by providing it as an argument to <code>createBuffer</code>, but this is not required unless you're working under really tight permissions constraints as Figura will auto-expand buffers by default.",
             },
             close: {
-              "": "<code>:close()</code>",
+              "": "Cleaning up after yourself: <code>:close()</code>",
               "1": "As mentioned in the warning callout above, there is a limit on the number of buffers you can have, and it's tied to the permission system.",
               "2": "On <em>Default</em>, the limit is <b>4 buffers</b>.",
               "3": "On <em>High</em>, the limit is <b>16 buffers</b>.",
               "4": "On <em>MAX</em>, the limit is <b>32 buffers</b>.",
               "5": "To free up a buffer, call <code>close()</code> on it. This will render the contents unusable."
+            },
+            code1: "\
+            .local buf = data:createBuffer()\n\
+            .-- (later...)\n\
+            .buf:close()\n\
+            ",
+            setPosition: {
+              "": "Moving the cursor around: <code>:setPosition(pos)</code>",
+              "1": "Buffers function with a 'cursor' that moves around the data as you read and write to it.",
+              "2": "Each time data is read or written, that action is taken at the position of the cursor and the cursor is <em>automatically advanced</em> to the next byte. This makes it convenient to read or write many values in sequence.",
+              "3": "However, it is still useful to be able to move the cursor around manually - notably, to read back the data written to a buffer, the cursor has to be moved (\"rewound\") back to position 0:",
+              code: "\
+              .buf:writeByte(5)\n\
+              .buf:writeDouble(3.14159)\n\
+              .buf:setPosition(0) -- move back to the beginning\n\
+              "
             },
           },
         },

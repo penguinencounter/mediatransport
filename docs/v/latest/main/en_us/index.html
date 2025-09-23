@@ -77,7 +77,7 @@
       <ul class="nav navbar-nav navbar-right">
             <li>
     <a
-      href="https://github.com/penguinencounter/mediatransport/tree/fc88e77d8df249c574da34a754bd53c84e621924"
+      href="https://github.com/penguinencounter/mediatransport/tree/6abd96cda6b4bb4f536e8baefaefaf9a34accdb1"
         target="_blank"
       class="navbar-link"
       role="button"
@@ -573,7 +573,7 @@
 </pre>
 </div>
 <p>
-It seems that the avatar side of the communication isn't without complexity, either - due to <s>a complete lack of wiki maintence</s> ...less than optimal bookkeeping practices, the only source of information about the systems to interact with Nature seem to be the built-in documentation, which leaves much to be desired.
+It seems that the avatar side of the communication isn't without complexity, either - due to <s>a complete lack of wiki maintenance</s> ...less than optimal bookkeeping practices, the only source of information about the systems to interact with Nature seem to be the built-in documentation, which leaves much to be desired.
 </p>
 <p>
 (If one is curious about that, it seems to be available via the incantation <code>/figura docs globals server_packets</code> and its various branches.)
@@ -588,7 +588,8 @@ Internally called <code>ServerPacketsAPI</code>, <code>server_packets</code> fun
 <p>
 To receive data, use the function definition syntax you're probably familiar with:
 </p>
-<pre>function server_packets.packet_id(data)
+<pre>
+function server_packets.packet_id(data)
   -- Handle data here!
 end
 </pre>
@@ -601,6 +602,9 @@ Make sure to <em>close</em> the <a class="protocol-sym" href="#mediatransport-pr
 <p>
 The other main difference from pings is that sending data is explicit and not activated by calling the receiver function - that means calling <code>server_packets.packet_id()</code> <em>does not send anything</em>. To send packets, use <code>server_packets:sendPacket(id, data)</code>, where <code>id</code> is a <code>string</code> and <code>data</code> is a <code>Buffer</code>.
 </p>
+<p class="mediatransport-callout -warning">
+Make sure to <a href='#mediatransport-setPosition'>rewind the Buffer</a> before sending it.
+</p>
 <h3>Quick Introduction to <span class="protocol-sym-def" id="mediatransport-protocol-Buffer" title="Buffer">Buffer</span>s</h3>
 <p class="mediatransport-hatnote">
 The canonical documentation for Buffers is accessible via the incantation <code>/figura docs globals data Buffer</code>.
@@ -611,8 +615,14 @@ It's also available <a href='https://applejuiceyy.github.io/figs/latest/Buffer/'
 <p>
 Buffers provide a convenient interface for reading structured data like the one Nature provides. It's almost like it's <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/DataOutputStream.html'>based on something else</a>...
 </p>
-<h4>Managing Buffers</h4>
-<h5><code>:close()</code></h5>
+<h4>Creating new buffers: <code>data:createBuffer()</code></h4>
+<p>
+To create a new buffer, use <code>data:createBuffer()</code>, which returns a new Buffer object.
+</p>
+<p>
+You can also specify the initial allocated size by providing it as an argument to <code>createBuffer</code>, but this is not required unless you're working under really tight permissions constraints as Figura will auto-expand buffers by default.
+</p>
+<h4>Cleaning up after yourself: <code>:close()</code></h4>
 <p>
 As mentioned in the warning callout above, there is a limit on the number of buffers you can have, and it's tied to the permission system.
 </p>
@@ -624,6 +634,26 @@ As mentioned in the warning callout above, there is a limit on the number of buf
 <p>
 To free up a buffer, call <code>close()</code> on it. This will render the contents unusable.
 </p>
+<pre>
+local buf = data:createBuffer()
+-- (later...)
+buf:close()
+</pre>
+<h4 id="mediatransport-setPosition">Moving the cursor around: <code>:setPosition(pos)</code></h4>
+<p>
+Buffers function with a 'cursor' that moves around the data as you read and write to it.
+</p>
+<p>
+Each time data is read or written, that action is taken at the position of the cursor and the cursor is <em>automatically advanced</em> to the next byte. This makes it convenient to read or write many values in sequence.
+</p>
+<p>
+However, it is still useful to be able to move the cursor around manually - notably, to read back the data written to a buffer, the cursor has to be moved ("rewound") back to position 0:
+</p>
+<pre>
+buf:writeByte(5)
+buf:writeDouble(3.14159)
+buf:setPosition(0) -- move back to the beginning
+</pre>
 <br />
 </div>
 </div>

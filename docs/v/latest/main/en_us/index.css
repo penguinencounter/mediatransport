@@ -534,8 +534,8 @@ br:has(+ .mediatransport-altn) {
   border-radius: 1rem;
   /* sync with body ::after */;
   background-image:
-    url("https://raw.githubusercontent.com/penguinencounter/mediatransport/fc88e77d8df249c574da34a754bd53c84e621924/doc/resources/assets/mediatransport/textures/gui/background_1.png"),
-    url("https://raw.githubusercontent.com/penguinencounter/mediatransport/fc88e77d8df249c574da34a754bd53c84e621924/doc/resources/assets/mediatransport/textures/gui/background_2.png");
+    url("https://raw.githubusercontent.com/penguinencounter/mediatransport/6abd96cda6b4bb4f536e8baefaefaf9a34accdb1/doc/resources/assets/mediatransport/textures/gui/background_1.png"),
+    url("https://raw.githubusercontent.com/penguinencounter/mediatransport/6abd96cda6b4bb4f536e8baefaefaf9a34accdb1/doc/resources/assets/mediatransport/textures/gui/background_2.png");
   animation: animated-footer 10s linear infinite;
   animation-play-state: running;
   /* unique */
@@ -561,6 +561,7 @@ br:has(+ .mediatransport-altn) {
 /* CALLOUTS */
 .mediatransport-callout {
   padding: .5rem 1rem;
+  margin: 1rem 0;
 }
 .mediatransport-callout.-warning {
   border-left: 0.5rem solid #fb8;
@@ -709,8 +710,8 @@ body {
     height: 256px;
     content: "";
     background-image:
-      url("https://raw.githubusercontent.com/penguinencounter/mediatransport/fc88e77d8df249c574da34a754bd53c84e621924/doc/resources/assets/mediatransport/textures/gui/background_1.png"),
-      url("https://raw.githubusercontent.com/penguinencounter/mediatransport/fc88e77d8df249c574da34a754bd53c84e621924/doc/resources/assets/mediatransport/textures/gui/background_2.png");
+      url("https://raw.githubusercontent.com/penguinencounter/mediatransport/6abd96cda6b4bb4f536e8baefaefaf9a34accdb1/doc/resources/assets/mediatransport/textures/gui/background_1.png"),
+      url("https://raw.githubusercontent.com/penguinencounter/mediatransport/6abd96cda6b4bb4f536e8baefaefaf9a34accdb1/doc/resources/assets/mediatransport/textures/gui/background_2.png");
     mask-image: linear-gradient(to top, #fff, transparent);
     animation: animated-footer 10s linear infinite;
     z-index: -10;
@@ -728,4 +729,4 @@ body {
   padding-bottom: 64px;
   margin-bottom: 0;
 }
-/* https://raw.githubusercontent.com/penguinencounter/mediatransport/fc88e77d8df249c574da34a754bd53c84e621924/doc/resources/assets/mediatransport/textures/gui/background_0.png */
+/* https://raw.githubusercontent.com/penguinencounter/mediatransport/6abd96cda6b4bb4f536e8baefaefaf9a34accdb1/doc/resources/assets/mediatransport/textures/gui/background_0.png */

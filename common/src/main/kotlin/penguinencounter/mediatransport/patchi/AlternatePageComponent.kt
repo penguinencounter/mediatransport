@@ -10,6 +10,7 @@ import vazkii.patchouli.api.ICustomComponent
 import vazkii.patchouli.api.IVariable
 import java.util.function.UnaryOperator
 
+@Suppress("unused")
 class AlternatePageComponent : ICustomComponent {
     companion object {
         private const val LEFT_X_OFFSET = -7

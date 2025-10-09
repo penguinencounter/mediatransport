@@ -33,14 +33,6 @@ jobs:
       - uses: actions/checkout@v5
         with:
           path: mediatransport
-      - name: Clone Figura
-        uses: actions/checkout@v5
-        with:
-          repository: penguinencounter/Figura
-          filter: tree:0
-          fetch-depth: 0
-          ref: maven-server-common
-          path: figura
 
       - uses: actions/setup-java@v4
         with:
@@ -48,9 +40,6 @@ jobs:
           java-version: 17
 
       - uses: gradle/actions/setup-gradle@v4
-
-      - name: Prepare Figura
-        run: pushd figura && ./gradlew publishToMavenLocal --build-cache; popd
 
       - name: Build mod
         env:

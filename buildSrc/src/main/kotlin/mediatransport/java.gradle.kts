@@ -36,8 +36,6 @@ repositories {
     maven { url = uri("https://maven.theillusivec4.top") } // Caelus
     maven { url = uri("https://thedarkcolour.github.io/KotlinForForge") }
     maven { url = uri("https://maven.maxhenkel.de/repository/public") } // Figura Concentus
-//    maven { url = uri("https://maven.figuramc.org/releases") }
-//    maven { url = uri("https://maven.figuramc.org/snapshots") }
 
     exclusiveContent {
         filter {
@@ -56,13 +54,13 @@ repositories {
         }
     }
 
-    // Fetch dev Figura from local repositories instead of whatever online
+    // Fetch dev Figura from PenguinEncounter Maven
     exclusiveContent {
         filter {
             includeGroup("org.figuramc")
         }
         forRepository {
-            mavenLocal()
+            maven { url = uri("https://penguinencounter.github.io/mvn/snapshots") }
         }
     }
 }

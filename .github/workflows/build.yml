@@ -30,11 +30,11 @@ jobs:
   build-mod:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           path: mediatransport
       - name: Clone Figura
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: penguinencounter/Figura
           filter: tree:0
@@ -176,7 +176,7 @@ jobs:
       pages-url: ${{ steps.build.outputs.pages-url }}
       deploy: ${{ github.event_name != 'pull_request' && contains(fromJson(env.HEXDOC_BRANCHES), github.ref_name) && !inputs.dry_run }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - uses: hexdoc-dev/actions/setup@v1
         with:
@@ -200,7 +200,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - uses: hexdoc-dev/actions/setup@v1
         with:

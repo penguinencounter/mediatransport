@@ -58,3 +58,23 @@ sourceSets {
         }
     }
 }
+
+val mavenPath = providers.gradleProperty("mavenPath")
+
+publishing {
+    repositories {
+        if (mavenPath.isPresent) {
+            maven {
+                name = "mounted"
+                url = uri(mavenPath.get())
+            }
+        }
+    }
+
+    publications {
+        create<MavenPublication>("maven") {
+            artifactId = base.archivesName.get()
+            from(components["java"])
+        }
+    }
+}

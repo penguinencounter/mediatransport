@@ -19,6 +19,10 @@ on:
         description: Publish hexdoc book
         type: boolean
         default: true
+      publish_maven:
+        description: Publish this version to Maven
+        type: boolean
+        default: true
       dry_run:
         description: Perform a dry run
         type: boolean
@@ -47,17 +51,26 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           path: mediatransport
       - name: Clone Figura
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: penguinencounter/Figura
           filter: tree:0
           fetch-depth: 0
           ref: maven-server-common
           path: figura
+      - name: Clone maven target
+        if: inputs.publish_maven
+        uses: actions/checkout@v5
+        with:
+          repository: penguinencounter/mvn
+          filter: tree:0
+          fetch-depth: 0
+          path: mvn
+          token: ${{ secrets.MAVEN_GH_PAT }}
 
       - uses: actions/setup-java@v4
         with:
@@ -75,6 +88,28 @@ jobs:
         env:
           RELEASE: true
         run: pushd mediatransport && ./gradlew build; popd
+
+      - name: Publish Maven artifact (1 of 2)
+        if: inputs.publish_maven
+        env:
+          RELEASE: true
+        run: pushd mediatransport && ./gradlew "-PmavenPath=../mvn" publishMavenPublicationToMountedRepository; popd
+
+      - name: Publish Maven artifact (2 of 2)
+        if: inputs.publish_maven
+        run: |
+          pushd mvn || exit 1
+          if git diff --quiet && git diff --cached --quiet; then
+            echo "(Nothing to do...)"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "🚀 Automated release: penguinencounter/mediatransport"
+          git push -u origin main
+          popd
+          
 
       # do this first so we fail if we've already published this version
       # because CurseForge and Modrinth apparently don't care!

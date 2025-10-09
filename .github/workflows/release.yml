@@ -93,7 +93,7 @@ jobs:
         if: inputs.publish_maven
         env:
           RELEASE: true
-        run: pushd mediatransport && ./gradlew "-PmavenPath=../mvn" publishMavenPublicationToMountedRepository; popd
+        run: pushd mediatransport && ./gradlew "-PmavenPath=$(realpath ../mvn/releases)" publishMavenPublicationToMountedRepository; popd
 
       - name: Publish Maven artifact (2 of 2)
         if: inputs.publish_maven && !inputs.dry_run

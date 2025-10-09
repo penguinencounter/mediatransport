@@ -99,13 +99,13 @@ jobs:
         if: inputs.publish_maven && !inputs.dry_run
         run: |
           pushd mvn || exit 1
+          git add .
           if git diff --quiet && git diff --cached --quiet; then
             echo "(Nothing to do...)"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .
           git commit -m "🚀 Automated release: penguinencounter/mediatransport"
           git push -u origin main
           popd

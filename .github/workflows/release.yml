@@ -96,7 +96,7 @@ jobs:
         run: pushd mediatransport && ./gradlew "-PmavenPath=../mvn" publishMavenPublicationToMountedRepository; popd
 
       - name: Publish Maven artifact (2 of 2)
-        if: inputs.publish_maven
+        if: inputs.publish_maven && !inputs.dry_run
         run: |
           pushd mvn || exit 1
           if git diff --quiet && git diff --cached --quiet; then

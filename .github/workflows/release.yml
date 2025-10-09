@@ -45,7 +45,6 @@ jobs:
       dry_run: ${{ inputs.dry_run }}
 
   publish-mod:
-    needs: build
     if: inputs.publish_curseforge || inputs.publish_modrinth || inputs.publish_github || inputs.publish_maven
     runs-on: ubuntu-latest
     environment:

@@ -77,7 +77,7 @@
       <ul class="nav navbar-nav navbar-right">
             <li>
     <a
-      href="https://github.com/penguinencounter/mediatransport/tree/5449b27fba5027b97b8725a5c5f21ce65bd0a3b6"
+      href="https://github.com/penguinencounter/mediatransport/tree/9ac6d4604902229730b112831e3742809ab027cb"
         target="_blank"
       class="navbar-link"
       role="button"
@@ -160,6 +160,13 @@
       loading="lazy"
       class="item-texture  texture pixelated"
     > Iota Transport Protocol</a></li>
+          <li><a href="#interop/figura/channels" class="toc-elem "><img
+      title="Crimson Sign"
+      alt="Crimson Sign"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/crimson_sign.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > FSB Channels</a></li>
           <li><a href="#mediatransport_virtual/api" class="toc-elem "><img
       title="Book"
       alt="Book"
@@ -490,12 +497,12 @@
         <span class="-size">=length*1 bytes</span>
       </div>
 </div>
-<h3>Non-types</h3>
-<p>These don't seem to represent iota at all!</p>
+<h3>Non-iotas</h3>
+<p>These don't seem to represent iota at all! They can't be sent to Nature and only appear under special circumstances.</p>
 <h4><code>fe</code>: Configuration Data</h4>
 <p>This glob of information is Nature's repsonse to <a href="#patterns/figura@mediatransport:send_server_info">Query Configuration</a>.</p>
 <ul>
-  <li>First is the protocol's <span class="protocol-sym-def" id="mediatransport-protocol-protocol_version" title="version&#10;size: 2 bytes">version</span> as a two-byte 'short'. This documentation is written form <em>protocol version 1</em>.</li>
+  <li>First is the protocol's <span class="protocol-sym-def" id="mediatransport-protocol-protocol_version" title="version&#10;size: 2 bytes">version</span> as a two-byte 'short'. This documentation is written for <em>version 1</em>.</li>
   <li>Next is the maximum amount of data that can be sent with Submit Iota, in bytes.</li>
   <li>That is followed by the maximum amount of data that can be sent with Submit Iota II...</li>
   <li>and the maximum amount of data that can be received from an avatar.</li>
@@ -541,6 +548,63 @@
 <br />
 </div>
 </div>
+<div id="interop/figura/channels" class="entry">
+    <h3 class="entry-title page-header">
+    <img
+      title="Crimson Sign"
+      alt="Crimson Sign"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/crimson_sign.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >FSB Channels<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#interop/figura/channels"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h3>
+    <p>... oh, I remember now!</p>
+<br />
+<div class="mediatransport-altn">
+<div class="-decoration"></div>
+<!-- begin-altn special page -->
+  <div class="mediatransport-hidden" style="padding: 8px; border: 2px solid #f44;">
+  <div style="font-size: 3rem;">Loading error</div>
+  <p>
+  It appears that mediatransport's styles failed to load. Something's wrong with this book's setup.
+  </p>
+<pre>
+{% include &#34;mediatransport:mediatransport_shared.css.jinja&#34; %}
+</pre>
+</div>
+<p>
+Data sent via <a href="#patterns/figura@mediatransport:send_fsb">Submit Iota</a> is sent to <code>server_packets.transport_received</code>, like so:
+</p>
+<pre>
+function server_packets.transport_received(data)
+    data:close()
+end
+</pre>
+<p>
+Data from other casters via <a href="#patterns/figura@mediatransport:send_other">Submit Iota II</a> are sent to a different channel: <code>server_packets.transport_external_received</code>
+</p>
+<pre>
+function server_packets.transport_external_received(data)
+    data:close()
+end
+</pre>
+<p>
+Finally, to send data, use <code>:sendPacket</code> with <code>"transport_send"</code>:
+</p>
+<pre>
+server_packets:sendPacket("transport_send", buffer)
+buffer:close()
+</pre>
+<br />
+</div>
+</div>
 <div id="mediatransport_virtual/api" class="entry">
     <h3 class="entry-title page-header">
     <img
@@ -573,20 +637,20 @@
 </pre>
 </div>
 <p>
-It seems that the avatar side of the communication isn't without complexity, either - due to <s>a complete lack of wiki maintenance</s> ...less than optimal bookkeeping practices, the only source of information about the systems to interact with Nature seem to be the built-in documentation, which leaves much to be desired.
+  It seems that the avatar side of the communication isn't without complexity, either - due to <s>a complete lack of wiki maintenance</s> ...less than optimal bookkeeping practices, the only source of information about the systems to interact with Nature seem to be the built-in documentation, which leaves much to be desired.
 </p>
 <p>
-(If one is curious about that, it seems to be available via the incantation <code>/figura docs globals server_packets</code> and its various branches.)
+  (If one is curious about that, it seems to be available via the incantation <code>/figura docs globals server_packets</code> and its various branches.)
 </p>
 <p>
-To act as reference material in the meantime, I have created this supplementary document, which should hopefully provide the reader with a reasonable understanding of how the API works.
+  To act as reference material in the meantime, I have created this supplementary document, which should hopefully provide the reader with a reasonable understanding of how the API works.
 </p>
 <h3>Overview of <code>server_packets</code></h3>
 <p>
-Internally called <code>ServerPacketsAPI</code>, <code>server_packets</code> functions very similarly to the much more familiar <code>pings</code>, with a few slight differences.
+  Internally called <code>ServerPacketsAPI</code>, <code>server_packets</code> functions very similarly to the much more familiar <code>pings</code>, with a few slight differences.
 </p>
 <p>
-To receive data, use the function definition syntax you're probably familiar with:
+  To receive data, use the function definition syntax you're probably familiar with:
 </p>
 <pre>
 function server_packets.packet_id(data)
@@ -594,37 +658,37 @@ function server_packets.packet_id(data)
 end
 </pre>
 <p>
-Compared to pings, server_packets receivers always have exactly one parameter, through which a <a class="protocol-sym" href="#mediatransport-protocol-Buffer" title="Buffer">Buffer</a> is passed containing the packet's data.
+  Compared to pings, server_packets receivers always have exactly one parameter, through which a <a class="protocol-sym" href="#mediatransport-protocol-Buffer" title="Buffer">Buffer</a> is passed containing the packet's data.
 </p>
 <p class="mediatransport-callout -warning">
-Make sure to <em>close</em> the <a class="protocol-sym" href="#mediatransport-protocol-Buffer" title="Buffer">Buffer</a> you are given! If you don't, the buffer slot will continue to be considered "used" and you will eventually run out of buffers (from my research, most people are unaware there is a limit on buffer count at all, but it exists as part of the permissions system and this is one of the easiest ways to have latent bugs.)
+  Make sure to <em>close</em> the <a class="protocol-sym" href="#mediatransport-protocol-Buffer" title="Buffer">Buffer</a> you are given! If you don't, the buffer slot will continue to be considered "used" and you will eventually run out of buffers (from my research, most people are unaware there is a limit on buffer count at all, but it exists as part of the permissions system and this is one of the easiest ways to have latent bugs.)
 </p>
 <p>
-The other main difference from pings is that sending data is explicit and not activated by calling the receiver function - that means calling <code>server_packets.packet_id()</code> <em>does not send anything</em>. To send packets, use <code>server_packets:sendPacket(id, data)</code>, where <code>id</code> is a <code>string</code> and <code>data</code> is a <code>Buffer</code>.
+  The other main difference from pings is that sending data is explicit and not activated by calling the receiver function - that means calling <code>server_packets.packet_id()</code> <em>does not send anything</em>. To send packets, use <code>server_packets:sendPacket(id, data)</code>, where <code>id</code> is a <code>string</code> and <code>data</code> is a <code>Buffer</code>.
 </p>
 <p class="mediatransport-callout -warning">
-Make sure to <a href='#mediatransport-setPosition'>rewind the Buffer</a> before sending it.
+  Make sure to <a href='#mediatransport-setPosition'>rewind the Buffer</a> before sending it.
 </p>
 <h3>Quick Introduction to <span class="protocol-sym-def" id="mediatransport-protocol-Buffer" title="Buffer">Buffer</span>s</h3>
 <p class="mediatransport-hatnote">
-The canonical documentation for Buffers is accessible via the incantation <code>/figura docs globals data Buffer</code>.
+  The canonical documentation for Buffers is accessible via the incantation <code>/figura docs globals data Buffer</code>.
 </p>
 <p class="mediatransport-hatnote">
-It's also available <a href='https://applejuiceyy.github.io/figs/latest/Buffer/'>on FIGS</a> or the <a href='https://figura-wiki.pages.dev/globals/Data/Buffer'>Figura Wiki</a>.
+  It's also available <a href='https://applejuiceyy.github.io/figs/latest/Buffer/'>on FIGS</a> or the <a href='https://figura-wiki.pages.dev/globals/Data/Buffer'>Figura Wiki</a>.
 </p>
 <p>
-Buffers provide a convenient interface for reading structured data like the one Nature provides. It's almost like it's <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/DataOutputStream.html'>based on something else</a>...
+  Buffers provide a convenient interface for reading structured data like the one Nature provides. It's almost like it's <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/DataOutputStream.html'>based on something else</a>...
 </p>
 <h4>Creating new buffers: <code>data:createBuffer()</code></h4>
 <p>
-To create a new buffer, use <code>data:createBuffer()</code>, which returns a new Buffer object.
+  To create a new buffer, use <code>data:createBuffer()</code>, which returns a new Buffer object.
 </p>
 <p>
-You can also specify the initial allocated size by providing it as an argument to <code>createBuffer</code>, but this is not required unless you're working under really tight permissions constraints as Figura will auto-expand buffers by default.
+  You can also specify the initial allocated size by providing it as an argument to <code>createBuffer</code>, but this is not required unless you're working under really tight permissions constraints as Figura will auto-expand buffers by default.
 </p>
 <h4>Cleaning up after yourself: <code>:close()</code></h4>
 <p>
-As mentioned in the warning callout above, there is a limit on the number of buffers you can have, and it's tied to the permission system.
+  As mentioned in the warning callout above, there is a limit on the number of buffers you can have, and it's tied to the permission system.
 </p>
 <ul>
   <li>On <em>Default</em>, the limit is <b>4 buffers</b>.</li>
@@ -632,7 +696,7 @@ As mentioned in the warning callout above, there is a limit on the number of buf
   <li>On <em>MAX</em>, the limit is <b>32 buffers</b>.</li>
 </ul>
 <p>
-To free up a buffer, call <code>close()</code> on it. This will render the contents unusable.
+  To free up a buffer, call <code>close()</code> on it. This will render the contents unusable.
 </p>
 <pre>
 local buf = data:createBuffer()
@@ -641,19 +705,49 @@ buf:close()
 </pre>
 <h4 id="mediatransport-setPosition">Moving the cursor around: <code>:setPosition(pos)</code></h4>
 <p>
-Buffers function with a 'cursor' that moves around the data as you read and write to it.
+  Buffers function with a 'cursor' that moves around the data as you read and write to it.
 </p>
 <p>
-Each time data is read or written, that action is taken at the position of the cursor and the cursor is <em>automatically advanced</em> to the next byte. This makes it convenient to read or write many values in sequence.
+  Each time data is read or written, that action is taken at the position of the cursor and the cursor is <em>automatically advanced</em> to the next byte. This makes it convenient to read or write many values in sequence.
 </p>
 <p>
-However, it is still useful to be able to move the cursor around manually - notably, to read back the data written to a buffer, the cursor has to be moved ("rewound") back to position 0:
+  However, it is still useful to be able to move the cursor around manually - notably, to read back the data written to a buffer, the cursor has to be moved ("rewound") back to position 0:
 </p>
 <pre>
 buf:writeByte(5)
 buf:writeDouble(3.14159)
 buf:setPosition(0) -- move back to the beginning
 </pre>
+<h4 id="mediatransport-write">Writing Data</h4>
+<p class="mediatransport-hatnote">
+  This section only discusses types that Nature cares about. Other types are supported by buffers - to see that, go to the canonical documentation.
+</p>
+<p>
+  There are methods to write data in various formats to a buffer. They all move the cursor to the <em>end of the data written</em>, so calling them multiple times in sequence will concatenate the data.
+</p>
+<p>
+  For things described as '<em>x</em>-byte integers', use these names:
+</p>
+<ul>
+  <li><code>:write(n)</code>: 1 byte, such as <a class="protocol-sym" href="#mediatransport-protocol-type" title="type&#10;size: 1 byte">type</a>, <a class="protocol-sym" href="#mediatransport-protocol-dir" title="dir&#10;size: 1 byte">dir</a> for patterns, and <a class="protocol-sym" href="#mediatransport-protocol-rows" title="rows&#10;size: 1 byte">rows</a> and <a class="protocol-sym" href="#mediatransport-protocol-cols" title="cols&#10;size: 1 byte">cols</a> for matrices.</li>
+  <li><code>:writeInt(n)</code>: 4 bytes, which is primarily used to describe the length of things</li>
+</ul>
+<p>
+  For 'doubles', use:
+</p>
+<ul>
+  <li><code>:writeDouble(n)</code>: 8 bytes, used for both the <a class="protocol-sym" href="#mediatransport-protocol-double_value" title="value&#10;size: 8 bytes">value</a> of numbers and the <a class="protocol-sym" href="#mediatransport-protocol-vec_x" title="x&#10;size: 8 bytes">x</a>, <a class="protocol-sym" href="#mediatransport-protocol-vec_y" title="y&#10;size: 8 bytes">y</a>, and <a class="protocol-sym" href="#mediatransport-protocol-vec_z" title="z&#10;size: 8 bytes">z</a> of vectors.</li>
+</ul>
+<h4 id="mediatransport-read">Reading Data</h4>
+<p>
+  Similar to writing data, Buffers are versatile in what they can read. Each read method also similarily moves the cursor to the <em>end of the data read</em>.
+</p>
+<ul>
+  <li><code>:read()</code>: 1 byte, such as <a class="protocol-sym" href="#mediatransport-protocol-type" title="type&#10;size: 1 byte">type</a>, <a class="protocol-sym" href="#mediatransport-protocol-dir" title="dir&#10;size: 1 byte">dir</a> for patterns, and <a class="protocol-sym" href="#mediatransport-protocol-rows" title="rows&#10;size: 1 byte">rows</a> and <a class="protocol-sym" href="#mediatransport-protocol-cols" title="cols&#10;size: 1 byte">cols</a> for matrices.</li>
+  <li><code>:readShort()</code>: 2 bytes - the protocol <a class="protocol-sym" href="#mediatransport-protocol-protocol_version" title="version&#10;size: 2 bytes">version</a></li>
+  <li><code>:readInt()</code>: 4 bytes, usually lengths but also quite a few configuration parameters</li>
+  <li><code>:readDouble()</code>: 8 bytes, used for both the <a class="protocol-sym" href="#mediatransport-protocol-double_value" title="value&#10;size: 8 bytes">value</a> of numbers and the <a class="protocol-sym" href="#mediatransport-protocol-vec_x" title="x&#10;size: 8 bytes">x</a>, <a class="protocol-sym" href="#mediatransport-protocol-vec_y" title="y&#10;size: 8 bytes">y</a>, and <a class="protocol-sym" href="#mediatransport-protocol-vec_z" title="z&#10;size: 8 bytes">z</a> of vectors, as well as the sending power-related configuration values.</li>
+</ul>
 <br />
 </div>
 </div>
@@ -744,6 +838,13 @@ buf:setPosition(0) -- move back to the beginning
       loading="lazy"
       class="item-texture  texture pixelated"
     > Transport Mishaps</a></li>
+    <li><a href="#interop/figura/channels" class="toc-elem "><img
+      title="Crimson Sign"
+      alt="Crimson Sign"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/crimson_sign.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > FSB Channels</a></li>
     <li><a href="#mediatransport_virtual/protocol" class="toc-elem "><img
       title="Bundle"
       alt="Bundle"

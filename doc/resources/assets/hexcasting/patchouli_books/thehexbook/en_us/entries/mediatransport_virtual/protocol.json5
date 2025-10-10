@@ -2,7 +2,7 @@
   name: "mediatransport.book.protocol",
   category: "hexcasting:interop/figura",
   icon: "minecraft:bundle",
-  sortnum: 5,
+  sortnum: 4,
   flag: "mediatransport:never",
   pages: [
     {

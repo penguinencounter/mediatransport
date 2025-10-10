@@ -10,6 +10,7 @@
       entries: [
         "hexcasting:interop/figura/about",
         "hexcasting:interop/figura/mishaps",
+        "hexcasting:interop/figura/channels",
         "hexcasting:patterns/figura",
       ],
       text: "mediatransport.book.index.desc",
@@ -20,6 +21,7 @@
       entries: [
         "hexcasting:interop/figura/about",
         "hexcasting:interop/figura/mishaps",
+        "hexcasting:interop/figura/channels",
         "hexcasting:mediatransport_virtual/protocol",
         "hexcasting:patterns/figura",
       ],

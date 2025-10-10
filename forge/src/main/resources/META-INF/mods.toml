@@ -44,3 +44,10 @@ mandatory = true
 versionRange = "[${versions.hexcasting_dependency},)"
 ordering = "NONE"
 side = "BOTH"
+
+[[dependencies.mediatransport]]
+modId = "figura"
+mandatory = true
+versionRange = "[${versions.figura_dependency},)"
+ordering = "NONE"
+side = "BOTH"

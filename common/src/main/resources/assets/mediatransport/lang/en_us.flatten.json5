@@ -61,6 +61,32 @@
           "": "%s bytes"
         }
       },
+      channels: {
+        "": "FSB Channels",
+        "A1": "These were hastily scribbled in the margins of something... I can't quite remember. Odd.",
+        "A2": "$(li)$(l:hexcasting:patterns/figura#mediatransport:send_fsb)Submit Iota$(/l) - transport_received/$$(li)$(l:hexcasting:patterns/figura#mediatransport:send_other)Submit Iota II$(/l) - transport_external_recieved/$$(li)$(l:hexcasting:patterns/figura#mediatransport:recv_fsb)Accept Iota$(/l) - transport_send",
+        "og": "How to shout at Nature correctly (and vice versa)",
+        "B1": "... oh, I remember now!",
+        doc: {
+          "1": "Data sent via <a href=\"#patterns/figura@mediatransport:send_fsb\">Submit Iota</a> is sent to <code>server_packets.transport_received</code>, like so:",
+          "code1": "\
+          .function server_packets.transport_received(data)\n\
+          .    data:close()\n\
+          .end\n\
+          ",
+          "2": "Data from other casters via <a href=\"#patterns/figura@mediatransport:send_other\">Submit Iota II</a> are sent to a different channel: <code>server_packets.transport_external_received</code>",
+          "code2": "\
+          .function server_packets.transport_external_received(data)\n\
+          .    data:close()\n\
+          .end\n\
+          ",
+          "3": "Finally, to send data, use <code>:sendPacket</code> with <code>\"transport_send\"</code>:",
+          "code3": "\
+          .server_packets:sendPacket(\"transport_send\", buffer)\n\
+          .buffer:close()\n\
+          "
+        }
+      },
       protocol: {
         "": "Iota Transport Protocol",
         "1": "Ah, the freedom! I've drawn up some diagrams of the format.",
@@ -115,12 +141,12 @@
           "": "<code>50</code>: Text",
           "description": "It appears that this format is not suitable for communicating the decorative properties of text (also called 'display') iota. Nevertheless, the actual text content can be transmitted. Text iota have the same format as strings:"
         },
-        meta: "Non-types",
-        meta_intro: "These don't seem to represent iota at all!",
+        meta: "Non-iotas",
+        meta_intro: "These don't seem to represent iota at all! They can't be sent to Nature and only appear under special circumstances.",
         server_info: {
           "": "<code>fe</code>: Configuration Data",
           "description": "This glob of information is Nature's repsonse to <a href=\"#patterns/figura@mediatransport:send_server_info\">Query Configuration</a>.",
-          "1": "First is the protocol's {symdef:protocol_version} as a two-byte 'short'. This documentation is written form <em>protocol version 1</em>.",
+          "1": "First is the protocol's {symdef:protocol_version} as a two-byte 'short'. This documentation is written for <em>version 1</em>.",
           "2": "Next is the maximum amount of data that can be sent with Submit Iota, in bytes.",
           "3": "That is followed by the maximum amount of data that can be sent with Submit Iota II...",
           "4": "and the maximum amount of data that can be received from an avatar.",
@@ -188,6 +214,28 @@
               .buf:setPosition(0) -- move back to the beginning\n\
               "
             },
+          },
+          write: {
+            "": "Writing Data",
+            "hat": "This section only discusses types that Nature cares about. Other types are supported by buffers - to see that, go to the canonical documentation.",
+            "1": "There are methods to write data in various formats to a buffer. They all move the cursor to the <em>end of the data written</em>, so calling them multiple times in sequence will concatenate the data.",
+            "2": "For things described as '<em>x</em>-byte integers', use these names:",
+            "3": "For 'doubles', use:",
+            methods: {
+              write: "<code>:write(n)</code>: 1 byte, such as {sym:type}, {sym:dir} for patterns, and {sym:rows} and {sym:cols} for matrices.",
+              writeInt: "<code>:writeInt(n)</code>: 4 bytes, which is primarily used to describe the length of things",
+              writeDouble: "<code>:writeDouble(n)</code>: 8 bytes, used for both the {sym:double_value} of numbers and the {sym:vec_x}, {sym:vec_y}, and {sym:vec_z} of vectors."
+            }
+          },
+          read: {
+            "": "Reading Data",
+            "1": "Similar to writing data, Buffers are versatile in what they can read. Each read method also similarily moves the cursor to the <em>end of the data read</em>.",
+            methods: {
+              read: "<code>:read()</code>: 1 byte, such as {sym:type}, {sym:dir} for patterns, and {sym:rows} and {sym:cols} for matrices.",
+              readShort: "<code>:readShort()</code>: 2 bytes - the protocol {sym:protocol_version}",
+              readInt: "<code>:readInt()</code>: 4 bytes, usually lengths but also quite a few configuration parameters",
+              readDouble: "<code>:readDouble()</code>: 8 bytes, used for both the {sym:double_value} of numbers and the {sym:vec_x}, {sym:vec_y}, and {sym:vec_z} of vectors, as well as the sending power-related configuration values."
+            }
           },
         },
         // End of HTML

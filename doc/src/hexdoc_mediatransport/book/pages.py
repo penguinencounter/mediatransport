@@ -31,3 +31,6 @@ class APIDocsPage(Page, type="hexcasting:mediatransport/virtual/apidocs"):
 
 class NullPage(PageWithText, type="hexcasting:mediatransport/hexdoc/null"):
     pass
+
+class ChannelsPage(Page, type="hexcasting:mediatransport/hexdoc/channels"):
+    pass

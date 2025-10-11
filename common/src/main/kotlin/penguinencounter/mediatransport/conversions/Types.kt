@@ -11,6 +11,8 @@ import kotlin.reflect.KClass
 const val PROTOCOL_VERSION = 0x01
 
 object Types {
+    // See RESERVATIONS.md before adding more types.
+
     val types: MutableMap<Int, IotaType<*>> = mutableMapOf()
 
     const val GARBAGE = 0xff

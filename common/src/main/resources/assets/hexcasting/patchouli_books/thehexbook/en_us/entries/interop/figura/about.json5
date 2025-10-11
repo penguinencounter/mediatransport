@@ -10,11 +10,11 @@
     "mediatransport.book.interop.figura.about.3",
     {
       type: "hexcasting:mediatransport/hexdoc/begin_altn",
-      flag: "mediatransport:never",
+      flag: "mod:hexdoc:web_only",
     },
     {
       type: "hexcasting:mediatransport/hexdoc/parity",
-      flag: "mediatransport:never",
+      flag: "mod:hexdoc:web_only",
     },
     {
       type: "hexcasting:mediatransport/text",
@@ -28,18 +28,18 @@
     {
       type: "hexcasting:mediatransport/text",
       text: "mediatransport.book.interop.figura.about.C1",
-      hexdoc_hide: true,
+      flag: "!mod:hexdoc:web_only",
     },
     // or this (yes hexdoc)
     {
       type: "hexcasting:mediatransport/text",
       text: "mediatransport.book.interop.figura.about.C2",
-      flag: "mediatransport:never",
+      flag: "mod:hexdoc:web_only",
     },
     // parity page to bring even/odd back into alignment (fixes backgrounds)
     {
       type: "hexcasting:mediatransport/hexdoc/parity",
-      flag: "mediatransport:never",
+      flag: "mod:hexdoc:web_only",
     },
     {
       type: "hexcasting:mediatransport/text",
@@ -51,11 +51,11 @@
     },
     {
       type: "hexcasting:mediatransport/hexdoc/end_altn",
-      flag: "mediatransport:never",
+      flag: "mod:hexdoc:web_only",
     },
     {
       type: "hexcasting:mediatransport/hexdoc/parity",
-      flag: "mediatransport:never",
+      flag: "mod:hexdoc:web_only",
     },
     {
       type: "patchouli:relations",
@@ -65,7 +65,7 @@
         "hexcasting:patterns/figura"
       ],
       text: "mediatransport.book.figura_see_also_1",
-      hexdoc_hide: true
+      flag: "!mod:hexdoc:web_only",
     }
   ]
 }

@@ -8,38 +8,31 @@
     {
       type: "patchouli:text",
       text: "mediatransport.book.channels.A1",
-      hexdoc_hide: true,
+      flag: "!mod:hexdoc:web_only",
     },
     {
       type: "hexcasting:mediatransport/text",
       text: "mediatransport.book.channels.A2",
-      hexdoc_hide: true,
-    },
-
-    {
-      // opengraph description lololol
-      type: "hexcasting:mediatransport/hexdoc/null",
-      text: "mediatransport.book.channels.og",
-      flag: "mediatransport:never",
+      flag: "!mod:hexdoc:web_only",
     },
     
     {
       type: "patchouli:text",
       text: "mediatransport.book.channels.B1",
-      flag: "mediatransport:never",
+      flag: "mod:hexdoc:web_only",
     },
     {
       type: "hexcasting:mediatransport/hexdoc/begin_altn",
-      flag: "mediatransport:never",
+      flag: "mod:hexdoc:web_only",
     },
     {
       // see apidocs.html.jinja
       type: "hexcasting:mediatransport/hexdoc/channels",
-      flag: "mediatransport:never",
+      flag: "mod:hexdoc:web_only",
     },
     {
       type: "hexcasting:mediatransport/hexdoc/end_altn",
-      flag: "mediatransport:never",
+      flag: "mod:hexdoc:web_only",
     },
   ]
 }

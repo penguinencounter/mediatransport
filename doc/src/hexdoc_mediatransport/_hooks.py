@@ -16,7 +16,6 @@ from . import diagrams
 from .__gradle_version__ import FULL_VERSION, MINECRAFT_VERSION, MOD_ID, MOD_VERSION
 from .__version__ import PY_VERSION
 from .book import pages
-from .mixins import stage_1
 from .prettylog import info
 
 
@@ -75,7 +74,3 @@ class MediaTransportModPlugin(ModPluginWithBook):
     @override
     def jinja_template_root(self) -> tuple[Package, str]:
         return hexdoc_mediatransport, "_templates"
-
-
-# off we go
-stage_1()

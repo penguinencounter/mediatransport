@@ -14,7 +14,7 @@
         "hexcasting:patterns/figura",
       ],
       text: "mediatransport.book.index.desc",
-      hexdoc_hide: true,
+      flag: "!mod:hexdoc:web_only",
     },
     { /* yes hexdoc */
       type: "patchouli:relations",
@@ -26,7 +26,7 @@
         "hexcasting:patterns/figura",
       ],
       text: "mediatransport.book.index.desc",
-      flag: "mediatransport:never"
+      flag: "mod:hexdoc:web_only"
     },
   ]
 }

@@ -48,11 +48,11 @@
     },
     {
       type: "hexcasting:mediatransport/hexdoc/begin_altn",
-      flag: "mediatransport:never",
+      flag: "mod:hexdoc:web_only",
     },
     {
       type: "hexcasting:mediatransport/hexdoc/parity",
-      flag: "mediatransport:never",
+      flag: "mod:hexdoc:web_only",
     },
     {
       type: "hexcasting:mediatransport/text",
@@ -69,15 +69,15 @@
     {
       type: "hexcasting:mediatransport/text",
       text: "mediatransport.book.blank_dark",
-      hexdoc_hide: true,
+      flag: "!mod:hexdoc:web_only",
     },
     {
       type: "hexcasting:mediatransport/hexdoc/end_altn",
-      flag: "mediatransport:never",
+      flag: "mod:hexdoc:web_only",
     },
     {
       type: "hexcasting:mediatransport/hexdoc/parity",
-      flag: "mediatransport:never",
+      flag: "mod:hexdoc:web_only",
     },
   ]
 }

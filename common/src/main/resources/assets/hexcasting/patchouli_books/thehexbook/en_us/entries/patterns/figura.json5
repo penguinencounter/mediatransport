@@ -51,7 +51,7 @@
       input: "",
       output: "",
       text: "mediatransport.book.patterns.figura.send_server_info_a",
-      hexdoc_hide: true,
+      flag: "!mod:hexdoc:web_only",
     },
     {
       type: "hexcasting:pattern",
@@ -60,7 +60,7 @@
       input: "",
       output: "",
       text: "mediatransport.book.patterns.figura.send_server_info_b",
-      flag: "mediatransport:never",
+      flag: "mod:hexdoc:web_only",
     },
   ],
 }

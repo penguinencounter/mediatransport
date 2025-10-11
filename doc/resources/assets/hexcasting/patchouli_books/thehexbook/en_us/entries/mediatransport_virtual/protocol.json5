@@ -3,14 +3,10 @@
   category: "hexcasting:interop/figura",
   icon: "minecraft:bundle",
   sortnum: 4,
-  flag: "mediatransport:never",
+  flag: "mod:hexdoc:web_only",
   pages: [
     {
       type: "hexcasting:mediatransport/hexdoc/begin_altn"
-    },
-    {
-      type: "hexcasting:mediatransport/hexdoc/null",
-      text: "mediatransport.book.protocol.1",
     },
     {
       // go have a look at protocoldocs.html.jinja

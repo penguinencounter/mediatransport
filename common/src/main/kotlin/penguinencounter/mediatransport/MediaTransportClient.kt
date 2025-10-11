@@ -9,7 +9,6 @@ import vazkii.patchouli.api.PatchouliAPI
 object MediaTransportClient {
     fun init() {
         MediaTransportConfig.initClient()
-        PatchouliAPI.get().setConfigFlag("mediatransport:never", false)
     }
 
     fun getConfigScreen(parent: Screen): Screen {

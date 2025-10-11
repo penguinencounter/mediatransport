@@ -2,7 +2,7 @@
   name: "mediatransport.book.admin.config",
   category: "hexcasting:mediatransport_admin_virtual",
   icon: "hexcasting:staff/crimson",
-  flag: "mediatransport:never",
+  flag: "mod:hexdoc:web_only",
   pages: [
     "mediatransport.book.admin.config.1",
     {

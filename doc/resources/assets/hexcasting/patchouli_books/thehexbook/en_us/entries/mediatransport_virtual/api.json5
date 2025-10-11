@@ -3,7 +3,7 @@
   category: "hexcasting:interop/figura",
   icon: "minecraft:book",
   sortnum: 6,
-  flag: "mediatransport:never",
+  flag: "mod:hexdoc:web_only",
   pages: [
     "mediatransport.book.api.1",
     {

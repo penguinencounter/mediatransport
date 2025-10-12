@@ -29,3 +29,59 @@ Coordinates:
 - `penguinencounter.mediatransport:mediatransport-common`
 - `penguinencounter.mediatransport:mediatransport-fabric`
 - `penguinencounter.mediatransport:mediatransport-forge`
+
+## Adding support for your own types
+> This is a rough draft; you'll kinda have to wing it. Look at `HexposeTypes.kt` if you want an example.
+
+0. Add the two mavens above and the appropriate dependencies.
+1. Implement `Encoder` and `Decoder` in a new class (conventionally named `(mod name)Conversions`).
+2. Choose type IDs - see `RESERVATIONS.md` in the same directory as `Encoder` and `Decoder` for details
+3. Create an instance of your class, and add it to `Encoder.converters` and `Decoder.converters`.
+4. Call `(yourInstance).defineTypes(Types.types)` to register your types.
+
+### Adding _documentation_ for your own types
+Protocol documentation happens entirely in Jinja HTML. For an example, see `hexdoc_mediatransport/_templates/types/moreiotas.html.jinja`.
+
+You'll also need to add a new hook class (if you put this in the same file as your hexdoc ones, note that `hookimpl` is _not the same as the one from hexdoc_):
+```py
+from hexdoc_mediatransport import (
+    hookimpl as mt_hookimpl,
+    MediatransportDocImpl,
+    ExtensionSection
+)
+
+class YourModMediaTransportDoc(MediatransportDocImpl):
+    @mt_hookimpl
+    @staticmethod
+    def mediatransport_doc_extend() -> list[ExtensionSection]:
+        return [
+            ExtensionSection(
+                id="your-section-name",
+                template="namespace:path/to/file.html.jinja",
+                ordering=50,
+            )
+        ]
+```
+
+To finish it off, declare it as an entrypoint in your `pyproject.toml`:
+```toml
+[project.entry-points.mediatransport]
+modid="hexdoc_modname._hooks:YourModMediaTransportDoc"
+```
+
+By default, extensions render in _mediatransport's_ entry; however, you may want to display your entry standalone. Create a new entry that is only visible to hexdoc (i.e. `doc/resources/assets/hexcasting`...), and make a page with type `mediatransport:protocol_section` and `sections`:
+
+> syntax may vary if you're using JSON5
+
+```json
+{
+    "pages": [
+        {
+            "type": "mediatransport:protocol_section",
+            "sections": [
+                "your-section-name"
+            ]
+        }
+    ]
+}
+```

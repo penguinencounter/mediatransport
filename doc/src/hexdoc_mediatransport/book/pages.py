@@ -34,3 +34,7 @@ class NullPage(PageWithText, type="hexcasting:mediatransport/hexdoc/null"):
 
 class ChannelsPage(Page, type="hexcasting:mediatransport/hexdoc/channels"):
     pass
+
+# API!
+class ProtocolSection(Page, type="mediatransport:protocol_section"):
+    sections: list[str]

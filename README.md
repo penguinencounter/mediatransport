@@ -33,11 +33,11 @@ Coordinates:
 ## Adding support for your own types
 > This is a rough draft; you'll kinda have to wing it. Look at `HexposeTypes.kt` if you want an example.
 
-0. Add the two mavens above and the appropriate dependencies.
-1. Implement `Encoder` and `Decoder` in a new class (conventionally named `(mod name)Conversions`).
-2. Choose type IDs - see `RESERVATIONS.md` in the same directory as `Encoder` and `Decoder` for details
-3. Create an instance of your class, and add it to `Encoder.converters` and `Decoder.converters`.
-4. Call `(yourInstance).defineTypes(Types.types)` to register your types.
+1. Add the two mavens above and the appropriate dependencies.
+2. Implement `Encoder` and `Decoder` in a new class (conventionally named `(mod name)Conversions`).
+3. Choose type IDs - see `RESERVATIONS.md` in the same directory as `Encoder` and `Decoder` for details
+4. Create an instance of your class, and add it to `Encoder.converters` and `Decoder.converters`.
+5. Call `(yourInstance).defineTypes(Types.types)` to register your types.
 
 ### Adding _documentation_ for your own types
 Protocol documentation happens entirely in Jinja HTML. For an example, see `hexdoc_mediatransport/_templates/types/moreiotas.html.jinja`.
@@ -46,21 +46,21 @@ You'll also need to add a new hook class (if you put this in the same file as yo
 ```py
 from hexdoc_mediatransport import (
     hookimpl as mt_hookimpl,
-    MediatransportDocImpl,
+    MediaTransportPlugImpl,
+    MediaTransportExtension,
     ExtensionSection
 )
 
-class YourModMediaTransportDoc(MediatransportDocImpl):
-    @mt_hookimpl
+class YourModMTExt(MediaTransportExtension):
+    def __init__(self):
+        super().__init__()
+        # TODO
+
+class YourModMediaTransport(MediaTransportPlugImpl):
     @staticmethod
-    def mediatransport_doc_extend() -> list[ExtensionSection]:
-        return [
-            ExtensionSection(
-                id="your-section-name",
-                template="namespace:path/to/file.html.jinja",
-                ordering=50,
-            )
-        ]
+    @mt_hookimpl
+    def mediatransport() -> MediaTransportExtension:
+        return YourModMTExt()
 ```
 
 To finish it off, declare it as an entrypoint in your `pyproject.toml`:

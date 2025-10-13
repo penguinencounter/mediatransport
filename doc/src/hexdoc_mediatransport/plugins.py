@@ -1,4 +1,5 @@
 import itertools
+from typing import cast
 
 import pluggy
 
@@ -27,7 +28,7 @@ class MediaTransportPlugins:
         self.plugs.register(MediaTransportBuiltIn)
 
     def get_extensions(self) -> list[MediaTransportExtension]:
-        hook = self.plugs.hook
+        hook: MediaTransportPlugSpec = cast(MediaTransportPlugSpec, self.plugs.hook)
         return hook.mediatransport()
 
     def get_sections(self) -> list[ExtensionSection]:

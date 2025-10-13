@@ -1,9 +1,8 @@
 # Block diagrams and other protocol helpers.
 
 import re
-from dataclasses import dataclass
 from types import SimpleNamespace
-from typing import Any, Callable, Literal, NamedTuple, Protocol
+from typing import Callable, Literal, NamedTuple, Protocol
 
 from hexdoc.minecraft import I18n
 from jinja2 import pass_context
@@ -11,41 +10,9 @@ from jinja2.runtime import Context
 from markupsafe import Markup
 
 from .api import Plural, ResolvedSymbol
-from .lang import ArglessI18n, I18nTuple
+from .lang import I18nTuple
 
 BOOK = "mediatransport.book"
-SYMBOLS = f"{BOOK}.symbols"
-TOOLTIPS = f"{BOOK}.tooltips"
-PLURAL = f"{BOOK}.pluralizations"
-
-
-@dataclass
-class ProtoSymbol:
-    name: str
-    size: str | int | None = None
-
-    def render_name(self, ctx: Context) -> ArglessI18n:
-        i18n = I18n.of(ctx)
-        return I18nTuple.of(i18n.localize(f"{SYMBOLS}.{self.name}"))
-
-    def render_tooltip(self, ctx: Context) -> I18nTuple[Any]:
-        i18n = I18n.of(ctx)
-        stack: list[I18nTuple[Any]] = [I18nTuple.untranslated(self.name)]
-
-        if self.size is not None:
-            contents: I18nTuple[Any]
-            if isinstance(self.size, str):
-                contents = I18nTuple.ofa(
-                    i18n.localize(f"{TOOLTIPS}.size_ref"),
-                    (I18nTuple.of(i18n.localize(f"{SYMBOLS}.{self.size}")),),
-                )
-            else:  # int
-                contents = plural(ctx, "byte", self.size)
-
-            stack.append(I18nTuple.ofa(i18n.localize(f"{TOOLTIPS}.size"), (contents,)))
-
-        return I18nTuple.join("\n", stack)
-
 
 symbols: dict[str, ResolvedSymbol] = {}
 plurals: dict[str, Plural] = {}
@@ -152,9 +119,7 @@ class _Box(SimpleNamespace):
     plural_var: Callable[[Context, str, str], I18nTuple[str]]
 
 
-def context(section: str):
-    base = f"{BOOK}.{section}"
-
+def context(base: str):
     @pass_context
     def tl(context: Context, key: str) -> Markup:
         i18n = I18n.of(context)

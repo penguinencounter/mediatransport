@@ -50,7 +50,7 @@
             rate_limit_exceeded: "I ran out of 'sending power'. Perhaps I should consider consolidating usages of Submit Iota? Causes orange sparks and the sound of something breaking.",
             "2": "it looks like most of these errors only occur when $(italic)sending/$ (well, \"submitting\") data from within nature's domain. nature seems to be much more lenient in accepting bad data... in that it doesn't crash anything and instead outputs its favorite flavor of not-error: garbage!$(br)unfortunately this makes it hard to determine why data isn't making it across the boundary. we've compiled a list of reasons to look out for:",
             "3": "- data is of a type (that's the first byte) that nature has no representation for$(br)- the transmission is missing some data at the end$(br)- the data is too large (seems like this could be different limit than the one going in the other direction...)$(br)- a variant of the above: the same matrix size restrictions apply (though it's impossible to have too many rows or columns, the total area could still be too much)",
-            "4": "also note that lists can also partially fail to transfer, leading to the entire decoder potentially derailing and interpreting types as data and vice versa. good luck!$(br2)~t"
+            "4": "also note that lists can also partially fail to transfer, leading to the entire decoder potentially derailing and interpreting types as data and vice versa. good luck!"
           }
         }
       },
@@ -297,6 +297,10 @@
           recvFilters: {
             "": "Receiving Filters",
             "1": "$(n)recvFilter/$ and $(n)recvFilterMode/$ control what types of iota can be received from Figura.$(br2)Any iota that are blocked by this filter are replaced with Garbage, but any containing iota will be unaffected. (ex. a list containing an invalid iota will be received as a list containing garbage instead, provided lists are allowed.)"
+          },
+          ratelimits: {
+            "": "Rate Limits",
+            "1": "'Sending power' is really just a number that goes up over time until it hits a limit for each player. The system is balance around one usage of $(l:hexcasting:patterns/figura#mediatransport:send_fsb)Submit Iota$(/l) consuming 1.00 'power'.$(br2)$(li)$(n)rateLimitChargePerTick/$ controls how quickly 'power' recharges. The default of 1.0 means that on average a player can only use Submit Iota once every tick./$$(li)$(n)rateLimitMaxValue/$ is the maximum 'power' that players can hold on to at once. Setting this below 1 means that Submit Iota will always fail. Setting this greater than 1 lets players send in 'bursts' without running into the rate limit as long as their overall rate remains below the limit./$$(li)$(n)interSendConstMultiplier/$ lets you configure how much Submit Iota II costs relative to Submit Iota. Because Submit Iota costs 1, this is effectively the price of Submit Iota II"
           },
         }
       },

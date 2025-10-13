@@ -1,8 +1,18 @@
-__all__ = ["ExtensionSection", "hookimpl", "MediaTransportPlugImpl"]
+__all__ = [
+    "ExtensionSection",
+    "hookimpl",
+    "MediaTransportPlugImpl",
+    "MediaTransportExtension",
+]
 
 import pluggy
 
-from .api import PLUGGY_NS, ExtensionSection, MediaTransportPlugImpl
+from .api import (
+    PLUGGY_NS,
+    ExtensionSection,
+    MediaTransportPlugImpl,
+    MediaTransportExtension,
+)
 
 hookimpl = pluggy.HookimplMarker(PLUGGY_NS)
 """

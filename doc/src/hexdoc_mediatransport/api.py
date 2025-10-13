@@ -194,6 +194,7 @@ class MediaTransportExtension:
 
 
 class MediaTransportPlugSpec(Protocol):
+    @staticmethod
     @hookspec
     def mediatransport() -> list[MediaTransportExtension]:
         """

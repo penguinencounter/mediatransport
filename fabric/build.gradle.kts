@@ -70,7 +70,6 @@ dependencies {
 
     libs.mixinExtras.fabric.also {
         localRuntime(it)
-        include(it)
         annotationProcessor(it)
     }
 

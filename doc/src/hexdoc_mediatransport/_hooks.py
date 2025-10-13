@@ -29,14 +29,18 @@ class MediaTransportContext:
     def filter_extensions(ids: list[str]):
         if MediaTransportContext.extensions is None:
             raise ValueError("Too early, somehow")
-        return [ x for x in MediaTransportContext.extensions if x.id in ids ]
+        return [x for x in MediaTransportContext.extensions if x.id in ids]
 
 
 class MediaTransportPlugin(ModPluginImpl):
     @staticmethod
     @hookimpl
     def hexdoc_mod_plugin(branch: str) -> ModPlugin:
-        MediaTransportContext.extensions = MediaTransportPlugins().get_extensions()
+        plugin_loader = MediaTransportPlugins()
+
+        MediaTransportContext.extensions = plugin_loader.get_sections()
+        diagrams.symbols = plugin_loader.get_symbols()
+        diagrams.plurals = plugin_loader.get_plurals()
         return MediaTransportModPlugin(branch=branch)
 
     @staticmethod

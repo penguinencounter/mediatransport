@@ -3,27 +3,20 @@
 import re
 from dataclasses import dataclass
 from types import SimpleNamespace
-from typing import Any, Callable, Literal, NamedTuple
+from typing import Any, Callable, Literal, NamedTuple, Protocol
 
 from hexdoc.minecraft import I18n
 from jinja2 import pass_context
 from jinja2.runtime import Context
 from markupsafe import Markup
 
-from .lang import ArglessI18n, I18nTuple, plural_factory
+from .api import Plural, ResolvedSymbol
+from .lang import ArglessI18n, I18nTuple
 
 BOOK = "mediatransport.book"
 SYMBOLS = f"{BOOK}.symbols"
 TOOLTIPS = f"{BOOK}.tooltips"
 PLURAL = f"{BOOK}.pluralizations"
-plural = plural_factory(PLURAL)
-
-
-@pass_context
-def plural_var(context: Context, key: str, amount: str) -> str:
-    i18n = I18n.of(context)
-    rkey = f"{PLURAL}.{key}"
-    return I18nTuple.ofa(i18n.localize(rkey), (amount,)).resolve()
 
 
 @dataclass
@@ -54,34 +47,18 @@ class ProtoSymbol:
         return I18nTuple.join("\n", stack)
 
 
-symbols = {
-    "type": ProtoSymbol(name="type", size=1),
-    "data": ProtoSymbol(name="data", size=None),
-    "double_value": ProtoSymbol(name="value", size=8),
-    "dir": ProtoSymbol(name="dir", size=1),
-    "pattern_len": ProtoSymbol(name="length", size=4),
-    "angles": ProtoSymbol(name="angles", size="length"),
-    "vec_x": ProtoSymbol(name="x", size=8),
-    "vec_y": ProtoSymbol(name="y", size=8),
-    "vec_z": ProtoSymbol(name="z", size=8),
-    "list_len": ProtoSymbol(name="length", size=4),
-    "list_iotas": ProtoSymbol(name="iotas", size=None),
-    "str_len": ProtoSymbol(name="length", size=4),
-    "string": ProtoSymbol(name="string", size="length"),
-    "rows": ProtoSymbol(name="rows", size=1),
-    "cols": ProtoSymbol(name="cols", size=1),
-    "matrix_contents": ProtoSymbol(name="contents", size="rowscols"),
-    "rowscols": ProtoSymbol(name="rowscols", size=None),  # combination key, not actual
-    "protocol_version": ProtoSymbol(name="version", size=2),
-    "max_send": ProtoSymbol(name="max_send", size=4),
-    "max_inter_send": ProtoSymbol(name="max_inter_send", size=4),
-    "max_recv": ProtoSymbol(name="max_recv", size=4),
-    "max_power": ProtoSymbol(name="max_power", size=8),
-    "power_regen_rate": ProtoSymbol(name="power_regen_rate", size=8),
-    "inter_cost": ProtoSymbol(name="inter_cost", size=8),
-    # Figura things that aren't actual protocol stuff but are useful to link
-    "Buffer": ProtoSymbol(name="Buffer", size=None),
-}
+symbols: dict[str, ResolvedSymbol] = {}
+plurals: dict[str, Plural] = {}
+
+
+@pass_context
+def plural(ctx: Context, key: str, amount: int) -> I18nTuple[int]:
+    return plurals[key].get(ctx, amount)
+
+
+@pass_context
+def plural_var(ctx: Context, key: str, amount: str) -> I18nTuple[str]:
+    return plurals[key].get_var(ctx, amount)
 
 
 @pass_context
@@ -91,47 +68,57 @@ def sym_name(ctx: Context, word: str) -> str:
 
 
 @pass_context
-def symdef(ctx: Context, word: str) -> str:
-    symbol = symbols[word]
+def symdef(ctx: Context, id: str, aka: str | None = None) -> str:
+    symbol = symbols[id]
+    inner = aka if aka is not None else symbol.render_name(ctx).resolve()
     return (
-        f'<span class="protocol-sym-def" id="mediatransport-protocol-{word}"'
-        f' title="{symbol.render_tooltip(ctx).resolve_html_oneline()}">'
-        f"{symbol.render_name(ctx).resolve()}"
+        f'<span class="protocol-sym-def" id="mediatransport-protocol-{id}">'
+        f"{inner}"
         "</span>"
     )
 
 
 @pass_context
-def symr(ctx: Context, word: str) -> str:
-    symbol = symbols[word]
-    return (
-        f'<span class="protocol-sym-raw"'
-        f' title="{symbol.render_tooltip(ctx).resolve_html_oneline()}">'
-        f"{symbol.render_name(ctx).resolve()}"
-        "</span>"
-    )
+def anchor(ctx: Context, id: str, aka: str | None = None) -> str:
+    del ctx, aka
+
+    if id not in symbols:
+        raise KeyError(f"Unknown symbol ID: {id}")
+    return f'<span id="mediatransport-protcol-{id}"></span>'
 
 
 @pass_context
-def sym(ctx: Context, word: str) -> str:
-    symbol = symbols[word]
-    return (
-        f'<a class="protocol-sym" href="#mediatransport-protocol-{word}"'
-        f' title="{symbol.render_tooltip(ctx).resolve_html_oneline()}">'
-        f"{symbol.render_name(ctx).resolve()}"
-        "</a>"
-    )
+def symr(ctx: Context, id: str, aka: str | None = None) -> str:
+    symbol = symbols[id]
+    inner = aka if aka is not None else symbol.render_name(ctx).resolve()
+    return f'<span class="protocol-sym-raw">{inner}</span>'
 
 
-tags = {"symdef": symdef, "sym": sym, "symr": symr}
+@pass_context
+def sym(ctx: Context, id: str, aka: str | None = None) -> str:
+    symbol = symbols[id]
+    inner = aka if aka is not None else symbol.render_name(ctx).resolve()
+    return f'<a class="protocol-sym" href="#mediatransport-protocol-{id}">{inner}</a>'
 
-matching_pattern = re.compile(r"{(sym(?:|def|r)):(\w+)}")
+
+class _symfn(Protocol):
+    def __call__(self, ctx: Context, id: str, aka: str | None = None) -> str: ...
+
+
+tags: dict[str, _symfn] = {"symdef": symdef, "sym": sym, "symr": symr}
+
+
+# {sym:id}
+# {symdef:id}
+# {symr:id}
+# {sym:id:alias}
+matching_pattern = re.compile(r"{(sym(?:|def|r)):(\w+)(?::([^}:]+))?}")
 
 
 def _make_matcher(context: Context):
     def _handle_match(match: re.Match[str]) -> str:
-        tag, value = match.groups()
-        return tags[tag](context, value)
+        tag, value, aka = match.groups()
+        return tags[tag](context, value, aka)
 
     return _handle_match
 
@@ -155,14 +142,14 @@ def dia(context: Context, blocks: list[Block]) -> Markup:
 
 
 class _Box(SimpleNamespace):
-    # you can setattr on it.
+    # you can setattr on it I guess
     tl: Callable[[Context, str], Markup]
     dia: Callable[[Context, list[Block]], Markup]
-    sym: Callable[[Context, str], str]
+    sym: _symfn
     sym_name: Callable[[Context, str], str]
     codeblock: Callable[[Context, str], Markup]
     plural: Callable[[Context, str, int], I18nTuple[int]]
-    plural_var: Callable[[Context, str, str], str]
+    plural_var: Callable[[Context, str, str], I18nTuple[str]]
 
 
 def context(section: str):

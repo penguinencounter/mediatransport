@@ -2,22 +2,68 @@ import itertools
 
 import pluggy
 
-from .api import PLUGGY_NS, ExtensionSection, MediatransportDocSpec
-from .builtin_extensions import MediatransportBuiltins
+from .api import (
+    PLUGGY_NS,
+    ExtensionSection,
+    MediaTransportExtension,
+    MediaTransportPlugSpec,
+    Plural,
+    ResolvedSymbol,
+)
+from .builtin_extensions import MediaTransportBuiltIn
 
 
 class MediaTransportPlugins:
     def __init__(self) -> None:
         self.plugs = pluggy.PluginManager(PLUGGY_NS)
-        self.plugs.add_hookspecs(MediatransportDocSpec)
+        self.plugs.add_hookspecs(MediaTransportPlugSpec)
         self.entrypoints()
+
+        self.extensions: list[MediaTransportExtension] = self.get_extensions()
 
     def entrypoints(self):
         self.plugs.load_setuptools_entrypoints(PLUGGY_NS)
         self.plugs.check_pending()
-        self.plugs.register(MediatransportBuiltins)
+        self.plugs.register(MediaTransportBuiltIn)
 
-    def get_extensions(self) -> list[ExtensionSection]:
+    def get_extensions(self) -> list[MediaTransportExtension]:
         hook = self.plugs.hook
-        extensions: list[list[ExtensionSection]] = hook.mediatransport_doc_extend()
-        return list(sorted(itertools.chain(*extensions), key=lambda k: k.ordering))
+        return hook.mediatransport()
+
+    def get_sections(self) -> list[ExtensionSection]:
+        return list(
+            sorted(
+                itertools.chain(*[x.get_sections() for x in self.extensions]),
+                key=lambda x: x.ordering,
+            )
+        )
+
+    def get_symbols(self) -> dict[str, ResolvedSymbol]:
+        symbols: dict[str, ResolvedSymbol] = {}
+        keys: set[str] = set()
+
+        for x in self.extensions:
+            sym = x.get_symbols()
+            if intersect := keys & sym.keys():
+                raise ValueError(
+                    f"Symbol conflict: {intersect} already exist from other extensions, but also registered by {x.__class__.__name__}"
+                )
+            symbols |= sym
+            keys |= sym.keys()
+
+        return symbols
+
+    def get_plurals(self) -> dict[str, Plural]:
+        plurals: dict[str, Plural] = {}
+        keys: set[str] = set()
+
+        for x in self.extensions:
+            pl = x.get_plurals()
+            if intersect := keys & pl.keys():
+                raise ValueError(
+                    f"Pluralization conflict: {intersect} already exist from other extensions, but also registered by {x.__class__.__name__}"
+                )
+            plurals |= pl
+            keys |= pl.keys()
+
+        return plurals

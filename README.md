@@ -85,3 +85,5 @@ By default, extensions render in _mediatransport's_ entry; however, you may want
     ]
 }
 ```
+
+TODO: add symbols to plugin spec; somehow prevent duplicate entries in the book; flags?

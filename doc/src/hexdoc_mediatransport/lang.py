@@ -58,19 +58,3 @@ class I18nTuple(Generic[T]):
 
 
 ArglessI18n = I18nTuple[Never]
-
-
-def plural_factory(root: str):
-    @pass_context
-    def plural(ctx: Context, key: str, amount: int) -> I18nTuple[int]:
-        rkey = f"{root}.{key}"
-        i18n = I18n.of(ctx)
-        match amount:
-            case 0:
-                return I18nTuple.ofa(i18n.localize(f"{rkey}.0", rkey), (amount,))
-            case 1:
-                return I18nTuple.ofa(i18n.localize(f"{rkey}.1", rkey), (amount,))
-            case _:
-                return I18nTuple.ofa(i18n.localize(rkey), (amount,))
-
-    return plural

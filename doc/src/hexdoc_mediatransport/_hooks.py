@@ -51,7 +51,6 @@ class MediaTransportPlugin(ModPluginImpl):
     @staticmethod
     @hookimpl
     def hexdoc_update_template_args(template_args: dict[str, Any]) -> None:
-        info(R"[bright_black]hexdoc_update_template_args...[/]")
         template_args["mediatransport"] = MediaTransportContext
 
 

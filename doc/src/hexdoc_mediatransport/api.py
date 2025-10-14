@@ -92,10 +92,16 @@ class MediaTransportExtension:
     It's not a 'plugin' because the class named `MediaTransportPlugin` is a hexdoc plugin
 
     Anwyay, extend this, and in `__init__`:
-    - call the superclass: `super().__init__()`
+    - call the superclass: `super().__init__("YOUR_EXTENSION_ID")`
     - define `self.symbol_root_key`
     - define `self.plural_root_key` if you have pluralizations
     - call methods as needed to register all the things
+    """
+
+    id: str
+    """
+    Your mod / extension ID.
+    Is configured by super.__init__.
     """
 
     symbol_root_key: str
@@ -121,11 +127,12 @@ class MediaTransportExtension:
     _symbols: dict[str, Symbol]
     _plurals: set[str]
 
-    def __init__(self) -> None:
+    def __init__(self, id: str) -> None:
         self._sections = {}
         self._symbols = {}
         self._plurals = set()
         self.plural_root_key = None
+        self.id = id
 
     @final
     def register_section(self, section: ExtensionSection):

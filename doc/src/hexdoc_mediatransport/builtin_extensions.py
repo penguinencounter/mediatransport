@@ -5,7 +5,7 @@ from .api import ExtensionSection, MediaTransportExtension, MediaTransportPlugIm
 
 class MediaTransportBuiltInExt(MediaTransportExtension):
     def __init__(self) -> None:
-        super().__init__()
+        super().__init__("builtins")
         self.symbol_root_key = "mediatransport.book.symbols"
         self.plural_root_key = "mediatransport.book.pluralizations"
         self.create_symbols(

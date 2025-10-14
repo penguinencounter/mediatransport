@@ -72,14 +72,14 @@ class _symfn(Protocol):
     def __call__(self, ctx: Context, id: str, aka: str | None = None) -> str: ...
 
 
-tags: dict[str, _symfn] = {"symdef": symdef, "sym": sym, "symr": symr}
+tags: dict[str, _symfn] = {"symdef": symdef, "sym": sym, "symr": symr, "anchor": anchor}
 
 
 # {sym:id}
 # {symdef:id}
 # {symr:id}
 # {sym:id:alias}
-matching_pattern = re.compile(r"{(sym(?:|def|r)):(\w+)(?::([^}:]+))?}")
+matching_pattern = re.compile(r"{(sym(?:|def|r)|anchor):(\w+)(?::([^}:]+))?}")
 
 
 def _make_matcher(context: Context):

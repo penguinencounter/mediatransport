@@ -123,7 +123,7 @@ object MediaTransportConfig {
         var recvFilterMode: FilterMode = FilterMode.Block
 
         @ConfigEntry.Gui.Excluded
-        var recvFilter: List<String> = listOf()
+        var recvFilter: List<String> = listOf("hexcasting:list")
 
         private fun can(type: IotaType<*>, filterMode: FilterMode, filterSet: List<String>): Boolean {
             val reg = HexIotaTypes.REGISTRY.getKey(type) ?: throw IllegalArgumentException("iota type not registered! $type (registry miss)")

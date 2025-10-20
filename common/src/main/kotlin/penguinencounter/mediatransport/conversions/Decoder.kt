@@ -22,6 +22,7 @@ interface Decoder : TypeRegistrar {
 
         fun decode(bytes: ByteArrayInputStream): Iota {
             return try {
+                converters // force populate types
                 val type = bytes.read()
                 val interpretedType = Types.types[type]
                 if (!(interpretedType?.run(MediaTransportConfig.server::canReceive) ?: false)) GarbageIota()

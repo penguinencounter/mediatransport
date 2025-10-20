@@ -5,9 +5,7 @@
 hex casting - fsb integration (the dev version of 1.20.1 figura)
 
 ## To build:
-1. Clone **penguinencounter/Figura** alongside this project and checkout `maven-server-common`;
-2. run `./gradlew publishToMavenLocal` in there
-3. sync and build this project.
+1. `./gradlew build` :)
 
 ## Want to depend on this?
 It's on [penguinencounter/mvn](https://github.com/penguinencounter/mvn):

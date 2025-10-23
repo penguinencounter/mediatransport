@@ -1,0 +1,19 @@
+{
+  hexdoc: {
+    mediatransport: {
+      title: "mediatransport之书",
+      description: "咒法学 + Figura服务端后端（Figura Server Backend）附属",
+      categories: {
+        admin_virtual: {
+          "": "mediatransport 管理员内容",
+          "desc": "本分类$(bold)仅见于 hexdoc/$（游戏内手册不包含此内容），服务器管理员在安装 mediatransport 和 FSB 时可参照其中内容。"
+        }
+      },
+    },
+  },
+  opengraph: {
+    descriptions: {
+      api: "mediatransport，为形象脚本而开发"
+    }
+  }
+}

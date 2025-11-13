@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 The format is supposedly based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 1.1.1
+- cleaned up documentation a bit
+- added zh\_cn translations, thanks to ChyijkYahus in #1
+
 ## 1.1.0
 
 ### in 1.1.0 (kinda important!)

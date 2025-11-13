@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <title>mediatransport之书</title>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta name="description" content="咒法学 + Figura服务端后端（Figura Server Backend）附属" />
+      <meta name="author" content="penguinencounter" />
+        <link rel="None" type="image/ico" href="favicon.ico" />
+        <link rel="icon" type="image/png" href="favicon-16x16.png" />
+        <link rel="icon" type="image/png" href="favicon-32x32.png" />
+        <link rel="icon" type="image/png" href="favicon-64x64.png" />
+        <link rel="icon" type="image/png" href="favicon-96x96.png" />
+        <link rel="icon" type="image/png" href="favicon-180x180.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-60x60.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-76x76.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-114x114.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-120x120.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-144x144.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-152x152.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-167x167.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-180x180.png" />
+        <link rel="None" type="image/png" href="mstile-70x70.png" />
+        <link rel="None" type="image/png" href="mstile-270x270.png" />
+        <link rel="None" type="image/png" href="mstile-310x310.png" />
+        <link rel="None" type="image/png" href="mstile-310x150.png" />
+        <link rel="shortcut icon" type="image/png" href="favicon-196x196.png" />
+      <link rel="mask-icon" href="https://raw.githubusercontent.com/hexdoc-dev/hexdoc/main/media/safari-pinned-tab.svg" color="#332233">
+<meta property="og:type" content="website" />
+<meta property="og:title" content="mediatransport之书" />
+<meta property="og:image" content="https://penguinencounter.github.io/mediatransport/v/1.1.1+1.20.1/2.0/zh_cn/iconFavi512.png" />
+<meta property="og:url" content="https://penguinencounter.github.io/mediatransport/v/1.1.1+1.20.1/2.0/zh_cn" />
+<meta property="og:description" content="咒法学 + Figura服务端后端（Figura Server Backend）附属" />
+<meta property="og:site_name" content="mediatransport (1.1.1+1.20.1)" />
+      <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+      integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"
+        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="index.css">
+      <link rel="stylesheet" href="textures.css">
+      <noscript>
+        <style>
+          /* for accessibility */
+          .spoilered {
+            filter: none !important;
+          }
+        </style>
+      </noscript>
+        <script type="module" src="index.js"></script>
+  <script type="module" src="hexcasting.js"></script>
+  <script type="module" src="hexcasting_render.js"></script>
+  </head>
+  <body>
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button
+        type="button"
+        class="navbar-toggle collapsed"
+        data-toggle="collapse"
+        data-target="#navbar-collapse"
+        aria-expanded="false"
+      >
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../../../..">mediatransport之书</a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+            <li>
+    <a
+      href="https://github.com/penguinencounter/mediatransport/tree/6d1ba7ec93688984e41a0015868046c9fde8f231"
+        target="_blank"
+      class="navbar-link"
+      role="button"
+      aria-haspopup="true"
+      aria-expanded="false"
+    >GitHub <i class="bi bi-box-arrow-up-right external-link-icon"></i></a>
+  </li>
+        <li class="dropdown">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >1.1.1+1.20.1 <span class="caret"></span></a>
+          <ul class="dropdown-menu" id="version-dropdown"></ul>
+        </li>
+        <li class="dropdown">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >简体中文 (中国大陆) <span class="caret"></span></a>
+          <ul class="dropdown-menu dropdown-menu-left" id="lang-dropdown"></ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container" style="margin-top: 3em;">
+  <blockquote>
+      <h1><p>这是mediatransport文档的在线版本。</p></h1>
+      <p><strong>条目的模糊处理相当于剧透警告</strong>。点击条目即可取消模糊，不过这么做有可能破坏游戏后期的进程与体验。也可点击<a href="?nospoiler">此处</a>以取消所有模糊。</p>
+      <span id="old-version-notice" class="hidden">
+        <br />
+        <p><i>往事犹若异乡；他们在那里做的事情都不一样。</i></p>
+      </span>
+  </blockquote>
+</div>
+<div class="container">
+<div id="table-of-contents"></div>
+<nav class="toc-container">
+  <h2 class="page-header">
+    <span class="nobr">目录<a
+      href="javascript:void(0)"
+      class="permalink toggle-link small"
+      data-target="toc-category"
+      title="显示或收起全部"
+    ><i class="bi bi-list-nested"></i></a><a
+    href="#table-of-contents"
+    class="permalink small toc-permalink"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></span>
+  </h2>
+    <details class="toc-category">
+      <summary><a href="#interop/figura" class="toc-elem "><img
+      title="诡异木法杖"
+      alt="诡异木法杖"
+      src="https://raw.githubusercontent.com/FallingColors/HexMod/5831d9e2867f2369b8016aed83fbbd401fd7ad3d/Common/src/main/resources/assets/hexcasting/textures/item/staff/warped.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > Figura</a></summary>
+      <ul>
+          <li><a href="#interop/figura/about" class="toc-elem "><img
+      title="诡异木告示牌"
+      alt="诡异木告示牌"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/warped_sign.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > 传递</a></li>
+          <li><a href="#mediatransport_virtual/protocol" class="toc-elem "><img
+      title="收纳袋"
+      alt="收纳袋"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/bundle.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > Iota 传递协议</a></li>
+          <li><a href="#interop/figura/channels" class="toc-elem "><img
+      title="绯红木告示牌"
+      alt="绯红木告示牌"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/crimson_sign.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > FSB 频道</a></li>
+          <li><a href="#mediatransport_virtual/api" class="toc-elem "><img
+      title="书"
+      alt="书"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/book.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > Figura API 文档</a></li>
+          <li><a href="#interop/figura/mishaps" class="toc-elem "><img
+      title="音乐唱片"
+      alt="音乐唱片"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/music_disc_11.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > 传递事故</a></li>
+          <li><a href="#interop/figura/index" class="toc-elem "><img
+      title="箭"
+      alt="箭"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/arrow.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > 传递：目录</a></li>
+      </ul>
+    </details>
+    <details class="toc-category">
+      <summary><a href="#patterns" class="toc-elem "><img
+      title="书架"
+      alt="书架"
+      src="https://hexdoc-dev.github.io/hexdoc-minecraft/v/1.20.1/1.0.dev1/assets/minecraft/textures/block/bookshelf.png"
+      loading="lazy"
+      class="item-texture  texture "
+    > 图案</a></summary>
+      <ul>
+          <li><a href="#patterns/figura" class="toc-elem "><img
+      title="云杉木告示牌"
+      alt="云杉木告示牌"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/spruce_sign.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > 传递图案</a></li>
+      </ul>
+    </details>
+    <details class="toc-category">
+      <summary><a href="#mediatransport_admin_virtual" class="toc-elem "><img
+      title="绯红木法杖"
+      alt="绯红木法杖"
+      src="https://raw.githubusercontent.com/FallingColors/HexMod/5831d9e2867f2369b8016aed83fbbd401fd7ad3d/Common/src/main/resources/assets/hexcasting/textures/item/staff/crimson.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > mediatransport 管理员内容</a></summary>
+      <ul>
+          <li><a href="#mediatransport_virtual/config" class="toc-elem "><img
+      title="绯红木法杖"
+      alt="绯红木法杖"
+      src="https://raw.githubusercontent.com/FallingColors/HexMod/5831d9e2867f2369b8016aed83fbbd401fd7ad3d/Common/src/main/resources/assets/hexcasting/textures/item/staff/crimson.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > mediatransport 配置</a></li>
+          <li><a href="#mediatransport_virtual/fsb" class="toc-elem "><img
+      title="绯红木法杖"
+      alt="绯红木法杖"
+      src="https://raw.githubusercontent.com/FallingColors/HexMod/5831d9e2867f2369b8016aed83fbbd401fd7ad3d/Common/src/main/resources/assets/hexcasting/textures/item/staff/crimson.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > 关于 FSB</a></li>
+      </ul>
+    </details>
+</nav>
+  <main class="book-body">
+<section id="interop/figura">
+    <h2 class="category-title page-header">
+    <img
+      title="诡异木法杖"
+      alt="诡异木法杖"
+      src="https://raw.githubusercontent.com/FallingColors/HexMod/5831d9e2867f2369b8016aed83fbbd401fd7ad3d/Common/src/main/resources/assets/hexcasting/textures/item/staff/warped.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >Figura<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#interop/figura"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h2>
+    <p>这些叫作<span style="color: #8d6acc">形象/Avatar</span> 的构造体确实强大，只是操控起来有些烦人。</p>
+<div id="interop/figura/about" class="entry">
+    <h3 class="entry-title page-header">
+    <img
+      title="诡异木告示牌"
+      alt="诡异木告示牌"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/warped_sign.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >传递<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#interop/figura/about"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h3>
+    <p>我找到了其他发现<span style="color: #b38ef3">咒法学</span>这门技艺的人的笔记。笔记中我能理解的部分都已摘抄在此，但最后一部分里到处都是术语黑话，以至于完全无法理解。也许我应该去了解了解笔记中提及许多次的“<span style="color: #8d6acc">形象</span>”的学问？</p>
+<br />
+    <p>这些匠师与<span style="color: #8d6acc">形象</span>交流时用的方法较为原始，但随后不久自然似乎就专门为此新创了图案。自然扭曲了 iota 的形态，以提高传递的效率和吞吐量，大概算是某种标准惯例吧。倘若凭肉眼观察扭曲后的 iota，看见的只会是方框和各种乱码。</p>
+<br />
+    <p>创作<span style="color: #8d6acc">形象</span>的匠师们貌似没有遇到读不懂的问题，而且也找到了解码方法。后方是他们留下的笔记，谨供参照。不过说真的，我真不太懂到底发生了什么。</p>
+<br />
+<div class="mediatransport-altn">
+<div class="-decoration"></div>
+<!-- begin-altn special page -->
+    <p>我们发现（创造？）了些新法术。它们能令形象和咒术直接交流；不会再因为滥发信息被踢了！</p><p>我们中对数据了解较多的人成功解码了格式。整个协议均与字节对齐，且在数据传递中用到了 <span style="color: #8bf">Buffer</span>。（换句话说，用完记得关闭！）</p>
+<br />
+    <p>从我们的观察出发，可以发现每个 iota 均以单个字节的<span style="color: #8bf">类型/type</span> 起始，而后跟随 0 字节或若干字节的<span style="color: #8bf">数据/data</span>。所有多字节格式均采用大端序。（也是 Buffer 读取方法默认采用的。）</p><p></p>
+<br />
+    <p>格式的全部细节见此：<a href="#mediatransport_virtual/protocol">Iota 传递协议</a>。</p>
+<br />
+    <p>不过，自然并不乐意大批量传递 MiB 级别的数据；为避免此类滥用，传递时需考虑到“发送能量”。在正常情况下其能迅速恢复，而所有与传递相关的操作都会消耗发送能量。</p>
+<br />
+    <p>而当“发送能量”耗尽时，试图提交更多 iota 会招致事故。为避免其耗尽，可使用<a href="#patterns/figura@mediatransport:check_rate_limit">配额之精思</a>加以调控。</p>
+<br />
+</div>
+</div>
+<div id="mediatransport_virtual/protocol" class="entry">
+    <h3 class="entry-title page-header">
+    <img
+      title="收纳袋"
+      alt="收纳袋"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/bundle.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >Iota 传递协议<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#mediatransport_virtual/protocol"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h3>
+<div class="mediatransport-altn">
+<div class="-decoration"></div>
+<!-- begin-altn special page -->
+  <!-- ahh, freedom from that stupid book format. lots of room to play here! -->
+<div class="mediatransport-hidden" style="padding: 8px; border: 2px solid #f44;">
+  <div style="font-size: 3rem;">Loading error</div>
+  <p>
+  It appears that mediatransport's styles failed to load. Something's wrong with this book's setup.
+  </p>
+<pre>
+{% include &#34;mediatransport:mediatransport_shared.css.jinja&#34; %}
+</pre>
+</div>
+<div class="protocoldocs">
+<p><b>本文档适用于特定版本的协议（<a class="protocol-sym" href="#mediatransport-protocol-protocol_version">版本号</a>：1）。</b></p>
+<p>与先前描述的一样，iota由1字节的<span class="protocol-sym-def" id="mediatransport-protocol-type">类型</span>起始，后跟一定量的<span class="protocol-sym-raw">数据</span>，数据量由类型决定。</p>
+<div class="block-diagram">
+      <div class="block -sized -sym" style="--width: 1">
+        <span class="-name">类型</span>
+        <span class="-size">1字节</span>
+      </div>
+      <div class="block -indefinite -sym">
+        <span class="-name">数据</span>
+        <span class="-size"> ... </span>
+      </div>
+</div>
+<p>每种iota都有其独特的<a class="protocol-sym" href="#mediatransport-protocol-type">类型</a>值，且各类型的<span class="protocol-sym-raw">数据</span>格式各不相同。</p>
+<h3>内置类型</h3>
+<h4><code>ff</code>：垃圾</h4>
+<p>这些类型不带数据。同时因为垃圾用于表示解码错误，通常不建议专门传递垃圾。</p>
+<div class="block-diagram">
+      <div class="block -sized -literal" style="--width: 1">
+        <span class="-name">ff</span>
+        <span class="-size">1字节</span>
+      </div>
+</div>
+<h4><code>02</code>：True和<code>03</code>：False</h4>
+<div class="diagram-sbs">
+<div class="block-diagram">
+      <div class="block -sized -literal" style="--width: 1">
+        <span class="-name">02</span>
+        <span class="-size">1字节</span>
+      </div>
+</div>
+<div class="block-diagram">
+      <div class="block -sized -literal" style="--width: 1">
+        <span class="-name">03</span>
+        <span class="-size">1字节</span>
+      </div>
+</div>
+</div>
+<h4><code>04</code>：Null</h4>
+<div class="block-diagram">
+      <div class="block -sized -literal" style="--width: 1">
+        <span class="-name">04</span>
+        <span class="-size">1字节</span>
+      </div>
+</div>
+<h4><code>05</code>：双精度浮点数</h4>
+<p>终于是有点意思的东西了！咒法学采用IEEE 754双精度浮点数（即8字节、64位），此处<span class="protocol-sym-def" id="mediatransport-protocol-double_value">值</span>中使用的就是该值。</p>
+<div class="block-diagram">
+      <div class="block -sized -literal" style="--width: 1">
+        <span class="-name">05</span>
+        <span class="-size">1字节</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 8">
+        <span class="-name">值</span>
+        <span class="-size">8字节</span>
+      </div>
+</div>
+<h4><code>06</code>：图案</h4>
+<p>为致敬Hexxy，图案的类型值选用了6。图案的编码有些复杂：</p>
+<ul>
+<li>首先是代表<span class="protocol-sym-def" id="mediatransport-protocol-dir">朝向</span>的1个字节。其值与内部表示有对应关系，具体的外在表现如下：0 = 东北，1 = 东，2 = 东南，3 = 西南，4 = 西，5 = 西北。</li>
+<li>随后是图案的角度数目，为一4字节整数。其值等于笔画数减1，也等于<span class="protocol-sym-def" id="mediatransport-protocol-pattern_len">长度</span>。</li>
+<li>而后是<span class="protocol-sym-def" id="mediatransport-protocol-angles">角度</span>本身，各角度占1个字节。其值同样与内部表示有对应关系，具体表现如下：0 = 前方，1 = 右前方，2 = 右后方，3 = 后方，4 = 左后方，5 = 左前方。</li>
+</ul>
+<div class="block-diagram">
+      <div class="block -sized -literal" style="--width: 1">
+        <span class="-name">06</span>
+        <span class="-size">1字节</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 1">
+        <span class="-name">朝向</span>
+        <span class="-size">1字节</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 4">
+        <span class="-name">长度</span>
+        <span class="-size">4字节</span>
+      </div>
+      <div class="block -flexible -sym">
+        <span class="-name">角度</span>
+        <span class="-size">=长度*1字节</span>
+      </div>
+</div>
+<h4><code>07</code>：向量</h4>
+<p>向量即是按序排列的三个双精度浮点数：<span class="protocol-sym-def" id="mediatransport-protocol-vec_x">x</span>、<span class="protocol-sym-def" id="mediatransport-protocol-vec_y">y</span>、<span class="protocol-sym-def" id="mediatransport-protocol-vec_z">z</span>。</p>
+<div class="block-diagram">
+      <div class="block -sized -literal" style="--width: 1">
+        <span class="-name">07</span>
+        <span class="-size">1字节</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 8">
+        <span class="-name">x</span>
+        <span class="-size">8字节</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 8">
+        <span class="-name">y</span>
+        <span class="-size">8字节</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 8">
+        <span class="-name">z</span>
+        <span class="-size">8字节</span>
+      </div>
+</div>
+<h4><code>08</code>：列表</h4>
+<p>列表是咒法学中的主要结构化工具，且其表示与图案类似：首先是4字节的<span class="protocol-sym-def" id="mediatransport-protocol-list_len">长度</span>，后方跟随任意类型的iota表示。</p>
+<div class="block-diagram">
+      <div class="block -sized -literal" style="--width: 1">
+        <span class="-name">08</span>
+        <span class="-size">1字节</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 4">
+        <span class="-name">长度</span>
+        <span class="-size">4字节</span>
+      </div>
+      <div class="block -indefinite -sym">
+        <span class="-name">iota</span>
+        <span class="-size"> ... </span>
+      </div>
+</div>
+<p class="mediatransport-callout -warning">
+  形象具有一次性创造一整个iota结构的能力，自然似乎在这方面有些力不从心，没法很好地满足需求（……至少默认是这样）；你有可能会接收到垃圾
+</p>
+<h3>MoreIotas类型</h3>
+<h4><code>01</code>：字符串</h4>
+<p>字符串和其他可变长度的iota类似，开头处有一4字节的<span class="protocol-sym-def" id="mediatransport-protocol-str_len">长度</span>，后方再跟随数据（此类型中为<span class="protocol-sym-def" id="mediatransport-protocol-string">字符串</span>）。字符串的预期编码为UTF-8。</p>
+<div class="block-diagram">
+      <div class="block -sized -literal" style="--width: 1">
+        <span class="-name">01</span>
+        <span class="-size">1字节</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 4">
+        <span class="-name">长度</span>
+        <span class="-size">4字节</span>
+      </div>
+      <div class="block -flexible -sym">
+        <span class="-name">字符串</span>
+        <span class="-size">=长度*1字节</span>
+      </div>
+</div>
+<h4><code>40</code>：矩阵</h4>
+<p>矩阵是由双精度浮点数组成的二维数组。</p>
+<ul>
+  <li>首先是1字节的<span class="protocol-sym-def" id="mediatransport-protocol-rows">行数</span>，后方跟随1字节的<span class="protocol-sym-def" id="mediatransport-protocol-cols">列数</span>。</li>
+  <li>然后是矩阵的<span class="protocol-sym-def" id="mediatransport-protocol-matrix_contents">内容</span>——每个元素都是一个双精度浮点数。各行按序排列（例如2×2矩阵，其顺序如下：首先是第1行第1列的元素、而后是第1行第2列的元素，然后再跟随第2行的元素）。</li>
+</ul>
+<div class="block-diagram">
+      <div class="block -sized -literal" style="--width: 1">
+        <span class="-name">40</span>
+        <span class="-size">1字节</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 1">
+        <span class="-name">行数</span>
+        <span class="-size">1字节</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 1">
+        <span class="-name">列数</span>
+        <span class="-size">1字节</span>
+      </div>
+      <div class="block -flexible -sym">
+        <span class="-name">内容</span>
+        <span class="-size">=行数*列数*8字节</span>
+      </div>
+</div>
+<h3>Hexpose类型</h3>
+<h4><code>50</code>：文本</h4>
+<p>此格式似乎无法传递文本iota（又称“文形”）的装饰属性。不过无论如何，文本本身还是可以传递的。文本iota的格式与字符串一致：</p>
+<div class="block-diagram">
+      <div class="block -sized -literal" style="--width: 1">
+        <span class="-name">50</span>
+        <span class="-size">1字节</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 4">
+        <span class="-name">长度</span>
+        <span class="-size">4字节</span>
+      </div>
+      <div class="block -flexible -sym">
+        <span class="-name">字符串</span>
+        <span class="-size">=长度*1字节</span>
+      </div>
+</div>
+<h3>非iota</h3>
+<p>这些数据似乎并不对应某种iota！它们无法发送给自然，且只会在特殊情况下出现。</p>
+<h4><code>fe</code>：配置数据</h4>
+<p>这个信息团是自然对<a href="#patterns/figura@mediatransport:send_server_info">查询配置</a>的回应。</p>
+<ul>
+  <li>首先是协议的<span class="protocol-sym-def" id="mediatransport-protocol-protocol_version">版本号</span>，为一2字节“短整型”。本文档所述协议的<em>版本号</em>为<em>1</em>。</li>
+  <li>然后是提交Iota可传递数据的最大空间占用量，以字节计。</li>
+  <li>随后是提交Iota，第二型可传递数据的最大空间占用量……</li>
+  <li>再是形象可接收数据的最大量。</li>
+  <li>而后是某时刻下“发送能量”的最大值，为一双精度浮点数……</li>
+  <li>以及“发送能量”每刻的恢复量……</li>
+  <li>最后，是提交Iota，第二型的“发送能量”消耗量。</li>
+</ul>
+<div class="block-diagram">
+      <div class="block -sized -literal" style="--width: 1">
+        <span class="-name">fe</span>
+        <span class="-size">1字节</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 2">
+        <span class="-name">版本号</span>
+        <span class="-size">2字节</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 4">
+        <span class="-name">最大发送</span>
+        <span class="-size">4字节</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 4">
+        <span class="-name">最大玩家间发送</span>
+        <span class="-size">4字节</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 4">
+        <span class="-name">最大接收</span>
+        <span class="-size">4字节</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 8">
+        <span class="-name">最大能量</span>
+        <span class="-size">8字节</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 8">
+        <span class="-name">能量恢复速率</span>
+        <span class="-size">8字节</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 8">
+        <span class="-name">玩家间发送消耗</span>
+        <span class="-size">8字节</span>
+      </div>
+</div>
+</div>
+<br />
+</div>
+</div>
+<div id="interop/figura/channels" class="entry">
+    <h3 class="entry-title page-header">
+    <img
+      title="绯红木告示牌"
+      alt="绯红木告示牌"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/crimson_sign.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >FSB 频道<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#interop/figura/channels"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h3>
+    <p>……啊，我想起来了！</p>
+<br />
+<div class="mediatransport-altn">
+<div class="-decoration"></div>
+<!-- begin-altn special page -->
+  <div class="mediatransport-hidden" style="padding: 8px; border: 2px solid #f44;">
+  <div style="font-size: 3rem;">Loading error</div>
+  <p>
+  It appears that mediatransport's styles failed to load. Something's wrong with this book's setup.
+  </p>
+<pre>
+{% include &#34;mediatransport:mediatransport_shared.css.jinja&#34; %}
+</pre>
+</div>
+<p>
+由<a href="#patterns/figura@mediatransport:send_fsb">提交 Iota</a>发送的数据会送至<code>server_packets.transport_received</code>，如下：
+</p>
+<pre>
+function server_packets.transport_received(data)
+    data:close()
+end
+</pre>
+<p>
+其他施法者由<a href="#patterns/figura@mediatransport:send_other">提交 Iota，第二型</a>发送的数据会送至另一个频道：<code>server_packets.transport_external_received</code>
+</p>
+<pre>
+function server_packets.transport_external_received(data)
+    data:close()
+end
+</pre>
+<p>
+最后，如需发送数据，应在<code>:sendPacket</code>中使用<code>"transport_send"</code>：
+</p>
+<pre>
+server_packets:sendPacket("transport_send", buffer)
+buffer:close()
+</pre>
+<br />
+</div>
+</div>
+<div id="mediatransport_virtual/api" class="entry">
+    <h3 class="entry-title page-header">
+    <img
+      title="书"
+      alt="书"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/book.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >Figura API 文档<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#mediatransport_virtual/api"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h3>
+    <p>我在其他笔记的补充材料中发现了这则条目。</p>
+<br />
+<div class="mediatransport-altn">
+<div class="-decoration"></div>
+<!-- begin-altn special page -->
+  <div class="mediatransport-hidden" style="padding: 8px; border: 2px solid #f44;">
+  <div style="font-size: 3rem;">Loading error</div>
+  <p>
+  It appears that mediatransport's styles failed to load. Something's wrong with this book's setup.
+  </p>
+<pre>
+{% include &#34;mediatransport:mediatransport_shared.css.jinja&#34; %}
+</pre>
+</div>
+<p>
+  在数据交流中，形象端的操作也比较复杂，也许是因为<s>完全无人维护wiki</s>……记录实践不太有效。与自然交互所用系统的信息来源似乎只有内置文档，且许多内容尚不完善。
+</p>
+<p>
+  （如果希望查阅这些文档，可以咏唱<code>/figura docs globals server_packets</code>及其各个子分支。）
+</p>
+<p>
+  受此影响，我写了这篇补充文档用作参照材料，希望可以让读者对API的工作方式有一定程度的了解。
+</p>
+<h3><code>server_packets</code>概览</h3>
+<p>
+  <code>server_packets</code>的内部名称为<code>ServerPacketsAPI</code>，其功能和我们更为熟悉的<code>pings</code>类似，两者只有少量区别。
+</p>
+<p>
+  接收数据时，可使用（你可能更熟悉的）函数定义语法：
+</p>
+<pre>
+function server_packets.packet_id(data)
+  -- 在此处理数据！
+end
+</pre>
+<p>
+  与pings相比，server_packets的接收器永远只会有一个参数，应传入内含数据包中数据的<a class="protocol-sym" href="#mediatransport-protocol-Buffer">Buffer</a>。
+</p>
+<p class="mediatransport-callout -warning">
+  务必<em>关闭</em>你的<a class="protocol-sym" href="#mediatransport-protocol-Buffer">Buffer</a>！倘若不关闭，Buffer槽会保持在“已使用”状态，最终会导致Buffer耗尽。（从我的研究看来，大多数人根本不知道Buffer的数量有上限。但不管怎么说，它是权限系统的一部分，而不关闭Buffer是产生潜在漏洞的最简单方式之一。）
+</p>
+<p>
+  另一则和pings的区别，在于此包要求显式发送数据，而调用接收器函数并不会激活此功能。换言之，调用<code>server_packets.packet_id()</code><em>不会发送数据</em>。发送数据包时，应当使用<code>server_packets:sendPacket(id, data)</code>，其中<code>id</code>是<code>string</code>，而<code>data</code>需为<code>Buffer</code>。
+</p>
+<p class="mediatransport-callout -warning">
+  发送前务必<a href='#mediatransport-setPosition'>重置Buffer指针</a>。
+</p>
+<h3><span class="protocol-sym-def" id="mediatransport-protocol-Buffer">Buffer</span>快速介绍</h3>
+<p class="mediatransport-hatnote">
+  Buffer的官方文档可通过咏唱<code>/figura docs globals data Buffer</code>获取。
+</p>
+<p class="mediatransport-hatnote">
+  也可在<a href='https://applejuiceyy.github.io/figs/latest/Buffer/'>FIGS</a>处和<a href='https://figura-wiki.pages.dev/globals/Data/Buffer'>Figura维基</a>处访问。
+</p>
+<p>
+  Buffer是读取结构化数据（如自然提供的数据）的便捷接口。就好像它<a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/DataOutputStream.html'>有个参考原型</a>似的……
+</p>
+<h4>新建Buffer：<code>data:createBuffer()</code></h4>
+<p>
+  新建Buffer时，应使用<code>data:createBuffer()</code>，它会返回一个新Buffer对象。
+</p>
+<p>
+  也可在<code>createBuffer</code>的参数中指定初始分配的内存大小，但除非有极其严格的限制，Figura默认会自动扩展Buffer，因此并不一定要指定此参数。
+</p>
+<h4>收拾残局：<code>:close()</code></h4>
+<p>
+  如上文所警告的，Buffer的数量有上限，且其与权限系统挂钩。
+</p>
+<ul>
+  <li>处于<em>Default</em>等级时，上限为<b>4个Buffer</b>。</li>
+  <li>处于<em>High</em>等级时，上限为<b>16个Buffer</b>。</li>
+  <li>处于<em>MAX</em>等级时，上限为<b>32个Buffer</b>。</li>
+</ul>
+<p>
+  对Buffer调用<code>close()</code>即可释放。释放后不可再获取其内容。
+</p>
+<pre>
+local buf = data:createBuffer()
+-- （过一段时间之后……）
+buf:close()
+</pre>
+<h4 id="mediatransport-setPosition">移动指针：<code>:setPosition(pos)</code></h4>
+<p>
+  读取和写入Buffer时，实际用到的是在数据中移动的“指针”。
+</p>
+<p>
+  每次读写数据时，即会在指针所处位置执行对应操作，并<em>自动</em>将指针<em>移动</em>到下一字节。可借此方便地按序读写多个值。
+</p>
+<p>
+  不过，手动移动指针依然有其用途。譬如说，需将写入Buffer的数据读取回来，应将指针移动到0号位置（即“重置”）：
+</p>
+<pre>
+buf:writeByte(5)
+buf:writeDouble(3.14159)
+buf:setPosition(0) -- 移回开头
+</pre>
+<h4 id="mediatransport-write">写入数据</h4>
+<p class="mediatransport-hatnote">
+  本节仅讨论自然会接受的类型。Buffer确实支持其他类型，如需获取列表，请参阅官方文档。
+</p>
+<p>
+  有多种方法可向Buffer写入各类型的数据。它们都会将指针移至<em>所写数据的末尾</em>，因此连续多次调用相当于前后拼接数据。
+</p>
+<p>
+  对于“<em>x</em>字节整数”，应使用下列方法：
+</p>
+<ul>
+  <li><code>:write(n)</code>：1字节，如<a class="protocol-sym" href="#mediatransport-protocol-type">类型</a>、图案的<a class="protocol-sym" href="#mediatransport-protocol-dir">朝向</a>、矩阵的<a class="protocol-sym" href="#mediatransport-protocol-rows">行数</a>和<a class="protocol-sym" href="#mediatransport-protocol-cols">列数</a>。</li>
+  <li><code>:writeInt(n)</code>：4字节，通常用于描述数据的长度</li>
+</ul>
+<p>
+  对于“双精度浮点数”，应使用下列方法：
+</p>
+<ul>
+  <li><code>:writeDouble(n)</code>：8字节，数的<a class="protocol-sym" href="#mediatransport-protocol-double_value">值</a>、向量的<a class="protocol-sym" href="#mediatransport-protocol-vec_x">x</a>、<a class="protocol-sym" href="#mediatransport-protocol-vec_y">y</a>、<a class="protocol-sym" href="#mediatransport-protocol-vec_z">z</a>。</li>
+</ul>
+<h4 id="mediatransport-read">读取数据</h4>
+<p>
+  与写入数据类似，Buffer也支持多种读取方法。每个读取方法同样都会将指针移至<em>所读数据的末尾</em>。
+</p>
+<ul>
+  <li><code>:read()</code>：1字节，如<a class="protocol-sym" href="#mediatransport-protocol-type">类型</a>、图案的<a class="protocol-sym" href="#mediatransport-protocol-dir">朝向</a>、矩阵的<a class="protocol-sym" href="#mediatransport-protocol-rows">行数</a>和<a class="protocol-sym" href="#mediatransport-protocol-cols">列数</a>。</li>
+  <li><code>:readShort()</code>：2字节，协议<a class="protocol-sym" href="#mediatransport-protocol-protocol_version">版本号</a>。</li>
+  <li><code>:readInt()</code>：4字节，通常是长度，也可以是配置参数。</li>
+  <li><code>:readDouble()</code>：8字节，数的<a class="protocol-sym" href="#mediatransport-protocol-double_value">值</a>、向量的<a class="protocol-sym" href="#mediatransport-protocol-vec_x">x</a>、<a class="protocol-sym" href="#mediatransport-protocol-vec_y">y</a>、<a class="protocol-sym" href="#mediatransport-protocol-vec_z">z</a>，也用于与“发送能量”相关的配置值。</li>
+</ul>
+<br />
+</div>
+</div>
+<div id="interop/figura/mishaps" class="entry">
+    <h3 class="entry-title page-header">
+    <img
+      title="音乐唱片"
+      alt="音乐唱片"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/music_disc_11.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >传递事故<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#interop/figura/mishaps"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h3>
+    <p>形象传递所用的语言相当深奥，若使用不当，可能会产生多种错误。</p>
+<br />
+  <h4>传递初始化失败</h4>
+    <p><i>Figura 服务器未初始化……</i></p><p>服务端配置错误，或所处宇宙为“集成服务端”时出现。产生灰色火花，并使我生出一种失望感。</p>
+<br />
+  <h4>Iota 不可提交</h4>
+    <p><i>无法发送……因为该 iota 类型无法发送</i></p><p>自然不接受发送该类型 iota 的请求。产生黑色火花。</p><p><i>想支持传递某种 iota？请到 <a href="https://github.com/penguinencounter/mediatransport/issues" target="_blank">GitHub</a> 处询问！</i></p>
+<br />
+  <h4>Iota 损坏</h4>
+    <p><i>无法发送……因为信息损坏或格式错误</i></p><p>某些东西发生了严重的损坏。产生黑色火花，也许也应该知会相关的 GitHub 问题跟踪器。</p>
+<br />
+  <h4>矩阵过大</h4>
+    <p><i>无法发送……因为矩阵过大<br />无法发送……因为矩阵行数过多<br />无法发送……因为矩阵列数过多</i></p><p>试图发送的矩阵元素过多，或行数/列数超出了 255。产生黑色火花。</p>
+<br />
+  <h4>发送过大</h4>
+    <p><i>无法发送：传递所用空间最少为……</i></p><p>所发送 iota 占用的空间比允许的最大值还要大。产生黑色火花。</p><p><i>注意：服务器管理员可在配置中更改上限。</i></p>
+<br />
+  <h4>发送至其他过大</h4>
+    <p><i>无法发送至其他玩家：传递所用空间最少为……</i></p><p>向其他玩家的形象发送 iota 时，其占用的空间比允许的最大值还要大。产生黑色火花。</p><p><i>注意：服务器管理员可在配置中更改上限。</i></p>
+<br />
+  <h4>无可接收</h4>
+    <p>试图接受 iota，而实际无 iota 可供接受（也即队列为空）。产生白色火花，并令我耳中回响起<span class="obfuscated">受折磨之意识</span>的尖啸。</p>
+<br />
+  <h4>传递过快</h4>
+    <p>“发送能量”耗尽。也许使用提交 Iota 时要再凝练些？产生橙色火花，并产生某物破碎的声音。</p>
+<br />
+<div class="mediatransport-altn">
+<div class="-decoration"></div>
+<!-- begin-altn special page -->
+    <p>似乎这里的大部分错误都只在从自然的领域<i>发送</i>（或者说“提交”）数据时出现。自然对接受错误数据似乎更宽容……因为这不会导致崩溃，而是会产出它最喜爱的非错误：垃圾！<br />不过这也让我们很难确定发送失败的原因。我们在此汇总了一份检查表：</p>
+<br />
+    <p>- 自然未对该数据的类型（也即首字节）提供表示方法<br />- 传递末尾缺失数据<br />- 数据过大（此类别的空间占用上限可能和另一种过大导致的错误不同……）<br />- 上一条的变种，受同样的矩阵长宽限制约束（尽管只要行数或列数过多，数据必定会过大）</p>
+<br />
+    <p>还需注意，列表可能会部分传递失败。这可能导致解码器“出轨”，以至于将类型错误解读为数据，反过来也有可能。祝好运！</p>
+<br />
+</div>
+</div>
+<div id="interop/figura/index" class="entry">
+    <h3 class="entry-title page-header">
+    <img
+      title="箭"
+      alt="箭"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/arrow.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >传递：目录<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#interop/figura/index"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h3>
+  <h4>Related Chapters</h4>
+<ul>
+    <li><a href="#interop/figura/about" class="toc-elem "><img
+      title="诡异木告示牌"
+      alt="诡异木告示牌"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/warped_sign.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > 传递</a></li>
+    <li><a href="#interop/figura/mishaps" class="toc-elem "><img
+      title="音乐唱片"
+      alt="音乐唱片"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/music_disc_11.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > 传递事故</a></li>
+    <li><a href="#interop/figura/channels" class="toc-elem "><img
+      title="绯红木告示牌"
+      alt="绯红木告示牌"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/crimson_sign.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > FSB 频道</a></li>
+    <li><a href="#mediatransport_virtual/protocol" class="toc-elem "><img
+      title="收纳袋"
+      alt="收纳袋"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/bundle.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > Iota 传递协议</a></li>
+    <li><a href="#patterns/figura" class="toc-elem "><img
+      title="云杉木告示牌"
+      alt="云杉木告示牌"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/spruce_sign.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > 传递图案</a></li>
+</ul>
+    <p>所有与传递和 Figura 相关条目的目录。</p>
+<br />
+</div>
+</section>
+<section id="patterns">
+    <h2 class="category-title page-header">
+    <img
+      title="书架"
+      alt="书架"
+      src="https://hexdoc-dev.github.io/hexdoc-minecraft/v/1.20.1/1.0.dev1/assets/minecraft/textures/block/bookshelf.png"
+      loading="lazy"
+      class="item-texture  texture "
+    >图案<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#patterns"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h2>
+    <p>我所发现的各式图案，和它们的功用。</p>
+<div id="patterns/figura" class="entry">
+    <h3 class="entry-title page-header">
+    <img
+      title="云杉木告示牌"
+      alt="云杉木告示牌"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/spruce_sign.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >传递图案<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#patterns/figura"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h3>
+  <div id="patterns/figura@mediatransport:send_fsb" class="">
+<h4 class="pattern-title">提交 Iota (sendable →)<a
+    href="#patterns/figura@mediatransport:send_fsb"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >渲染方式</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >配色</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="edwdwad"
+        data-start="east"
+        data-per-world="False"
+      >浏览器不支持图案的可视化。图案代码见此：edwdwad</canvas>
+  </details>
+      <p>将栈顶 iota 发送至以太，以便我当前的形象接收。可能会因<a href="#interop/figura/mishaps">多种理由</a>而失败。固定消耗 1 点“发送能量”。</p>
+  </div>
+<br />
+  <div id="patterns/figura@mediatransport:recv_fsb" class="">
+<h4 class="pattern-title">接受 Iota (→ sendable | garbage)<a
+    href="#patterns/figura@mediatransport:recv_fsb"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >渲染方式</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >配色</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="edwdwwaa"
+        data-start="east"
+        data-per-world="False"
+      >浏览器不支持图案的可视化。图案代码见此：edwdwwaa</canvas>
+  </details>
+      <p>从<span style="color: #8d6acc">接收队列</span>中获取下一个 iota，队列为空会招致<a href="#interop/figura/mishaps">事故</a>。</p>
+  </div>
+<br />
+  <div id="patterns/figura@mediatransport:check_queue" class="">
+<h4 class="pattern-title">信号量之精思 (→ number)<a
+    href="#patterns/figura@mediatransport:check_queue"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >渲染方式</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >配色</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="edwdwq"
+        data-start="east"
+        data-per-world="False"
+      >浏览器不支持图案的可视化。图案代码见此：edwdwq</canvas>
+  </details>
+      <p>获取队列中 iota 的个数。</p>
+  </div>
+<br />
+  <div id="patterns/figura@mediatransport:send_other" class="">
+<h4 class="pattern-title">提交 Iota，第二型 (player, sendable →)<a
+    href="#patterns/figura@mediatransport:send_other"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >渲染方式</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >配色</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="wewdwwwdwaawawdwawaqwdwwdada"
+        data-start="east"
+        data-per-world="True"
+      >浏览器不支持图案的可视化。图案代码见此：wewdwwwdwaawawdwawaqwdwwdada</canvas>
+  </details>
+      <p>将栈顶 iota 发送出去，以便栈顶往下第二位置处的玩家接收。它所用的接收器似乎独立于同类法术。通常消耗 2 点“发送能量”，但可能因为服务端配置不同而变化。</p>
+  </div>
+<br />
+  <div id="patterns/figura@mediatransport:check_rate_limit" class="">
+<h4 class="pattern-title">配额之精思 (→ number)<a
+    href="#patterns/figura@mediatransport:check_rate_limit"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >渲染方式</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >配色</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="edwdwda"
+        data-start="east"
+        data-per-world="False"
+      >浏览器不支持图案的可视化。图案代码见此：edwdwda</canvas>
+  </details>
+      <p>查询剩余的“发送能量”点数。</p>
+  </div>
+<br />
+  <div id="patterns/figura@mediatransport:send_server_info" class="">
+<h4 class="pattern-title">查询配置<a
+    href="#patterns/figura@mediatransport:send_server_info"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >渲染方式</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >配色</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="edwdwwdde"
+        data-start="east"
+        data-per-world="False"
+      >浏览器不支持图案的可视化。图案代码见此：edwdwwdde</canvas>
+  </details>
+      <p>请求自然发送其对我当前所用形象的首选项。消耗 1 点“发送能量”。详情参见<a href="#mediatransport_virtual/protocol">协议文档</a>。</p>
+  </div>
+<br />
+</div>
+</section>
+<section id="mediatransport_admin_virtual">
+    <h2 class="category-title page-header">
+    <img
+      title="绯红木法杖"
+      alt="绯红木法杖"
+      src="https://raw.githubusercontent.com/FallingColors/HexMod/5831d9e2867f2369b8016aed83fbbd401fd7ad3d/Common/src/main/resources/assets/hexcasting/textures/item/staff/crimson.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >mediatransport 管理员内容<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#mediatransport_admin_virtual"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h2>
+    <p>本分类<strong>仅见于 hexdoc</strong>（游戏内手册不包含此内容），服务器管理员在安装 mediatransport 和 FSB 时可参照其中内容。</p>
+<div id="mediatransport_virtual/config" class="entry">
+    <h3 class="entry-title page-header">
+    <img
+      title="绯红木法杖"
+      alt="绯红木法杖"
+      src="https://raw.githubusercontent.com/FallingColors/HexMod/5831d9e2867f2369b8016aed83fbbd401fd7ad3d/Common/src/main/resources/assets/hexcasting/textures/item/staff/crimson.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >mediatransport 配置<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#mediatransport_virtual/config"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h3>
+    <p>mediatransport 有多条服务端配置选项，能用于限制形象与施法环境间传递的数据。</p>
+<br />
+  <h4>空间占用限制</h4>
+    <p>所用配置值均以字节为单位。</p><p><span style="text-decoration: underline">maximumSendSize</span>：<a href="#patterns/figura@mediatransport:send_fsb">提交 Iota</a> 可发送的最大数据量。</p><p><span style="text-decoration: underline">maximumInterSendSize</span>：<a href="#patterns/figura@mediatransport:send_other">提交 Iota，第二型</a>可发送的最大数据量。</p><p><span style="text-decoration: underline">maximumRecvSize</span>：来自 Figura 的最大接收数据量。超出此限制会向队列压入垃圾。</p><p><span style="text-decoration: underline">matrixMaxArea</span>：MoreIotas 独占；设定收发矩阵时其最大元素数（宽*高），此配置项独立于其他限制，也独立于最大行数和列数（255）配置。</p>
+<br />
+  <h4>过滤器</h4>
+    <p>mediatransport 有三个独立的<i>过滤器</i>配置组，用以控制可以发送何种 iota。每个过滤器都由 <span style="text-decoration: underline">mode</span>（模式）和<span style="text-decoration: underline">过滤项列表</span>组成。</p><p><span style="text-decoration: underline">mode</span> 可以是 <strong>&#34;Block&#34;</strong> (黑名单，禁用特定类别）或 <strong>&#34;Allow&#34;</strong>（白名单，仅允许特定类别）。</p><p>过滤项列表用于指明过滤器所作用类别的资源位置。例如，为禁用发送列表，应将 <span style="text-decoration: underline">mode</span> 设置为 <strong>&#34;Block&#34;</strong>，列表设置为 <strong>[&#34;hexcasting:list&#34;]</strong>。</p><p>需注意，如果 mediatransport 没有适配某类型的编解码器，向白名单加入该 iota 类型并不会自动使得其可发送。</p>
+<br />
+  <h4>发送过滤器</h4>
+    <p>和空间占用限制类似，<a href="#patterns/figura@mediatransport:send_fsb">提交 Iota</a> 和<a href="#patterns/figura@mediatransport:send_other">提交 Iota，第二型</a>使用的过滤器是不同的。</p><p><span style="text-decoration: underline">sendFilter</span> 和 <span style="text-decoration: underline">sendFilterMode</span> 适用于提交 Iota。<span style="text-decoration: underline">interSendFilter</span> 和 <span style="text-decoration: underline">interSendFilterMode</span> 适用于提交 Iota，第二型。</p><p>如果这些过滤器中阻挡了某种 iota，发送相关 iota 时即会招致“Iota 不可提交”事故（就算在列表中也一样）。</p>
+<br />
+  <h4>接收过滤器</h4>
+    <p><span style="text-decoration: underline">recvFilter</span> 和 <span style="text-decoration: underline">recvFilterMode</span> 用于控制可从 Figura 处接收何种 iota。</p><p>此过滤器阻挡的 iota 会替换成垃圾，但包含此类型 iota 的容器不受影响。例如，在列表不被阻挡的情况下，包含非法 iota 的列表只会换为包含垃圾的列表。</p>
+<br />
+</div>
+<div id="mediatransport_virtual/fsb" class="entry">
+    <h3 class="entry-title page-header">
+    <img
+      title="绯红木法杖"
+      alt="绯红木法杖"
+      src="https://raw.githubusercontent.com/FallingColors/HexMod/5831d9e2867f2369b8016aed83fbbd401fd7ad3d/Common/src/main/resources/assets/hexcasting/textures/item/staff/crimson.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >关于 FSB<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#mediatransport_virtual/fsb"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h3>
+    <p>mediatransport 的运作依赖于 <span style="text-decoration: underline">Figura Server Backend</span>（Figura 服务端后端，又称 <span style="text-decoration: underline">FSB</span>）。FSB 是 1.20.1 版本下 Figura 开发版的特性，允许在服务端中托管形象和 pings，而不需要通过全局后端处理。</p>
+<br />
+    <p>FSB <span style="text-decoration: underline">在单人游戏和 LAN 世界中无效</span>，因此你可能需要使用专用服务器来测试咒术。感谢你游玩我们的附属！:)</p><p><a href="https://github.com/penguinencounter/Figura/releases/tag/figura-fsb-placeholder" target="_blank">GitHub 上的 Figura FSB 构建文件</a></p>
+<br />
+</div>
+</section>
+  </main>
+</div>
+      <footer class="footer">
+        <div class="container text-muted">
+          <p>该页面不是Minecraft的官方产品，不隶属于Mojang和Microsoft，且不代表Mojang和Microsoft的意见。</p><p>Minecraft的游戏内容和资源均为各自所有者的知识财产。</p><p>使用<a href="https://pypi.org/project/hexdoc/" target="_blank">hexdoc</a>精心制作。❤️</p>
+        </div>
+      </footer>
+  </body>
+</html>

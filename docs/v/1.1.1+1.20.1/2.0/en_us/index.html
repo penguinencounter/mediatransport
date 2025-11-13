@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <title>mediatransport book</title>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta name="description" content="The Hex Casting + Figura Server Backend Addon" />
+      <meta name="author" content="penguinencounter" />
+        <link rel="None" type="image/ico" href="favicon.ico" />
+        <link rel="icon" type="image/png" href="favicon-16x16.png" />
+        <link rel="icon" type="image/png" href="favicon-32x32.png" />
+        <link rel="icon" type="image/png" href="favicon-64x64.png" />
+        <link rel="icon" type="image/png" href="favicon-96x96.png" />
+        <link rel="icon" type="image/png" href="favicon-180x180.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-60x60.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-76x76.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-114x114.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-120x120.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-144x144.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-152x152.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-167x167.png" />
+        <link rel="apple-touch-icon" type="image/png" href="apple-touch-icon-180x180.png" />
+        <link rel="None" type="image/png" href="mstile-70x70.png" />
+        <link rel="None" type="image/png" href="mstile-270x270.png" />
+        <link rel="None" type="image/png" href="mstile-310x310.png" />
+        <link rel="None" type="image/png" href="mstile-310x150.png" />
+        <link rel="shortcut icon" type="image/png" href="favicon-196x196.png" />
+      <link rel="mask-icon" href="https://raw.githubusercontent.com/hexdoc-dev/hexdoc/main/media/safari-pinned-tab.svg" color="#332233">
+<meta property="og:type" content="website" />
+<meta property="og:title" content="mediatransport book" />
+<meta property="og:image" content="https://penguinencounter.github.io/mediatransport/v/1.1.1+1.20.1/2.0/en_us/iconFavi512.png" />
+<meta property="og:url" content="https://penguinencounter.github.io/mediatransport/v/1.1.1+1.20.1/2.0/en_us" />
+<meta property="og:description" content="The Hex Casting + Figura Server Backend Addon" />
+<meta property="og:site_name" content="mediatransport (1.1.1+1.20.1)" />
+      <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+      integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"
+        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="index.css">
+      <link rel="stylesheet" href="textures.css">
+      <noscript>
+        <style>
+          /* for accessibility */
+          .spoilered {
+            filter: none !important;
+          }
+        </style>
+      </noscript>
+        <script type="module" src="index.js"></script>
+  <script type="module" src="hexcasting.js"></script>
+  <script type="module" src="hexcasting_render.js"></script>
+  </head>
+  <body>
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button
+        type="button"
+        class="navbar-toggle collapsed"
+        data-toggle="collapse"
+        data-target="#navbar-collapse"
+        aria-expanded="false"
+      >
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../../../..">mediatransport book</a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+            <li>
+    <a
+      href="https://github.com/penguinencounter/mediatransport/tree/6d1ba7ec93688984e41a0015868046c9fde8f231"
+        target="_blank"
+      class="navbar-link"
+      role="button"
+      aria-haspopup="true"
+      aria-expanded="false"
+    >GitHub <i class="bi bi-box-arrow-up-right external-link-icon"></i></a>
+  </li>
+        <li class="dropdown">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >1.1.1+1.20.1 <span class="caret"></span></a>
+          <ul class="dropdown-menu" id="version-dropdown"></ul>
+        </li>
+        <li class="dropdown">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >English (United States) <span class="caret"></span></a>
+          <ul class="dropdown-menu dropdown-menu-left" id="lang-dropdown"></ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container" style="margin-top: 3em;">
+  <blockquote>
+      <h1><p>This is the online version of the mediatransport documentation.</p></h1>
+      <p><strong>Entries which are blurred are spoilers</strong>. Click to reveal them, but be aware that they may spoil endgame progression. Alternatively, click <a href="?nospoiler">here</a> to get a version with all spoilers showing.</p>
+      <span id="old-version-notice" class="hidden">
+        <br />
+        <p><i>The past is a foreign country; they do things differently there.</i></p>
+      </span>
+  </blockquote>
+</div>
+<div class="container">
+<div id="table-of-contents"></div>
+<nav class="toc-container">
+  <h2 class="page-header">
+    Table of <span class="nobr">Contents<a
+      href="javascript:void(0)"
+      class="permalink toggle-link small"
+      data-target="toc-category"
+      title="Toggle all"
+    ><i class="bi bi-list-nested"></i></a><a
+    href="#table-of-contents"
+    class="permalink small toc-permalink"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></span>
+  </h2>
+    <details class="toc-category">
+      <summary><a href="#interop/figura" class="toc-elem "><img
+      title="Warped Staff"
+      alt="Warped Staff"
+      src="https://raw.githubusercontent.com/FallingColors/HexMod/5831d9e2867f2369b8016aed83fbbd401fd7ad3d/Common/src/main/resources/assets/hexcasting/textures/item/staff/warped.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > Figura</a></summary>
+      <ul>
+          <li><a href="#interop/figura/about" class="toc-elem "><img
+      title="Warped Sign"
+      alt="Warped Sign"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/warped_sign.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > Transports</a></li>
+          <li><a href="#mediatransport_virtual/protocol" class="toc-elem "><img
+      title="Bundle"
+      alt="Bundle"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/bundle.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > Iota Transport Protocol</a></li>
+          <li><a href="#interop/figura/channels" class="toc-elem "><img
+      title="Crimson Sign"
+      alt="Crimson Sign"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/crimson_sign.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > FSB Channels</a></li>
+          <li><a href="#mediatransport_virtual/api" class="toc-elem "><img
+      title="Book"
+      alt="Book"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/book.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > Figura API Documentation</a></li>
+          <li><a href="#interop/figura/mishaps" class="toc-elem "><img
+      title="Music Disc"
+      alt="Music Disc"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/music_disc_11.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > Transport Mishaps</a></li>
+          <li><a href="#interop/figura/index" class="toc-elem "><img
+      title="Arrow"
+      alt="Arrow"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/arrow.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > Transports: Index</a></li>
+      </ul>
+    </details>
+    <details class="toc-category">
+      <summary><a href="#patterns" class="toc-elem "><img
+      title="Bookshelf"
+      alt="Bookshelf"
+      src="https://hexdoc-dev.github.io/hexdoc-minecraft/v/1.20.1/1.0.dev1/assets/minecraft/textures/block/bookshelf.png"
+      loading="lazy"
+      class="item-texture  texture "
+    > Patterns</a></summary>
+      <ul>
+          <li><a href="#patterns/figura" class="toc-elem "><img
+      title="Spruce Sign"
+      alt="Spruce Sign"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/spruce_sign.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > Transport Patterns</a></li>
+      </ul>
+    </details>
+    <details class="toc-category">
+      <summary><a href="#mediatransport_admin_virtual" class="toc-elem "><img
+      title="Crimson Staff"
+      alt="Crimson Staff"
+      src="https://raw.githubusercontent.com/FallingColors/HexMod/5831d9e2867f2369b8016aed83fbbd401fd7ad3d/Common/src/main/resources/assets/hexcasting/textures/item/staff/crimson.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > mediatransport admin</a></summary>
+      <ul>
+          <li><a href="#mediatransport_virtual/fsb" class="toc-elem "><img
+      title="Crimson Staff"
+      alt="Crimson Staff"
+      src="https://raw.githubusercontent.com/FallingColors/HexMod/5831d9e2867f2369b8016aed83fbbd401fd7ad3d/Common/src/main/resources/assets/hexcasting/textures/item/staff/crimson.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > About FSB</a></li>
+          <li><a href="#mediatransport_virtual/config" class="toc-elem "><img
+      title="Crimson Staff"
+      alt="Crimson Staff"
+      src="https://raw.githubusercontent.com/FallingColors/HexMod/5831d9e2867f2369b8016aed83fbbd401fd7ad3d/Common/src/main/resources/assets/hexcasting/textures/item/staff/crimson.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > mediatransport config</a></li>
+      </ul>
+    </details>
+</nav>
+  <main class="book-body">
+<section id="interop/figura">
+    <h2 class="category-title page-header">
+    <img
+      title="Warped Staff"
+      alt="Warped Staff"
+      src="https://raw.githubusercontent.com/FallingColors/HexMod/5831d9e2867f2369b8016aed83fbbd401fd7ad3d/Common/src/main/resources/assets/hexcasting/textures/item/staff/warped.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >Figura<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#interop/figura"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h2>
+    <p>It appears that these constructs called <span style="color: #8d6acc">avatars</span> are quite powerful, if a bit annoying to work with.</p>
+<div id="interop/figura/about" class="entry">
+    <h3 class="entry-title page-header">
+    <img
+      title="Warped Sign"
+      alt="Warped Sign"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/warped_sign.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >Transports<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#interop/figura/about"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h3>
+    <p>I appear to have discovered the notes of a collective of people who have also discovered the techniques of <span style="color: #b38ef3">Hexcasting</span>. I&#39;ve copied down what I could understand of the notes, but the last part is so filled with jargon as to be incomprehensible. Perhaps I need to understand more about the artistry of these &#39;<span style="color: #8d6acc">avatars</span>&#39; I see mentioned throughout?</p>
+<br />
+    <p>It appears that Nature created new patterns for communicating specifically with <span style="color: #8d6acc">avatars</span> after the artists used more primitive methods to communicate rapidly. As seems to be standard, Nature has twisted the appearance of the now-familiar iotas in exchange for this increased efficiency and throughput; they appear as boxes and random symbols by my eyes.</p>
+<br />
+    <p>The <span style="color: #8d6acc">avatars</span> and their artists seem to not have this problem, and have figured out how to decode the mess. Here&#39;s the rest of their notes for reference. To be honest, I don&#39;t understand much of what&#39;s going on here.</p>
+<br />
+<div class="mediatransport-altn">
+<div class="-decoration"></div>
+<!-- begin-altn special page -->
+    <p>We&#39;ve discovered (created?) a few new spells. They facilitate direct communication between avatars and hexes; no more getting kicked for spam!</p><p>Some of the more data-oriented of us have decoded the format. The entire thing is byte-aligned and uses <span style="color: #8bf">buffers</span> for data transfer. (that means we have to remember to close them!)</p>
+<br />
+    <p>Based on what we&#39;ve seen, each iota starts with a single-byte <span style="color: #8bf">type</span> followed by zero or more bytes of <span style="color: #8bf">data</span>. All multibyte forms are big endian. (that&#39;s the default for the Buffer read methods)</p><p></p>
+<br />
+    <p>The format in its entirety is described here: <a href="#mediatransport_virtual/protocol">Iota Transport Protocol</a></p>
+<br />
+    <p>Moreover, Nature doesn&#39;t take kindly to being asked to send megabytes of data at a time; to prevent such (ab)use, there is a system of so-called &#34;sending power&#34;. It refills quite rapidly (under normal circumstances), and every transmission-related action consumes some.</p>
+<br />
+    <p>When you run out of &#34;sending power&#34;, trying to submit more iota will result in a mishap. To avoid running into the limit, <a href="#patterns/figura@mediatransport:check_rate_limit">Quota&#39;s Reflection</a> can be useful.</p>
+<br />
+</div>
+</div>
+<div id="mediatransport_virtual/protocol" class="entry">
+    <h3 class="entry-title page-header">
+    <img
+      title="Bundle"
+      alt="Bundle"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/bundle.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >Iota Transport Protocol<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#mediatransport_virtual/protocol"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h3>
+<div class="mediatransport-altn">
+<div class="-decoration"></div>
+<!-- begin-altn special page -->
+  <!-- ahh, freedom from that stupid book format. lots of room to play here! -->
+<div class="mediatransport-hidden" style="padding: 8px; border: 2px solid #f44;">
+  <div style="font-size: 3rem;">Loading error</div>
+  <p>
+  It appears that mediatransport's styles failed to load. Something's wrong with this book's setup.
+  </p>
+<pre>
+{% include &#34;mediatransport:mediatransport_shared.css.jinja&#34; %}
+</pre>
+</div>
+<div class="protocoldocs">
+<p><b>This documentation is for protocol <a class="protocol-sym" href="#mediatransport-protocol-protocol_version">version</a> 1.</b></p>
+<p>As previously described, an iota consists of a single-byte <span class="protocol-sym-def" id="mediatransport-protocol-type">type</span> followed by some amount of <span class="protocol-sym-raw">data</span>, depending on the type.</p>
+<div class="block-diagram">
+      <div class="block -sized -sym" style="--width: 1">
+        <span class="-name">type</span>
+        <span class="-size">1 byte</span>
+      </div>
+      <div class="block -indefinite -sym">
+        <span class="-name">data</span>
+        <span class="-size"> ... </span>
+      </div>
+</div>
+<p>Each iota type has a different <a class="protocol-sym" href="#mediatransport-protocol-type">type</a> value and has a different format for <span class="protocol-sym-raw">data</span>.</p>
+<h3>Built-in types</h3>
+<h4><code>ff</code>: Garbage</h4>
+<p>All these types have no data. Also, since Garbage is used to represent decoding failures, it's generally a bad idea to create it on purpose.</p>
+<div class="block-diagram">
+      <div class="block -sized -literal" style="--width: 1">
+        <span class="-name">ff</span>
+        <span class="-size">1 byte</span>
+      </div>
+</div>
+<h4><code>02</code>: True and <code>03</code>: False</h4>
+<div class="diagram-sbs">
+<div class="block-diagram">
+      <div class="block -sized -literal" style="--width: 1">
+        <span class="-name">02</span>
+        <span class="-size">1 byte</span>
+      </div>
+</div>
+<div class="block-diagram">
+      <div class="block -sized -literal" style="--width: 1">
+        <span class="-name">03</span>
+        <span class="-size">1 byte</span>
+      </div>
+</div>
+</div>
+<h4><code>04</code>: Null</h4>
+<div class="block-diagram">
+      <div class="block -sized -literal" style="--width: 1">
+        <span class="-name">04</span>
+        <span class="-size">1 byte</span>
+      </div>
+</div>
+<h4><code>05</code>: Double</h4>
+<p>Finally, something interesting! Hexcasting uses IEEE 754 double-width floats (that's 8 bytes, 64 bits), so that's what's being used here for <span class="protocol-sym-def" id="mediatransport-protocol-double_value">value</span>.</p>
+<div class="block-diagram">
+      <div class="block -sized -literal" style="--width: 1">
+        <span class="-name">05</span>
+        <span class="-size">1 byte</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 8">
+        <span class="-name">value</span>
+        <span class="-size">8 bytes</span>
+      </div>
+</div>
+<h4><code>06</code>: Pattern</h4>
+<p>In honor of Hexxy, patterns are type 6. They're a bit complicated:</p>
+<ul>
+<li>First is a byte representing the <span class="protocol-sym-def" id="mediatransport-protocol-dir">dir</span>. This is based on some internal representation, and appears to be as follows: 0 = north east, 1 = east, 2 = south east, 3 = south west, 4 = west, and 5 = north west.</li>
+<li>Next is a four-byte integer holding the number of angles in the pattern (effectively, strokes minus 1, or the <span class="protocol-sym-def" id="mediatransport-protocol-pattern_len">length</span>)</li>
+<li>Following that are the <span class="protocol-sym-def" id="mediatransport-protocol-angles">angles</span>, each 1 byte. Once again this appears to be based on some internal representation, as follows: 0 = forward, 1 = right, 2 = right back, 3 = back, 4 = left back, and 5 = left.</li>
+</ul>
+<div class="block-diagram">
+      <div class="block -sized -literal" style="--width: 1">
+        <span class="-name">06</span>
+        <span class="-size">1 byte</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 1">
+        <span class="-name">dir</span>
+        <span class="-size">1 byte</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 4">
+        <span class="-name">length</span>
+        <span class="-size">4 bytes</span>
+      </div>
+      <div class="block -flexible -sym">
+        <span class="-name">angles</span>
+        <span class="-size">=length*1 bytes</span>
+      </div>
+</div>
+<h4><code>07</code>: Vector</h4>
+<p>A vector is three doubles in sequence - <span class="protocol-sym-def" id="mediatransport-protocol-vec_x">x</span>, <span class="protocol-sym-def" id="mediatransport-protocol-vec_y">y</span>, and <span class="protocol-sym-def" id="mediatransport-protocol-vec_z">z</span>.</p>
+<div class="block-diagram">
+      <div class="block -sized -literal" style="--width: 1">
+        <span class="-name">07</span>
+        <span class="-size">1 byte</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 8">
+        <span class="-name">x</span>
+        <span class="-size">8 bytes</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 8">
+        <span class="-name">y</span>
+        <span class="-size">8 bytes</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 8">
+        <span class="-name">z</span>
+        <span class="-size">8 bytes</span>
+      </div>
+</div>
+<h4><code>08</code>: List</h4>
+<p>Lists are the primary structuring tool that Hexcasting has, and are similar to patterns - first is a four-byte <span class="protocol-sym-def" id="mediatransport-protocol-list_len">length</span>, followed by that many iota of any type.</p>
+<div class="block-diagram">
+      <div class="block -sized -literal" style="--width: 1">
+        <span class="-name">08</span>
+        <span class="-size">1 byte</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 4">
+        <span class="-name">length</span>
+        <span class="-size">4 bytes</span>
+      </div>
+      <div class="block -indefinite -sym">
+        <span class="-name">iotas</span>
+        <span class="-size"> ... </span>
+      </div>
+</div>
+<p class="mediatransport-callout -warning">
+  It seems that avatars being able to bring entire structures of iota into being is a bit too much for Nature (...well, by default); you may receive garbage in return
+</p>
+<h3>MoreIotas types</h3>
+<h4><code>01</code>: String</h4>
+<p>Strings, like the rest of the variable-length iotas, have a 4-byte <span class="protocol-sym-def" id="mediatransport-protocol-str_len">length</span> followed by the data (in this case, the <span class="protocol-sym-def" id="mediatransport-protocol-string">string</span>.) Strings are expected to be encoded in UTF-8.</p>
+<div class="block-diagram">
+      <div class="block -sized -literal" style="--width: 1">
+        <span class="-name">01</span>
+        <span class="-size">1 byte</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 4">
+        <span class="-name">length</span>
+        <span class="-size">4 bytes</span>
+      </div>
+      <div class="block -flexible -sym">
+        <span class="-name">string</span>
+        <span class="-size">=length*1 bytes</span>
+      </div>
+</div>
+<h4><code>40</code>: Matrix</h4>
+<p>Matrices are two-dimensional arrays of doubles.</p>
+<ul>
+  <li>First is a single byte for the number of <span class="protocol-sym-def" id="mediatransport-protocol-rows">rows</span>, followed by another byte for the number of <span class="protocol-sym-def" id="mediatransport-protocol-cols">cols</span>.</li>
+  <li>This is followed by the <span class="protocol-sym-def" id="mediatransport-protocol-matrix_contents">contents</span> of the matrix - one double for each entry. Each row is written out in sequence (ex. for a 2 by 2 matrix, the order would be row 1 column 1, followed by row 1 column 2, and then row 2 after that)</li>
+</ul>
+<div class="block-diagram">
+      <div class="block -sized -literal" style="--width: 1">
+        <span class="-name">40</span>
+        <span class="-size">1 byte</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 1">
+        <span class="-name">rows</span>
+        <span class="-size">1 byte</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 1">
+        <span class="-name">cols</span>
+        <span class="-size">1 byte</span>
+      </div>
+      <div class="block -flexible -sym">
+        <span class="-name">contents</span>
+        <span class="-size">=rows*cols*8 bytes</span>
+      </div>
+</div>
+<h3>Hexpose types</h3>
+<h4><code>50</code>: Text</h4>
+<p>It appears that this format is not suitable for communicating the decorative properties of text (also called 'display') iota. Nevertheless, the actual text content can be transmitted. Text iota have the same format as strings:</p>
+<div class="block-diagram">
+      <div class="block -sized -literal" style="--width: 1">
+        <span class="-name">50</span>
+        <span class="-size">1 byte</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 4">
+        <span class="-name">length</span>
+        <span class="-size">4 bytes</span>
+      </div>
+      <div class="block -flexible -sym">
+        <span class="-name">string</span>
+        <span class="-size">=length*1 bytes</span>
+      </div>
+</div>
+<h3>Non-iotas</h3>
+<p>These don't seem to represent iota at all! They can't be sent to Nature and only appear under special circumstances.</p>
+<h4><code>fe</code>: Configuration Data</h4>
+<p>This glob of information is Nature's repsonse to <a href="#patterns/figura@mediatransport:send_server_info">Query Configuration</a>.</p>
+<ul>
+  <li>First is the protocol's <span class="protocol-sym-def" id="mediatransport-protocol-protocol_version">version</span> as a two-byte 'short'. This documentation is written for <em>version 1</em>.</li>
+  <li>Next is the maximum amount of data that can be sent with Submit Iota, in bytes.</li>
+  <li>That is followed by the maximum amount of data that can be sent with Submit Iota II...</li>
+  <li>and the maximum amount of data that can be received from an avatar.</li>
+  <li>That's followed by the maximum amount of 'sending power' that can be held at a time, as a double precision floating point...</li>
+  <li>and how much 'sending power' is regained per tick...</li>
+  <li>and finally, how much 'sending power' Submit Iota II costs.</li>
+</ul>
+<div class="block-diagram">
+      <div class="block -sized -literal" style="--width: 1">
+        <span class="-name">fe</span>
+        <span class="-size">1 byte</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 2">
+        <span class="-name">version</span>
+        <span class="-size">2 bytes</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 4">
+        <span class="-name">max_send</span>
+        <span class="-size">4 bytes</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 4">
+        <span class="-name">max_inter</span>
+        <span class="-size">4 bytes</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 4">
+        <span class="-name">max_recv</span>
+        <span class="-size">4 bytes</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 8">
+        <span class="-name">max_power</span>
+        <span class="-size">8 bytes</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 8">
+        <span class="-name">power_regen_rate</span>
+        <span class="-size">8 bytes</span>
+      </div>
+      <div class="block -sized -sym" style="--width: 8">
+        <span class="-name">inter_cost</span>
+        <span class="-size">8 bytes</span>
+      </div>
+</div>
+</div>
+<br />
+</div>
+</div>
+<div id="interop/figura/channels" class="entry">
+    <h3 class="entry-title page-header">
+    <img
+      title="Crimson Sign"
+      alt="Crimson Sign"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/crimson_sign.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >FSB Channels<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#interop/figura/channels"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h3>
+    <p>... oh, I remember now!</p>
+<br />
+<div class="mediatransport-altn">
+<div class="-decoration"></div>
+<!-- begin-altn special page -->
+  <div class="mediatransport-hidden" style="padding: 8px; border: 2px solid #f44;">
+  <div style="font-size: 3rem;">Loading error</div>
+  <p>
+  It appears that mediatransport's styles failed to load. Something's wrong with this book's setup.
+  </p>
+<pre>
+{% include &#34;mediatransport:mediatransport_shared.css.jinja&#34; %}
+</pre>
+</div>
+<p>
+Data sent via <a href="#patterns/figura@mediatransport:send_fsb">Submit Iota</a> is sent to <code>server_packets.transport_received</code>, like so:
+</p>
+<pre>
+function server_packets.transport_received(data)
+    data:close()
+end
+</pre>
+<p>
+Data from other casters via <a href="#patterns/figura@mediatransport:send_other">Submit Iota II</a> are sent to a different channel: <code>server_packets.transport_external_received</code>
+</p>
+<pre>
+function server_packets.transport_external_received(data)
+    data:close()
+end
+</pre>
+<p>
+Finally, to send data, use <code>:sendPacket</code> with <code>"transport_send"</code>:
+</p>
+<pre>
+server_packets:sendPacket("transport_send", buffer)
+buffer:close()
+</pre>
+<br />
+</div>
+</div>
+<div id="mediatransport_virtual/api" class="entry">
+    <h3 class="entry-title page-header">
+    <img
+      title="Book"
+      alt="Book"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/book.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >Figura API Documentation<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#mediatransport_virtual/api"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h3>
+    <p>This was attached as a supplementary document to the other notes I found.</p>
+<br />
+<div class="mediatransport-altn">
+<div class="-decoration"></div>
+<!-- begin-altn special page -->
+  <div class="mediatransport-hidden" style="padding: 8px; border: 2px solid #f44;">
+  <div style="font-size: 3rem;">Loading error</div>
+  <p>
+  It appears that mediatransport's styles failed to load. Something's wrong with this book's setup.
+  </p>
+<pre>
+{% include &#34;mediatransport:mediatransport_shared.css.jinja&#34; %}
+</pre>
+</div>
+<p>
+  It seems that the avatar side of the communication isn't without complexity, either - due to <s>a complete lack of wiki maintenance</s> ...less than optimal bookkeeping practices, the only source of information about the systems to interact with Nature seem to be the built-in documentation, which leaves much to be desired.
+</p>
+<p>
+  (If one is curious about that, it seems to be available via the incantation <code>/figura docs globals server_packets</code> and its various branches.)
+</p>
+<p>
+  To act as reference material in the meantime, I have created this supplementary document, which should hopefully provide the reader with a reasonable understanding of how the API works.
+</p>
+<h3>Overview of <code>server_packets</code></h3>
+<p>
+  Internally called <code>ServerPacketsAPI</code>, <code>server_packets</code> functions very similarly to the much more familiar <code>pings</code>, with a few slight differences.
+</p>
+<p>
+  To receive data, use the function definition syntax you're probably familiar with:
+</p>
+<pre>
+function server_packets.packet_id(data)
+  -- Handle data here!
+end
+</pre>
+<p>
+  Compared to pings, server_packets receivers always have exactly one parameter, through which a <a class="protocol-sym" href="#mediatransport-protocol-Buffer">Buffer</a> is passed containing the packet's data.
+</p>
+<p class="mediatransport-callout -warning">
+  Make sure to <em>close</em> the <a class="protocol-sym" href="#mediatransport-protocol-Buffer">Buffer</a> you are given! If you don't, the buffer slot will continue to be considered "used" and you will eventually run out of buffers (from my research, most people are unaware there is a limit on buffer count at all, but it exists as part of the permissions system and this is one of the easiest ways to have latent bugs.)
+</p>
+<p>
+  The other main difference from pings is that sending data is explicit and not activated by calling the receiver function - that means calling <code>server_packets.packet_id()</code> <em>does not send anything</em>. To send packets, use <code>server_packets:sendPacket(id, data)</code>, where <code>id</code> is a <code>string</code> and <code>data</code> is a <code>Buffer</code>.
+</p>
+<p class="mediatransport-callout -warning">
+  Make sure to <a href='#mediatransport-setPosition'>rewind the Buffer</a> before sending it.
+</p>
+<h3>Quick Introduction to <span class="protocol-sym-def" id="mediatransport-protocol-Buffer">Buffer</span>s</h3>
+<p class="mediatransport-hatnote">
+  The canonical documentation for Buffers is accessible via the incantation <code>/figura docs globals data Buffer</code>.
+</p>
+<p class="mediatransport-hatnote">
+  It's also available <a href='https://applejuiceyy.github.io/figs/latest/Buffer/'>on FIGS</a> or the <a href='https://figura-wiki.pages.dev/globals/Data/Buffer'>Figura Wiki</a>.
+</p>
+<p>
+  Buffers provide a convenient interface for reading structured data like the one Nature provides. It's almost like it's <a href='https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/DataOutputStream.html'>based on something else</a>...
+</p>
+<h4>Creating new buffers: <code>data:createBuffer()</code></h4>
+<p>
+  To create a new buffer, use <code>data:createBuffer()</code>, which returns a new Buffer object.
+</p>
+<p>
+  You can also specify the initial allocated size by providing it as an argument to <code>createBuffer</code>, but this is not required unless you're working under really tight permissions constraints as Figura will auto-expand buffers by default.
+</p>
+<h4>Cleaning up after yourself: <code>:close()</code></h4>
+<p>
+  As mentioned in the warning callout above, there is a limit on the number of buffers you can have, and it's tied to the permission system.
+</p>
+<ul>
+  <li>On <em>Default</em>, the limit is <b>4 buffers</b>.</li>
+  <li>On <em>High</em>, the limit is <b>16 buffers</b>.</li>
+  <li>On <em>MAX</em>, the limit is <b>32 buffers</b>.</li>
+</ul>
+<p>
+  To free up a buffer, call <code>close()</code> on it. This will render the contents unusable.
+</p>
+<pre>
+local buf = data:createBuffer()
+-- (later...)
+buf:close()
+</pre>
+<h4 id="mediatransport-setPosition">Moving the cursor around: <code>:setPosition(pos)</code></h4>
+<p>
+  Buffers function with a 'cursor' that moves around the data as you read and write to it.
+</p>
+<p>
+  Each time data is read or written, that action is taken at the position of the cursor and the cursor is <em>automatically advanced</em> to the next byte. This makes it convenient to read or write many values in sequence.
+</p>
+<p>
+  However, it is still useful to be able to move the cursor around manually - notably, to read back the data written to a buffer, the cursor has to be moved ("rewound") back to position 0:
+</p>
+<pre>
+buf:writeByte(5)
+buf:writeDouble(3.14159)
+buf:setPosition(0) -- move back to the beginning
+</pre>
+<h4 id="mediatransport-write">Writing Data</h4>
+<p class="mediatransport-hatnote">
+  This section only discusses types that Nature cares about. Other types are supported by buffers - to see that, go to the canonical documentation.
+</p>
+<p>
+  There are methods to write data in various formats to a buffer. They all move the cursor to the <em>end of the data written</em>, so calling them multiple times in sequence will concatenate the data.
+</p>
+<p>
+  For things described as '<em>x</em>-byte integers', use these names:
+</p>
+<ul>
+  <li><code>:write(n)</code>: 1 byte, such as <a class="protocol-sym" href="#mediatransport-protocol-type">type</a>, <a class="protocol-sym" href="#mediatransport-protocol-dir">dir</a> for patterns, and <a class="protocol-sym" href="#mediatransport-protocol-rows">rows</a> and <a class="protocol-sym" href="#mediatransport-protocol-cols">cols</a> for matrices.</li>
+  <li><code>:writeInt(n)</code>: 4 bytes, which is primarily used to describe the length of things</li>
+</ul>
+<p>
+  For 'doubles', use:
+</p>
+<ul>
+  <li><code>:writeDouble(n)</code>: 8 bytes, used for both the <a class="protocol-sym" href="#mediatransport-protocol-double_value">value</a> of numbers and the <a class="protocol-sym" href="#mediatransport-protocol-vec_x">x</a>, <a class="protocol-sym" href="#mediatransport-protocol-vec_y">y</a>, and <a class="protocol-sym" href="#mediatransport-protocol-vec_z">z</a> of vectors.</li>
+</ul>
+<h4 id="mediatransport-read">Reading Data</h4>
+<p>
+  Similar to writing data, Buffers are versatile in what they can read. Each read method also similarily moves the cursor to the <em>end of the data read</em>.
+</p>
+<ul>
+  <li><code>:read()</code>: 1 byte, such as <a class="protocol-sym" href="#mediatransport-protocol-type">type</a>, <a class="protocol-sym" href="#mediatransport-protocol-dir">dir</a> for patterns, and <a class="protocol-sym" href="#mediatransport-protocol-rows">rows</a> and <a class="protocol-sym" href="#mediatransport-protocol-cols">cols</a> for matrices.</li>
+  <li><code>:readShort()</code>: 2 bytes - the protocol <a class="protocol-sym" href="#mediatransport-protocol-protocol_version">version</a></li>
+  <li><code>:readInt()</code>: 4 bytes, usually lengths but also quite a few configuration parameters</li>
+  <li><code>:readDouble()</code>: 8 bytes, used for both the <a class="protocol-sym" href="#mediatransport-protocol-double_value">value</a> of numbers and the <a class="protocol-sym" href="#mediatransport-protocol-vec_x">x</a>, <a class="protocol-sym" href="#mediatransport-protocol-vec_y">y</a>, and <a class="protocol-sym" href="#mediatransport-protocol-vec_z">z</a> of vectors, as well as the sending power-related configuration values.</li>
+</ul>
+<br />
+</div>
+</div>
+<div id="interop/figura/mishaps" class="entry">
+    <h3 class="entry-title page-header">
+    <img
+      title="Music Disc"
+      alt="Music Disc"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/music_disc_11.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >Transport Mishaps<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#interop/figura/mishaps"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h3>
+    <p>Various things can go wrong when interacting with the esoteric language of avatar transports.</p>
+<br />
+  <h4>Transport Init Failure</h4>
+    <p><i>Figura server isn&#39;t initialized ...</i></p><p>Occurs if the server is misconfigured or if this universe is an &#34;integrated server&#34;. Causes grey sparks and a general feeling of disappointment.</p>
+<br />
+  <h4>Not a Submittable Iota</h4>
+    <p><i>can&#39;t send ... because that type of iota can&#39;t be sent</i></p><p>That type of iota can&#39;t be submitted to Nature for transmission. Causes black sparks.</p><p><i>Need support for an iota type? Ask on <a href="https://github.com/penguinencounter/mediatransport/issues" target="_blank">GitHub</a>!</i></p>
+<br />
+  <h4>Corrupt Iota</h4>
+    <p><i>can&#39;t send ... because it&#39;s corrupted or ill-formed</i></p><p>Something has gone horribly wrong. Causes black sparks, and probably should be reported on the relevant GitHub issue tracker.</p>
+<br />
+  <h4>Matrix Too Large</h4>
+    <p><i>can&#39;t send ... because it&#39;s too big<br />can&#39;t send ... because it has too many rows<br />can&#39;t send ... because it has too many columns</i></p><p>The matrix you&#39;re trying to send has too many entries to be sent, or more than 255 rows or columns. Causes black sparks.</p>
+<br />
+  <h4>Send Too Large</h4>
+    <p><i>can&#39;t send: calculated size at least ...</i></p><p>The iota you&#39;re sending is larger than the maximum allowed size. Causes black sparks.</p><p><i>Note: Server administrators can change the limit in the config.</i></p>
+<br />
+  <h4>Send Other Too Large</h4>
+    <p><i>can&#39;t send to other players: calculated size at least ...</i></p><p>The iota you&#39;re sending to another player&#39;s avatar is larger than the maximum allowed size. Causes black sparks.</p><p><i>Note: Server administrators can change the limit in the config.</i></p>
+<br />
+  <h4>Nothing to Accept</h4>
+    <p>Tried to accept an iota, but there&#39;s nothing to accept (i.e. the queue is empty.) Causes white sparks and the screams of <span class="obfuscated">the tormented minds</span> to echo within my ears.</p>
+<br />
+  <h4>Too Fast</h4>
+    <p>I ran out of &#39;sending power&#39;. Perhaps I should consider consolidating usages of Submit Iota? Causes orange sparks and the sound of something breaking.</p>
+<br />
+<div class="mediatransport-altn">
+<div class="-decoration"></div>
+<!-- begin-altn special page -->
+    <p>it looks like most of these errors only occur when <i>sending</i> (well, &#34;submitting&#34;) data from within nature&#39;s domain. nature seems to be much more lenient in accepting bad data... in that it doesn&#39;t crash anything and instead outputs its favorite flavor of not-error: garbage!<br />unfortunately this makes it hard to determine why data isn&#39;t making it across the boundary. we&#39;ve compiled a list of reasons to look out for:</p>
+<br />
+    <p>- data is of a type (that&#39;s the first byte) that nature has no representation for<br />- the transmission is missing some data at the end<br />- the data is too large (seems like this could be different limit than the one going in the other direction...)<br />- a variant of the above: the same matrix size restrictions apply (though it&#39;s impossible to have too many rows or columns, the total area could still be too much)</p>
+<br />
+    <p>also note that lists can also partially fail to transfer, leading to the entire decoder potentially derailing and interpreting types as data and vice versa. good luck!</p>
+<br />
+</div>
+</div>
+<div id="interop/figura/index" class="entry">
+    <h3 class="entry-title page-header">
+    <img
+      title="Arrow"
+      alt="Arrow"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/arrow.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >Transports: Index<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#interop/figura/index"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h3>
+  <h4>Related Chapters</h4>
+<ul>
+    <li><a href="#interop/figura/about" class="toc-elem "><img
+      title="Warped Sign"
+      alt="Warped Sign"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/warped_sign.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > Transports</a></li>
+    <li><a href="#interop/figura/mishaps" class="toc-elem "><img
+      title="Music Disc"
+      alt="Music Disc"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/music_disc_11.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > Transport Mishaps</a></li>
+    <li><a href="#interop/figura/channels" class="toc-elem "><img
+      title="Crimson Sign"
+      alt="Crimson Sign"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/crimson_sign.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > FSB Channels</a></li>
+    <li><a href="#mediatransport_virtual/protocol" class="toc-elem "><img
+      title="Bundle"
+      alt="Bundle"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/bundle.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > Iota Transport Protocol</a></li>
+    <li><a href="#patterns/figura" class="toc-elem "><img
+      title="Spruce Sign"
+      alt="Spruce Sign"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/spruce_sign.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    > Transport Patterns</a></li>
+</ul>
+    <p>An index of all the entries related to transports and Figura.</p>
+<br />
+</div>
+</section>
+<section id="patterns">
+    <h2 class="category-title page-header">
+    <img
+      title="Bookshelf"
+      alt="Bookshelf"
+      src="https://hexdoc-dev.github.io/hexdoc-minecraft/v/1.20.1/1.0.dev1/assets/minecraft/textures/block/bookshelf.png"
+      loading="lazy"
+      class="item-texture  texture "
+    >Patterns<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#patterns"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h2>
+    <p>A list of all the patterns I&#39;ve discovered, as well as what they do.</p>
+<div id="patterns/figura" class="entry">
+    <h3 class="entry-title page-header">
+    <img
+      title="Spruce Sign"
+      alt="Spruce Sign"
+      src="https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/a14c64362abe4a12c2dfd87f8d1673af9d1b09f4/data/1.20.2/items/spruce_sign.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >Transport Patterns<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#patterns/figura"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h3>
+  <div id="patterns/figura@mediatransport:send_fsb" class="">
+<h4 class="pattern-title">Submit Iota (sendable →)<a
+    href="#patterns/figura@mediatransport:send_fsb"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Renders</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Palettes</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="edwdwad"
+        data-start="east"
+        data-per-world="False"
+      >Your browser does not support visualizing patterns. Pattern code: edwdwad</canvas>
+  </details>
+      <p>Sends the iota on the top of the stack into the ether to be received by my current avatar. Can fail for <a href="#interop/figura/mishaps">various reasons</a>. Always costs a fixed 1 &#39;sending power.&#39;</p>
+  </div>
+<br />
+  <div id="patterns/figura@mediatransport:recv_fsb" class="">
+<h4 class="pattern-title">Accept Iota (→ sendable | garbage)<a
+    href="#patterns/figura@mediatransport:recv_fsb"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Renders</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Palettes</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="edwdwwaa"
+        data-start="east"
+        data-per-world="False"
+      >Your browser does not support visualizing patterns. Pattern code: edwdwwaa</canvas>
+  </details>
+      <p>Retrieves the next iota from the <span style="color: #8d6acc">inbound queue</span>, or <a href="#interop/figura/mishaps">mishaps</a> if the queue is empty.</p>
+  </div>
+<br />
+  <div id="patterns/figura@mediatransport:check_queue" class="">
+<h4 class="pattern-title">Semaphore&#39;s Refl. (→ number)<a
+    href="#patterns/figura@mediatransport:check_queue"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Renders</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Palettes</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="edwdwq"
+        data-start="east"
+        data-per-world="False"
+      >Your browser does not support visualizing patterns. Pattern code: edwdwq</canvas>
+  </details>
+      <p>Queries the number of iotas in the queue.</p>
+  </div>
+<br />
+  <div id="patterns/figura@mediatransport:send_other" class="">
+<h4 class="pattern-title">Submit Iota II (player, sendable →)<a
+    href="#patterns/figura@mediatransport:send_other"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Renders</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Palettes</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="wewdwwwdwaawawdwawaqwdwwdada"
+        data-start="east"
+        data-per-world="True"
+      >Your browser does not support visualizing patterns. Pattern code: wewdwwwdwaawawdwawaqwdwwdada</canvas>
+  </details>
+      <p>Sends the iota on the top of the stack to be received by the player second from the top of the stack. It seems to have a separate receiver from the other one. Usually costs 2 &#39;sending power&#39;, but this could be different depending on the server configuration.</p>
+  </div>
+<br />
+  <div id="patterns/figura@mediatransport:check_rate_limit" class="">
+<h4 class="pattern-title">Quota&#39;s Reflection (→ number)<a
+    href="#patterns/figura@mediatransport:check_rate_limit"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Renders</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Palettes</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="edwdwda"
+        data-start="east"
+        data-per-world="False"
+      >Your browser does not support visualizing patterns. Pattern code: edwdwda</canvas>
+  </details>
+      <p>Queries the amount of &#39;sending power&#39; remaining.</p>
+  </div>
+<br />
+  <div id="patterns/figura@mediatransport:send_server_info" class="">
+<h4 class="pattern-title">Query Configuration<a
+    href="#patterns/figura@mediatransport:send_server_info"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h4>
+  <details class="details-collapsible">
+    <summary class="collapse-details collapse-spell"></summary>
+    <div class="dropdown spell-settings-dropdown">
+      <span
+        href=""
+        class="dropdown-toggle spell-settings-toggle"
+        data-toggle="dropdown"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </span>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Renders</a>
+          <ul class="dropdown-menu dropdown-menu-left render-dropdowns"></ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a
+            href=""
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >Palettes</a>
+          <ul class="dropdown-menu dropdown-menu-left palette-dropdowns"></ul>
+        </li>
+      </ul>
+    </div>
+      <canvas
+        class="spell-viz"
+        width="216"
+        height="216"
+        data-string="edwdwwdde"
+        data-start="east"
+        data-per-world="False"
+      >Your browser does not support visualizing patterns. Pattern code: edwdwwdde</canvas>
+  </details>
+      <p>Asks Nature to send information about its preferences to my current avatar. Costs 1 &#39;spending power&#39;. See <a href="#mediatransport_virtual/protocol">the protocol documentation</a> for details.</p>
+  </div>
+<br />
+</div>
+</section>
+<section id="mediatransport_admin_virtual">
+    <h2 class="category-title page-header">
+    <img
+      title="Crimson Staff"
+      alt="Crimson Staff"
+      src="https://raw.githubusercontent.com/FallingColors/HexMod/5831d9e2867f2369b8016aed83fbbd401fd7ad3d/Common/src/main/resources/assets/hexcasting/textures/item/staff/crimson.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >mediatransport admin<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#mediatransport_admin_virtual"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h2>
+    <p>This category is <strong>hexdoc only</strong> (not in in-game book) and contains information for server administrators installing mediatransport and FSB.</p>
+<div id="mediatransport_virtual/fsb" class="entry">
+    <h3 class="entry-title page-header">
+    <img
+      title="Crimson Staff"
+      alt="Crimson Staff"
+      src="https://raw.githubusercontent.com/FallingColors/HexMod/5831d9e2867f2369b8016aed83fbbd401fd7ad3d/Common/src/main/resources/assets/hexcasting/textures/item/staff/crimson.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >About FSB<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#mediatransport_virtual/fsb"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h3>
+    <p>mediatransport relies on <span style="text-decoration: underline">Figura Server Backend</span> (also called <span style="text-decoration: underline">FSB</span>) to function. FSB is a feature in the development builds of Figura for 1.20.1 that enables hosting avatars and pings on the server itself instead of relying on the global backend.</p>
+<br />
+    <p>FSB <span style="text-decoration: underline">doesn&#39;t work on Singleplayer</span> or LAN worlds, so you might want to host a dedicated server to test your hexes out. Thanks for playing our addon! :)</p><p><a href="https://github.com/penguinencounter/Figura/releases/tag/figura-fsb-placeholder" target="_blank">Figura FSB builds on GitHub</a></p>
+<br />
+</div>
+<div id="mediatransport_virtual/config" class="entry">
+    <h3 class="entry-title page-header">
+    <img
+      title="Crimson Staff"
+      alt="Crimson Staff"
+      src="https://raw.githubusercontent.com/FallingColors/HexMod/5831d9e2867f2369b8016aed83fbbd401fd7ad3d/Common/src/main/resources/assets/hexcasting/textures/item/staff/crimson.png"
+      loading="lazy"
+      class="item-texture  texture pixelated"
+    >mediatransport config<a
+    href="#table-of-contents"
+    class="permalink small"
+    title="Jump to top"
+  ><i class="bi bi-box-arrow-up"></i></a><a
+    href="#mediatransport_virtual/config"
+    class="permalink small"
+    title="Permalink"
+  ><i class="bi bi-link-45deg"></i></a></h3>
+    <p>mediatransport has various server configuration options to limit what data can be sent between avatars and casting environments.</p>
+<br />
+  <h4>Size Restrictions</h4>
+    <p>All values in bytes.</p><p><span style="text-decoration: underline">maximumSendSize</span>: maximum amount of data that can be sent through <a href="#patterns/figura@mediatransport:send_fsb">Submit Iota</a>.</p><p><span style="text-decoration: underline">maximumInterSendSize</span>: maximum amount of data that can be sent through <a href="#patterns/figura@mediatransport:send_other">Submit Iota II</a>.</p><p><span style="text-decoration: underline">maximumRecvSize</span>: maximum amount of data that can be received from Figura. If this is exceeded, garbage will be pushed into the queue instead of the actual data.</p><p><span style="text-decoration: underline">matrixMaxArea</span>: MoreIotas only; sets the maximum matrix area (width * height) that can be sent or received, separately from other restrictions and the maximum row/column count of 255.</p>
+<br />
+  <h4>Filters</h4>
+    <p>mediatransport has three separate <i>filter</i> configuration sets for controlling what types of iota can be sent. Each one has a <span style="text-decoration: underline">mode</span> and a <span style="text-decoration: underline">list of entries</span>.</p><p>The <span style="text-decoration: underline">mode</span> can either be <strong>&#34;Block&#34;</strong> (forbids certain types, &#39;blocklist&#39;) or <strong>&#34;Allow&#34;</strong> (only allows certain types, &#39;allowlist&#39;).</p><p>The list contains the list of resource locations to apply the filter with. For example, to disallow sending lists, set the <span style="text-decoration: underline">mode</span> to <strong>&#34;Block&#34;</strong> and the list to <strong>[&#34;hexcasting:list&#34;]</strong>.</p><p>Note that allowing an iota type won&#39;t magically make it sendable if mediatransport lacks encoders or decoders for that type.</p>
+<br />
+  <h4>Sending Filters</h4>
+    <p>Just like the size limits, there are separate filters for <a href="#patterns/figura@mediatransport:send_fsb">Submit Iota</a> and <a href="#patterns/figura@mediatransport:send_other">Submit Iota II</a>.</p><p><span style="text-decoration: underline">sendFilter</span> and <span style="text-decoration: underline">sendFilterMode</span> apply to Submit Iota. <span style="text-decoration: underline">interSendFilter</span> and <span style="text-decoration: underline">interSendFilterMode</span> apply to Submit Iota II.</p><p>If an iota is blocked by these filters, it will cause an &#39;bad type&#39; mishap on the relevant iota (even if it&#39;s nested in a list.)</p>
+<br />
+  <h4>Receiving Filters</h4>
+    <p><span style="text-decoration: underline">recvFilter</span> and <span style="text-decoration: underline">recvFilterMode</span> control what types of iota can be received from Figura.</p><p>Any iota that are blocked by this filter are replaced with Garbage, but any containing iota will be unaffected. (ex. a list containing an invalid iota will be received as a list containing garbage instead, provided lists are allowed.)</p>
+<br />
+</div>
+</section>
+  </main>
+</div>
+      <footer class="footer">
+        <div class="container text-muted">
+          <p>Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft.</p><p>Minecraft content and materials are the intellectual property of their respective owners.</p><p>Made with ❤️ using <a href="https://pypi.org/project/hexdoc/" target="_blank">hexdoc</a>.</p>
+        </div>
+      </footer>
+  </body>
+</html>

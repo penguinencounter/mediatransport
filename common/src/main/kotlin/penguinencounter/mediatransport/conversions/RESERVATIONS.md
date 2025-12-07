@@ -29,6 +29,11 @@ mediatransport uses a single byte to represent types. thus, space is quite limit
 - **external**
 - `0x63-0x6e` (reserved)
 
+## `0x70`: HexWeb
+- **external**
+- `0x70` is **json**
+- `0x70` (reserved)
+
 ## `0xf0-0xf7`: external specials
 - ask to reserve IDs
 - This block is for data that isn't iotas

@@ -45,6 +45,7 @@ object MediaTransportServer {
         cooldowns.compute(player.uuid) { _, last ->
             max(0.0, last!! - cost)
         }
+        lastTickUsed[player.uuid] = player.server.tickCount
         return true
     }
 

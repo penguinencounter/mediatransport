@@ -35,6 +35,7 @@ object MediaTransportServer {
                 MediaTransportConfig.server.rateLimitMaxValue
             )
         }
+        lastTickUsed[uuid] = now
     }
 
     @Throws(MishapTooFast::class)
